@@ -56,7 +56,7 @@ npx create-next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starte
 To start the project locally, run:
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 Open `http://localhost:3000` with your browser to see the result.
@@ -87,7 +87,6 @@ List of websites that started off with Next.js TypeScript Starter:
 ### Requirements
 
 - Node.js >= 12.22.0
-- Yarn 1 (Classic)
 
 ### Directory Structure
 
@@ -98,13 +97,13 @@ List of websites that started off with Next.js TypeScript Starter:
 
 ### Scripts
 
-- `yarn dev` — Starts the application in development mode at `http://localhost:3000`.
-- `yarn build` — Creates an optimized production build of your application.
-- `yarn start` — Starts the application in production mode.
-- `yarn type-check` — Validate code using TypeScript compiler.
-- `yarn lint` — Runs ESLint for all files in the `src` directory.
-- `yarn format` — Runs Prettier for all files in the `src` directory.
-- `yarn commit` — Run commitizen. Alternative to `git commit`.
+- `npm run dev` — Starts the application in development mode at `http://localhost:3000`.
+- `npm run build` — Creates an optimized production build of your application.
+- `npm run start` — Starts the application in production mode.
+- `npm run type-check` — Validate code using TypeScript compiler.
+- `npm run lint` — Runs ESLint for all files in the `src` directory.
+- `npm run format` — Runs Prettier for all files in the `src` directory.
+- `npm run commit` — Run commitizen. Alternative to `git commit`.
 
 ### Path Mapping
 
@@ -116,10 +115,6 @@ import { Button } from '@/components/Button';
 // To import images or other files from the public folder
 import avatar from '@/public/avatar.png';
 ```
-
-### Switch to npm
-
-By default, this starter uses Yarn 1 (Classic), but this choice is yours. If you'd like to switch to npm, delete the `yarn.lock` file, install the dependencies with `npm install`, and change the CI workflows, Husky Git hooks, and lint-staged steps to use npm commands.
 
 ## License
 
