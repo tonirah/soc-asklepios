@@ -1,15 +1,10 @@
 {
-  "name": "typescript-nextjs-starter",
-  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
+  "name": "soc-asklepios",
+  "description": "A serious game to learn software refactorings and safe your spaceship.",
   "version": "1.0.0",
   "private": true,
-  "author": "João Pedro Schmitz <hey@joaopedro.dev> (@jpedroschmitz)",
+  "author": "tonirah <tonirah@posteo.de> ",
   "license": "MIT",
-  "keywords": [
-    "nextjs",
-    "starter",
-    "typescript"
-  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
