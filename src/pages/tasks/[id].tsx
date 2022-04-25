@@ -1,2 +1,4 @@
 // TODO
-export {};
+export default function Task() {
+  return <></>;
+}
