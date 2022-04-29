@@ -17,18 +17,35 @@ interface IOption<Type> {
 
 interface IInput {
   options: IOption<Refactoring>[] | IOption<CodeSmell>[];
+  lines: string;
 }
 
 export interface ITask {
+  dirtyCode: string;
+  cleanCode: string;
   title: string;
   inputs: IInput[];
 }
 
 const task1: ITask = {
   title: `task1`,
+  dirtyCode: `
+  function helloWorld() {
+    return 'hello, world';
+  }
+  `,
+  cleanCode: `
+  function helloWorld() {
+    return 'hello, world';
+  }
+  `,
   inputs: [
     {
-      options: [{ value: CodeSmell.LongMethod }, { value: CodeSmell.Comment }],
+      options: [
+        { value: CodeSmell.LongMethod },
+        { value: CodeSmell.Comment, correct: true },
+      ],
+      lines: `1-2,4`,
     },
     {
       options: [
@@ -36,12 +53,15 @@ const task1: ITask = {
         { value: Refactoring.MoveMethod },
         { value: Refactoring.ExtractMethod, correct: true },
       ],
+      lines: `1`,
     },
   ],
 };
 
 const task2: ITask = {
   title: `task2`,
+  dirtyCode: `function helloWorld() { return 'hello, world'; }`,
+  cleanCode: `function helloWorld() { return 'hello, world'; }`,
   inputs: [
     {
       options: [
@@ -49,6 +69,7 @@ const task2: ITask = {
         { value: Refactoring.MoveMethod },
         { value: Refactoring.ExtractMethod, correct: true },
       ],
+      lines: `1`,
     },
   ],
 };

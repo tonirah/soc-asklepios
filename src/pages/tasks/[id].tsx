@@ -3,6 +3,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/tasks';
 import Head from 'next/head';
 
+import rangeParser from 'parse-numeric-range';
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = allTasks.map((task, index) => ({
     params: { id: index.toString() },
@@ -33,7 +35,22 @@ export default function Task({ taskData }: { taskData: ITask }) {
       <Head>
         <title>{taskData.title}</title>
       </Head>
-      <h1>{taskData.title}</h1>
+      <h1 className="underline decoration-double">{taskData.title}</h1>
+      <pre>
+        <code>{taskData.dirtyCode}</code>
+      </pre>
+      {taskData.inputs.map((input, index) => (
+        <>
+          <h2>Input {index + 1}</h2>
+          <p>Lines raw: {input.lines}</p>
+          <p>Lines parsed: {rangeParser(input.lines).join(`, `)}</p>
+          {input.options.map((option, index) => (
+            <p key={`option-` + index}>
+              Option: {option.value + `, ` + (option.correct === true)}
+            </p>
+          ))}
+        </>
+      ))}
       <Link href={`/`}>
         <a>Back to Home</a>
       </Link>
