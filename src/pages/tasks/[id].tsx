@@ -37,6 +37,9 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.title}</title>
       </Head>
       <h1 className="underline decoration-double">{taskData.title}</h1>
+      Difficulty: {taskData.difficulty}
+      <br />
+      Category: {taskData.category}
       <br />
       Dirty Code:
       <pre>

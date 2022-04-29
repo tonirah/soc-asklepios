@@ -1,3 +1,13 @@
+enum Category {
+  Category1 = `Category 1`,
+}
+
+enum Difficulty {
+  Simple,
+  Medium,
+  Hard,
+}
+
 enum Refactoring {
   ExtractClass = `Extract Class`,
   MoveMethod = `Move Method`,
@@ -22,6 +32,8 @@ interface IInput {
 
 export interface ITask {
   title: string;
+  difficulty: Difficulty;
+  category: Category;
   dirtyCode: string;
   cleanCode: string;
   cleanCodeHighlightedLines: string;
@@ -31,6 +43,8 @@ export interface ITask {
 
 const task1: ITask = {
   title: `task1`,
+  difficulty: Difficulty.Simple,
+  category: Category.Category1,
   dirtyCode: `
   function helloWorld() {
     return 'hello, world';
@@ -64,6 +78,8 @@ const task1: ITask = {
 
 const task2: ITask = {
   title: `task2`,
+  difficulty: Difficulty.Simple,
+  category: Category.Category1,
   dirtyCode: `function helloWorld() { return 'hello, world'; }`,
   cleanCode: `function helloWorld() { return 'hello, world'; }`,
   cleanCodeHighlightedLines: `1`,
