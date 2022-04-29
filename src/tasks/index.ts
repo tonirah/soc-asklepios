@@ -21,9 +21,11 @@ interface IInput {
 }
 
 export interface ITask {
+  title: string;
   dirtyCode: string;
   cleanCode: string;
-  title: string;
+  cleanCodeHighlightedLines: string;
+  comment: string;
   inputs: IInput[];
 }
 
@@ -39,6 +41,8 @@ const task1: ITask = {
     return 'hello, world';
   }
   `,
+  cleanCodeHighlightedLines: `1`,
+  comment: `**Dummy comment**. For more info, see [react-markdown](https://github.com/remarkjs/react-markdown).`,
   inputs: [
     {
       options: [
@@ -62,6 +66,8 @@ const task2: ITask = {
   title: `task2`,
   dirtyCode: `function helloWorld() { return 'hello, world'; }`,
   cleanCode: `function helloWorld() { return 'hello, world'; }`,
+  cleanCodeHighlightedLines: `1`,
+  comment: `**Dummy comment**. For more info, see [react-markdown](https://github.com/remarkjs/react-markdown).`,
   inputs: [
     {
       options: [
