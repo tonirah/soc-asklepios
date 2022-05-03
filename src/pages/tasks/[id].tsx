@@ -2,9 +2,34 @@ import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/tasks';
 import Head from 'next/head';
+import { Comment } from '@/components/Comment';
+import { CodeBlock } from '@/components/CodeBlock';
+import { Input } from '@/components/Input';
 
-import rangeParser from 'parse-numeric-range';
-import ReactMarkdown from 'react-markdown';
+export default function Task({ taskData }: { taskData: ITask }) {
+  return (
+    <>
+      <Head>
+        <title>{taskData.title}</title>
+      </Head>
+      <h1 className="underline decoration-double">{taskData.title}</h1>
+      <CodeBlock code={taskData.dirtyCode} />
+      <CodeBlock code={taskData.cleanCode} />
+      {taskData.inputs.map((input, index) => (
+        <div key={index} className="my-4">
+          <Input inputData={input} />
+        </div>
+      ))}
+      <Comment comment={taskData.comment} />
+      <div className="my-4">
+        <button className="mr-3"> Lösung anzeigen</button>
+        <Link href={`/`}>
+          <a>Zurück</a>
+        </Link>
+      </div>
+    </>
+  );
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = allTasks.map((task, index) => ({
@@ -29,53 +54,3 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 };
-
-export default function Task({ taskData }: { taskData: ITask }) {
-  return (
-    <>
-      <Head>
-        <title>{taskData.title}</title>
-      </Head>
-      <h1 className="underline decoration-double">{taskData.title}</h1>
-      Schwierigkeit: {taskData.difficulty}
-      <br />
-      Kategorie: {taskData.category}
-      <br />
-      Code:
-      <pre>
-        <code>{taskData.dirtyCode}</code>
-      </pre>
-      Lösung (Hervorgehobene Zeilen):{` `}
-      {rangeParser(taskData.cleanCodeHighlightedLines)}
-      <br />
-      Lösung:
-      <pre>
-        <code>{taskData.cleanCode}</code>
-      </pre>
-      <br />
-      {taskData.inputs.map((input, index) => (
-        <>
-          <h2>Input {index + 1}</h2>
-          <p>Zeilen (raw): {input.lines}</p>
-          <p>Zeilen (parsed): {rangeParser(input.lines).join(`, `)}</p>
-          <br />
-          {input.options.map((option, index) => (
-            <p key={`option-` + index}>
-              Option: {option.value + `, ` + (option.correct === true)}
-            </p>
-          ))}
-          <br />
-        </>
-      ))}
-      Kommentar (raw): {taskData.comment}
-      <br />
-      Kommentar (parsed):
-      <br />
-      <ReactMarkdown linkTarget="_blank">{taskData.comment}</ReactMarkdown>
-      <br />
-      <Link href={`/`}>
-        <a>Zurück</a>
-      </Link>
-    </>
-  );
-}

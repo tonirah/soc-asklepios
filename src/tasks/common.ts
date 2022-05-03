@@ -25,7 +25,7 @@ interface IOption<Type> {
   correct?: boolean;
 }
 
-interface IInput {
+export interface IInput {
   options: IOption<Refactoring>[] | IOption<CodeSmell>[];
   lines: string;
 }
