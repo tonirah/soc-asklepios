@@ -37,17 +37,18 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.title}</title>
       </Head>
       <h1 className="underline decoration-double">{taskData.title}</h1>
-      Difficulty: {taskData.difficulty}
+      Schwierigkeit: {taskData.difficulty}
       <br />
-      Category: {taskData.category}
+      Kategorie: {taskData.category}
       <br />
-      Dirty Code:
+      Code:
       <pre>
         <code>{taskData.dirtyCode}</code>
       </pre>
-      Clean Code lines: {rangeParser(taskData.cleanCodeHighlightedLines)}
+      Lösung (Hervorgehobene Zeilen):{` `}
+      {rangeParser(taskData.cleanCodeHighlightedLines)}
       <br />
-      Clean Code:
+      Lösung:
       <pre>
         <code>{taskData.cleanCode}</code>
       </pre>
@@ -55,8 +56,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
       {taskData.inputs.map((input, index) => (
         <>
           <h2>Input {index + 1}</h2>
-          <p>Lines raw: {input.lines}</p>
-          <p>Lines parsed: {rangeParser(input.lines).join(`, `)}</p>
+          <p>Zeilen (raw): {input.lines}</p>
+          <p>Zeilen (parsed): {rangeParser(input.lines).join(`, `)}</p>
           <br />
           {input.options.map((option, index) => (
             <p key={`option-` + index}>
@@ -66,14 +67,14 @@ export default function Task({ taskData }: { taskData: ITask }) {
           <br />
         </>
       ))}
-      Raw markdown comment: {taskData.comment}
+      Kommentar (raw): {taskData.comment}
       <br />
-      Parsed markdown comment:
+      Kommentar (parsed):
       <br />
       <ReactMarkdown linkTarget="_blank">{taskData.comment}</ReactMarkdown>
       <br />
       <Link href={`/`}>
-        <a>Back to Home</a>
+        <a>Zurück</a>
       </Link>
     </>
   );

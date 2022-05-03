@@ -1,7 +1,7 @@
 import { Category, Difficulty, ITask, Refactoring } from '@/tasks/common';
 
 export const task1: ITask = {
-  title: `task1`,
+  title: `Aufgabe #2`,
   difficulty: Difficulty.Simple,
   category: Category.Category1,
 
@@ -10,7 +10,7 @@ export const task1: ITask = {
   cleanCode: `function helloWorld() { return 'hello, world'; }`,
   cleanCodeHighlightedLines: `1`,
 
-  comment: `**Dummy comment**. For more info, see [react-markdown](https://github.com/remarkjs/react-markdown).`,
+  comment: `**Dummy-Kommentar**. Mehr Infos unter [react-markdown](https://github.com/remarkjs/react-markdown).`,
 
   inputs: [
     {

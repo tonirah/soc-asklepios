@@ -7,7 +7,7 @@ import {
 } from '@/tasks/common';
 
 export const task0: ITask = {
-  title: `task0`,
+  title: `Aufgabe #1`,
   difficulty: Difficulty.Simple,
   category: Category.Category1,
 
@@ -24,7 +24,7 @@ export const task0: ITask = {
   `,
   cleanCodeHighlightedLines: `1`,
 
-  comment: `**Dummy comment**. For more info, see [react-markdown](https://github.com/remarkjs/react-markdown).`,
+  comment: `**Dummy-Kommentar**. Mehr Infos unter [react-markdown](https://github.com/remarkjs/react-markdown).`,
 
   inputs: [
     {
