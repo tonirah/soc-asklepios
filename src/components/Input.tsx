@@ -1,15 +1,56 @@
-import { IInput } from '@/tasks/common';
+import { CodeSmell, IInputData, IOption, Refactoring } from '@/tasks/common';
+import { useCombobox } from 'downshift';
+import { useState } from 'react';
 
-export function Input({ inputData }: { inputData: IInput }) {
+const MIN_CHARACTERS = 2;
+
+export function Input({ inputData }: { inputData: IInputData }) {
+  const [availableOptions, setAvailableOptions] = useState<
+    IOption<Refactoring | CodeSmell>[]
+  >([]);
+
+  const shouldShowOptions = (inputValue: string) => {
+    return inputValue.length >= MIN_CHARACTERS;
+  };
+
+  const {
+    isOpen,
+    getLabelProps,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    getItemProps,
+  } = useCombobox({
+    items: availableOptions,
+    itemToString: (option) => (option ? option.value : ``),
+    onInputValueChange: ({ inputValue }) => {
+      if (inputValue && shouldShowOptions(inputValue)) {
+        setAvailableOptions(
+          inputData.options.filter((option) =>
+            option.value.toLowerCase().includes(inputValue.toLowerCase()),
+          ),
+        );
+      } else {
+        setAvailableOptions([]);
+      }
+    },
+  });
+
   return (
     <>
-      <h2>Input</h2>
-      <p>Zeilen: {inputData.lines}</p>
-      {inputData.options.map((option, index) => (
-        <p key={index}>
-          Option: {option.value + `, ` + (option.correct === true)}
-        </p>
-      ))}
+      <label {...getLabelProps()}>{inputData.type}:</label>
+      <div {...getComboboxProps()}>
+        <input {...getInputProps()} />
+      </div>
+      <ul {...getMenuProps()}>
+        {isOpen &&
+          availableOptions.map((item, index) => (
+            <li key={{ index }} {...getItemProps({ item, index })}>
+              {item.value}
+            </li>
+          ))}
+      </ul>
+      <p>Z. {inputData.lines}</p>
     </>
   );
 }
