@@ -72,7 +72,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
       <br />
       <ReactMarkdown linkTarget="_blank">{taskData.comment}</ReactMarkdown>
       <br />
-      <br />
       <Link href={`/`}>
         <a>Back to Home</a>
       </Link>
