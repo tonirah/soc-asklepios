@@ -2,6 +2,7 @@ import {
   Category,
   CodeSmell,
   Difficulty,
+  InputType,
   ITask,
   Refactoring,
 } from '@/tasks/common';
@@ -28,6 +29,7 @@ export const task0: ITask = {
 
   inputs: [
     {
+      type: InputType.CodeSmell,
       options: [
         { value: CodeSmell.LongMethod },
         { value: CodeSmell.Comment, correct: true },
@@ -35,6 +37,7 @@ export const task0: ITask = {
       lines: `1-2,4`,
     },
     {
+      type: InputType.Refactoring,
       options: [
         { value: Refactoring.ExtractClass },
         { value: Refactoring.MoveMethod },

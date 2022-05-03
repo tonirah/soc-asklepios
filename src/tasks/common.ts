@@ -20,13 +20,19 @@ export enum CodeSmell {
   LongParameterList = `Long Parameter List`,
 }
 
-interface IOption<Type> {
+export interface IOption<Type> {
   value: Type;
   correct?: boolean;
 }
 
-export interface IInput {
-  options: IOption<Refactoring>[] | IOption<CodeSmell>[];
+export enum InputType {
+  Refactoring = `Refactoring`,
+  CodeSmell = `Code Smell`,
+}
+
+export interface IInputData {
+  type: InputType;
+  options: IOption<Refactoring | CodeSmell>[];
   lines: string;
 }
 
@@ -38,5 +44,5 @@ export interface ITask {
   cleanCode: string;
   cleanCodeHighlightedLines: string;
   comment: string;
-  inputs: IInput[];
+  inputs: IInputData[];
 }

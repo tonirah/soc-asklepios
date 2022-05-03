@@ -1,4 +1,10 @@
-import { Category, Difficulty, ITask, Refactoring } from '@/tasks/common';
+import {
+  Category,
+  Difficulty,
+  InputType,
+  ITask,
+  Refactoring,
+} from '@/tasks/common';
 
 export const task1: ITask = {
   title: `Aufgabe #2`,
@@ -14,6 +20,7 @@ export const task1: ITask = {
 
   inputs: [
     {
+      type: InputType.Refactoring,
       options: [
         { value: Refactoring.ExtractClass },
         { value: Refactoring.MoveMethod },
