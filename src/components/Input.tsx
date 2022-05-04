@@ -9,8 +9,20 @@ export function Input({ inputData }: { inputData: IInputData }) {
     IOption<Refactoring | CodeSmell>[]
   >([]);
 
-  const shouldShowOptions = (inputValue: string) => {
+  const shouldProvideOptions = (inputValue: string) => {
     return inputValue.length >= MIN_CHARACTERS;
+  };
+
+  const filterAvailableOptions = ({ inputValue }: { inputValue?: string }) => {
+    let filteredOptions: IOption<Refactoring | CodeSmell>[] = [];
+
+    if (inputValue && shouldProvideOptions(inputValue)) {
+      filteredOptions = inputData.options.filter((option) =>
+        option.value.toLowerCase().includes(inputValue.toLowerCase()),
+      );
+    }
+
+    setAvailableOptions(filteredOptions);
   };
 
   const {
@@ -23,17 +35,7 @@ export function Input({ inputData }: { inputData: IInputData }) {
   } = useCombobox({
     items: availableOptions,
     itemToString: (option) => (option ? option.value : ``),
-    onInputValueChange: ({ inputValue }) => {
-      if (inputValue && shouldShowOptions(inputValue)) {
-        setAvailableOptions(
-          inputData.options.filter((option) =>
-            option.value.toLowerCase().includes(inputValue.toLowerCase()),
-          ),
-        );
-      } else {
-        setAvailableOptions([]);
-      }
-    },
+    onInputValueChange: filterAvailableOptions,
   });
 
   return (
