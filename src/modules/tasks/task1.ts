@@ -4,7 +4,7 @@ import {
   InputType,
   ITask,
   Refactoring,
-} from '@/modules/tasks/common';
+} from './definitions';
 
 export const task1: ITask = {
   title: `Aufgabe #2`,

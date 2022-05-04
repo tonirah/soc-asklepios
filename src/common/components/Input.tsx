@@ -1,9 +1,4 @@
-import {
-  CodeSmell,
-  IInputData,
-  IOption,
-  Refactoring,
-} from '@/modules/tasks/common';
+import { CodeSmell, IInputData, IOption, Refactoring } from '@/modules/tasks/';
 import { useCombobox } from 'downshift';
 import { Dispatch, useState } from 'react';
 import { IInputAction } from '@/common/hooks/useIndexedInputs';
