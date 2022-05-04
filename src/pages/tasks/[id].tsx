@@ -7,11 +7,32 @@ import useIndexedInputs from '@/common/hooks/useIndexedInputs';
 import { useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
-  const [selectedInputs, inputDispatch] = useIndexedInputs([]);
+  const [userInputs, inputDispatch] = useIndexedInputs([]);
+  const [userInputEvaluation, setUserInputEvaluation] = useState<boolean[]>([]);
 
   const [isLineHintActive, setIsLineHintActive] = useState(false);
   const toggleIsLineHintActive = () =>
     setIsLineHintActive((isLineHintActive) => !isLineHintActive);
+
+  const evaluateInputs = () => {
+    taskData.inputs.map((input, index) => {
+      let isValid = false;
+      const userInput = userInputs[index];
+      if (userInput) {
+        const option = input.options.find(
+          (option) => option.value.toLowerCase() === userInput.toLowerCase(),
+        );
+        if (option && option.isValid) {
+          isValid = true;
+        }
+      }
+      setUserInputEvaluation((previous) => {
+        const newUserInputEvaluation = [...previous];
+        newUserInputEvaluation[index] = isValid;
+        return newUserInputEvaluation;
+      });
+    });
+  };
 
   return (
     <>
@@ -19,11 +40,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.title}</title>
       </Head>
       <h1 className="underline decoration-double">{taskData.title}</h1>
-      <ul>
-        {selectedInputs.map((selectedInput, index) => (
-          <li key={index}>{selectedInput}</li>
-        ))}
-      </ul>
       <CodeBlock code={taskData.dirtyCode} />
       <CodeBlock code={taskData.cleanCode} />
       {taskData.inputs.map((input, index) => (
@@ -33,6 +49,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           inputData={input}
           inputDispatch={inputDispatch}
           isLineHintActive={isLineHintActive}
+          isValid={userInputEvaluation[index]}
         />
       ))}
       <Comment comment={taskData.comment} />
@@ -40,7 +57,9 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <button className="mr-3" onClick={toggleIsLineHintActive}>
           Codestellen hervorheben
         </button>
-        <button className="mr-3"> Lösung anzeigen</button>
+        <button className="mr-3" onClick={evaluateInputs}>
+          Evaluieren
+        </button>
         <Link href={`/`}>
           <a>Zurück</a>
         </Link>

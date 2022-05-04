@@ -10,11 +10,13 @@ export function Input({
   inputData,
   inputDispatch,
   isLineHintActive,
+  isValid,
 }: {
   index: number;
   inputData: IInputData;
   inputDispatch: Dispatch<IInputAction>;
   isLineHintActive: boolean;
+  isValid?: boolean;
 }) {
   const [availableOptions, setAvailableOptions] = useState<
     IOption<Refactoring | CodeSmell>[]
@@ -54,11 +56,21 @@ export function Input({
     onInputValueChange,
   });
 
+  const setBackground = () => {
+    if (isValid === undefined) {
+      return ``;
+    } else if (isValid) {
+      return `bg-green-500`;
+    } else {
+      return `bg-red-500`;
+    }
+  };
+
   return (
-    <div className="flex gap-3 py-6 max-w-fit">
-      <div className="w-28 text-right">
-        <label {...getLabelProps()}>{inputData.type}:</label>
-      </div>
+    <div className={`flex gap-3 py-6 max-w-fit ${setBackground()}`}>
+      <label className="w-28 text-right" {...getLabelProps()}>
+        {inputData.type}:
+      </label>
       <div>
         <div {...getComboboxProps()}>
           <input {...getInputProps()} className="bg-gray-200" />
