@@ -32,7 +32,7 @@ export const task0: ITask = {
       type: InputType.CodeSmell,
       options: [
         { value: CodeSmell.LongMethod },
-        { value: CodeSmell.Comment, correct: true },
+        { value: CodeSmell.Comment, isValid: true },
       ],
       lines: `1-2,4`,
     },
@@ -41,7 +41,7 @@ export const task0: ITask = {
       options: [
         { value: Refactoring.ExtractClass },
         { value: Refactoring.MoveMethod },
-        { value: Refactoring.ExtractMethod, correct: true },
+        { value: Refactoring.ExtractMethod, isValid: true },
       ],
       lines: `1`,
     },

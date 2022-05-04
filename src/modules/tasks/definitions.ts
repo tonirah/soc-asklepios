@@ -22,7 +22,7 @@ export enum CodeSmell {
 
 export interface IOption<Type> {
   value: Type;
-  correct?: boolean;
+  isValid?: boolean;
 }
 
 export enum InputType {

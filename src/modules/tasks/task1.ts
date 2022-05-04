@@ -24,7 +24,7 @@ export const task1: ITask = {
       options: [
         { value: Refactoring.ExtractClass },
         { value: Refactoring.MoveMethod },
-        { value: Refactoring.ExtractMethod, correct: true },
+        { value: Refactoring.ExtractMethod, isValid: true },
       ],
       lines: `1`,
     },
