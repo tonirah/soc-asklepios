@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import { allTasks, ITask } from '@/tasks';
+import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 
 export const getStaticProps: GetStaticProps = async () => {

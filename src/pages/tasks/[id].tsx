@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { allTasks, ITask } from '@/tasks';
+import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
-import { Comment } from '@/components/Comment';
-import { CodeBlock } from '@/components/CodeBlock';
-import { Input } from '@/components/Input';
+import { Comment, CodeBlock, Input } from '@/common/components/';
 import useIndexedInputs from '@/common/hooks/useIndexedInputs';
 
 export default function Task({ taskData }: { taskData: ITask }) {

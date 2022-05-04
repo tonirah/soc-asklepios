@@ -1,24 +1,41 @@
 import {
   Category,
+  CodeSmell,
   Difficulty,
   InputType,
   ITask,
   Refactoring,
-} from '@/tasks/common';
+} from '@/modules/tasks/common';
 
-export const task1: ITask = {
-  title: `Aufgabe #2`,
+export const task0: ITask = {
+  title: `Aufgabe #1`,
   difficulty: Difficulty.Simple,
   category: Category.Category1,
 
-  dirtyCode: `function helloWorld() { return 'hello, world'; }`,
+  dirtyCode: `
+  function helloWorld() {
+    return 'hello, world';
+  }
+  `,
 
-  cleanCode: `function helloWorld() { return 'hello, world'; }`,
+  cleanCode: `
+  function helloWorld() {
+    return 'hello, world';
+  }
+  `,
   cleanCodeHighlightedLines: `1`,
 
   comment: `**Dummy-Kommentar**. Mehr Infos unter [react-markdown](https://github.com/remarkjs/react-markdown).`,
 
   inputs: [
+    {
+      type: InputType.CodeSmell,
+      options: [
+        { value: CodeSmell.LongMethod },
+        { value: CodeSmell.Comment, correct: true },
+      ],
+      lines: `1-2,4`,
+    },
     {
       type: InputType.Refactoring,
       options: [
