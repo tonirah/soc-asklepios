@@ -9,10 +9,12 @@ export function Input({
   index,
   inputData,
   inputDispatch,
+  isLineHintActive,
 }: {
   index: number;
   inputData: IInputData;
   inputDispatch: Dispatch<IInputAction>;
+  isLineHintActive: boolean;
 }) {
   const [availableOptions, setAvailableOptions] = useState<
     IOption<Refactoring | CodeSmell>[]
@@ -53,20 +55,30 @@ export function Input({
   });
 
   return (
-    <>
-      <label {...getLabelProps()}>{inputData.type}:</label>
-      <div {...getComboboxProps()}>
-        <input {...getInputProps()} />
+    <div className="flex gap-3 py-6 max-w-fit">
+      <div className="w-28 text-right">
+        <label {...getLabelProps()}>{inputData.type}:</label>
       </div>
-      <ul {...getMenuProps()}>
-        {isOpen &&
-          availableOptions.map((item, index) => (
-            <li key={{ index }} {...getItemProps({ item, index })}>
-              {item.value}
-            </li>
-          ))}
-      </ul>
-      <span>Z. {inputData.lines}</span>
-    </>
+      <div>
+        <div {...getComboboxProps()}>
+          <input {...getInputProps()} className="bg-gray-200" />
+        </div>
+        <ul {...getMenuProps()}>
+          {isOpen &&
+            availableOptions.map((item, index) => (
+              <li
+                key={{ index }}
+                {...getItemProps({ item, index })}
+                className="odd:bg-gray-200 even:bg-gray-300"
+              >
+                {item.value}
+              </li>
+            ))}
+        </ul>
+      </div>
+      <div className="w-28">
+        {isLineHintActive && <span>Z. {inputData.lines}</span>}
+      </div>
+    </div>
   );
 }

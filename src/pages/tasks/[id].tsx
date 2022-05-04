@@ -4,9 +4,14 @@ import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import { Comment, CodeBlock, Input } from '@/common/components/';
 import useIndexedInputs from '@/common/hooks/useIndexedInputs';
+import { useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
   const [selectedInputs, inputDispatch] = useIndexedInputs([]);
+
+  const [isLineHintActive, setIsLineHintActive] = useState(false);
+  const toggleIsLineHintActive = () =>
+    setIsLineHintActive((isLineHintActive) => !isLineHintActive);
 
   return (
     <>
@@ -22,16 +27,19 @@ export default function Task({ taskData }: { taskData: ITask }) {
       <CodeBlock code={taskData.dirtyCode} />
       <CodeBlock code={taskData.cleanCode} />
       {taskData.inputs.map((input, index) => (
-        <div key={index} className="my-4">
-          <Input
-            index={index}
-            inputData={input}
-            inputDispatch={inputDispatch}
-          />
-        </div>
+        <Input
+          key={index}
+          index={index}
+          inputData={input}
+          inputDispatch={inputDispatch}
+          isLineHintActive={isLineHintActive}
+        />
       ))}
       <Comment comment={taskData.comment} />
       <div className="my-4">
+        <button className="mr-3" onClick={toggleIsLineHintActive}>
+          Codestellen hervorheben
+        </button>
         <button className="mr-3"> Lösung anzeigen</button>
         <Link href={`/`}>
           <a>Zurück</a>
