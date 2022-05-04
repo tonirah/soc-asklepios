@@ -5,19 +5,31 @@ import Head from 'next/head';
 import { Comment } from '@/components/Comment';
 import { CodeBlock } from '@/components/CodeBlock';
 import { Input } from '@/components/Input';
+import useIndexedInputs from '@/common/hooks/useIndexedInputs';
 
 export default function Task({ taskData }: { taskData: ITask }) {
+  const [selectedInputs, inputDispatch] = useIndexedInputs([]);
+
   return (
     <>
       <Head>
         <title>{taskData.title}</title>
       </Head>
       <h1 className="underline decoration-double">{taskData.title}</h1>
+      <ul>
+        {selectedInputs.map((selectedInput, index) => (
+          <li key={index}>{selectedInput}</li>
+        ))}
+      </ul>
       <CodeBlock code={taskData.dirtyCode} />
       <CodeBlock code={taskData.cleanCode} />
       {taskData.inputs.map((input, index) => (
         <div key={index} className="my-4">
-          <Input inputData={input} />
+          <Input
+            index={index}
+            inputData={input}
+            inputDispatch={inputDispatch}
+          />
         </div>
       ))}
       <Comment comment={taskData.comment} />

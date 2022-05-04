@@ -1,10 +1,19 @@
 import { CodeSmell, IInputData, IOption, Refactoring } from '@/tasks/common';
 import { useCombobox } from 'downshift';
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
+import { IInputAction } from '@/common/hooks/useIndexedInputs';
 
 const MIN_CHARACTERS = 2;
 
-export function Input({ inputData }: { inputData: IInputData }) {
+export function Input({
+  index,
+  inputData,
+  inputDispatch,
+}: {
+  index: number;
+  inputData: IInputData;
+  inputDispatch: Dispatch<IInputAction>;
+}) {
   const [availableOptions, setAvailableOptions] = useState<
     IOption<Refactoring | CodeSmell>[]
   >([]);
@@ -13,7 +22,7 @@ export function Input({ inputData }: { inputData: IInputData }) {
     return inputValue.length >= MIN_CHARACTERS;
   };
 
-  const filterAvailableOptions = ({ inputValue }: { inputValue?: string }) => {
+  const filterAvailableOptions = (inputValue?: string) => {
     let filteredOptions: IOption<Refactoring | CodeSmell>[] = [];
 
     if (inputValue && shouldProvideOptions(inputValue)) {
@@ -23,6 +32,11 @@ export function Input({ inputData }: { inputData: IInputData }) {
     }
 
     setAvailableOptions(filteredOptions);
+  };
+
+  const onInputValueChange = ({ inputValue }: { inputValue?: string }) => {
+    filterAvailableOptions(inputValue);
+    inputDispatch({ type: `setInput`, index, value: inputValue });
   };
 
   const {
@@ -35,7 +49,7 @@ export function Input({ inputData }: { inputData: IInputData }) {
   } = useCombobox({
     items: availableOptions,
     itemToString: (option) => (option ? option.value : ``),
-    onInputValueChange: filterAvailableOptions,
+    onInputValueChange,
   });
 
   return (
@@ -52,7 +66,7 @@ export function Input({ inputData }: { inputData: IInputData }) {
             </li>
           ))}
       </ul>
-      <p>Z. {inputData.lines}</p>
+      <span>Z. {inputData.lines}</span>
     </>
   );
 }
