@@ -5,33 +5,18 @@ import Head from 'next/head';
 import { Comment, CodeBlock, Input } from '@/common/components/';
 import useIndexedInputs from '@/common/hooks/useIndexedInputs';
 import { useState } from 'react';
+import useUserInputEvaluation from '@/common/hooks/useUserInputEvaluation';
 
 export default function Task({ taskData }: { taskData: ITask }) {
-  const [userInputs, handleChangedInput] = useIndexedInputs([]);
-  const [userInputEvaluation, setUserInputEvaluation] = useState<boolean[]>([]);
+  const [userInputs, handleChangedInput] = useIndexedInputs();
+  const [userInputEvaluation, evaluateInputs] = useUserInputEvaluation();
 
   const [isLineHintActive, setIsLineHintActive] = useState(false);
   const toggleIsLineHintActive = () =>
     setIsLineHintActive((isLineHintActive) => !isLineHintActive);
 
-  const evaluateInputs = () => {
-    taskData.inputs.map((input, index) => {
-      let isValid = false;
-      const userInput = userInputs[index];
-      if (userInput) {
-        const option = input.options.find(
-          (option) => option.value.toLowerCase() === userInput.toLowerCase(),
-        );
-        if (option && option.isValid) {
-          isValid = true;
-        }
-      }
-      setUserInputEvaluation((previous) => {
-        const newUserInputEvaluation = [...previous];
-        newUserInputEvaluation[index] = isValid;
-        return newUserInputEvaluation;
-      });
-    });
+  const onClickEvaluate = () => {
+    evaluateInputs(taskData.inputs, userInputs);
   };
 
   return (
@@ -57,7 +42,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <button className="mr-3" onClick={toggleIsLineHintActive}>
           Codestellen hervorheben
         </button>
-        <button className="mr-3" onClick={evaluateInputs}>
+        <button className="mr-3" onClick={onClickEvaluate}>
           Evaluieren
         </button>
         <Link href={`/`}>

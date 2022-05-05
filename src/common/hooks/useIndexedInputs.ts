@@ -3,7 +3,7 @@ import { useState } from 'react';
 export type HandleChangedInput = (index: number, value?: string) => void;
 
 export default function useIndexedInputs(
-  initialInputs: (string | undefined)[],
+  initialInputs: (string | undefined)[] = [],
 ): [(string | undefined)[], HandleChangedInput] {
   const [inputs, setInputs] = useState(initialInputs);
 
