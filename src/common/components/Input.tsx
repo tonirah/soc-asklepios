@@ -3,7 +3,9 @@ import { useCombobox } from 'downshift';
 import { useState } from 'react';
 import { HandleChangedInput } from '@/common/hooks';
 
-const MIN_CHARACTERS = 2;
+const MIN_CHARACTERS_FOR_COMBOBOX = process.env.MIN_CHARACTERS_FOR_COMBOBOX
+  ? parseInt(process.env.MIN_CHARACTERS_FOR_COMBOBOX, 10)
+  : 2;
 
 export function Input({
   index,
@@ -23,7 +25,7 @@ export function Input({
   >([]);
 
   const shouldProvideOptions = (inputValue: string) => {
-    return inputValue.length >= MIN_CHARACTERS;
+    return inputValue.length >= MIN_CHARACTERS_FOR_COMBOBOX;
   };
 
   const filterAvailableOptions = (inputValue?: string) => {

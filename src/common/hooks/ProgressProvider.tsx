@@ -1,7 +1,7 @@
 import { createContext, ReactNode } from 'react';
 import { useLocalstorageState } from 'rooks';
 
-const LOCAL_STORAGE_KEY = `soc-progress`;
+const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY ?? `soc-progress`;
 
 export enum TaskProgress {
   Visited = `Visited`,
