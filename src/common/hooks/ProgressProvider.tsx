@@ -25,7 +25,7 @@ export default function ProgressProvider({
 }: {
   children: ReactNode;
 }) {
-  const [progress, setProgress] = useLocalstorageState<
+  const [progress, setProgress, clearLocalStorage] = useLocalstorageState<
     (TaskProgress | undefined)[]
   >(LOCAL_STORAGE_KEY, []);
 
@@ -39,7 +39,10 @@ export default function ProgressProvider({
     });
   };
 
-  const resetProgress = () => setProgress([]);
+  const resetProgress = () => {
+    setProgress([]);
+    clearLocalStorage();
+  };
 
   return (
     <ProgressContext.Provider

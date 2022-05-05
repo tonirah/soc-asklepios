@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
-import { ProgressContext, TaskProgress } from '@/common/hooks/ProgressProvider';
+import { ProgressContext, TaskProgress } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const { getProgress, setTaskProgress, resetProgress } =
