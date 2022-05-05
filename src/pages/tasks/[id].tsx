@@ -34,10 +34,10 @@ export default function Task({ taskData }: { taskData: ITask }) {
   return (
     <>
       <Head>
-        <title>{taskData.title}</title>
+        <title>{taskData.name}</title>
       </Head>
 
-      <h1 className="underline decoration-double">{taskData.title}</h1>
+      <h1 className="underline decoration-double">{taskData.name}</h1>
 
       <CodeBlock code={taskData.dirtyCode} />
 

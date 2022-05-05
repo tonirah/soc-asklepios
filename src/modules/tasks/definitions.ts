@@ -37,7 +37,7 @@ export interface IInputData {
 }
 
 export interface ITask {
-  title: string;
+  name: string;
   difficulty: Difficulty;
   category: Category;
   dirtyCode: string;

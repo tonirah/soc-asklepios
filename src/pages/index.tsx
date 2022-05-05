@@ -16,9 +16,9 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       </Head>
       <ul>
         {allTasks.map((task, index) => (
-          <li key={task.title}>
+          <li key={task.name}>
             <Link href={`/tasks/${index}`}>
-              <a>{task.title}</a>
+              <a>{task.name}</a>
             </Link>
           </li>
         ))}

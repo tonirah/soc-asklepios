@@ -8,7 +8,7 @@ import {
 } from './definitions';
 
 export const task0: ITask = {
-  title: `Aufgabe #1`,
+  name: `Aufgabe #1`,
   difficulty: Difficulty.Simple,
   category: Category.Category1,
 
