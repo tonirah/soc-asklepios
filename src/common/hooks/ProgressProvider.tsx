@@ -3,14 +3,19 @@ import { useLocalstorageState } from 'rooks';
 
 const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY ?? `soc-progress`;
 
-export enum TaskProgress {
+export enum ProgressState {
   Visited = `Visited`,
   Solved = `Solved`,
 }
 
+interface ITaskProgress {
+  uuid: string;
+  progressState: ProgressState;
+}
+
 interface IProgressContext {
-  getProgress: () => (TaskProgress | undefined)[];
-  setTaskProgress: (index: number, taskProgress?: TaskProgress) => void;
+  getProgress: () => (ITaskProgress | undefined)[];
+  setTaskProgress: (uuid: string, progressState: ProgressState) => void;
   resetProgress: () => void;
 }
 
@@ -26,15 +31,17 @@ export default function ProgressProvider({
   children: ReactNode;
 }) {
   const [progress, setProgress, clearLocalStorage] = useLocalstorageState<
-    (TaskProgress | undefined)[]
+    (ITaskProgress | undefined)[]
   >(LOCAL_STORAGE_KEY, []);
 
   const getProgress = () => progress;
 
-  const setTaskProgress = (index: number, taskProgress?: TaskProgress) => {
+  const setTaskProgress = (uuid: string, progressState: ProgressState) => {
     setProgress((previousProgress) => {
-      const newProgress = [...previousProgress];
-      newProgress[index] = taskProgress;
+      const newProgress = previousProgress.filter(
+        (taskProgress) => taskProgress?.uuid !== uuid,
+      );
+      newProgress.push({ uuid, progressState });
       return newProgress;
     });
   };

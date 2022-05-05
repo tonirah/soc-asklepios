@@ -8,6 +8,7 @@ import {
 } from './definitions';
 
 export const task0: ITask = {
+  uuid: `031b215a-dc73-41e1-bcfb-d796a173f75e`,
   name: `Aufgabe #1`,
   difficulty: Difficulty.Simple,
   category: Category.Category1,

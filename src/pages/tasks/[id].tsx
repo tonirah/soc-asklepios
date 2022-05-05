@@ -81,8 +81,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = allTasks.map((task, index) => ({
-    params: { id: index.toString() },
+  const paths = allTasks.map((task) => ({
+    params: { id: task.uuid },
   }));
 
   return {
@@ -93,10 +93,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // other inputs handled by next router
-  const rawId = params?.id as string;
-  const index = Number.parseInt(rawId, 10);
+  const uuid = params?.id as string;
 
-  const taskData = allTasks[index];
+  const taskData = allTasks.find((task) => task.uuid === uuid);
   return {
     props: {
       taskData,

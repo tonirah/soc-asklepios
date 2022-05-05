@@ -37,6 +37,7 @@ export interface IInputData {
 }
 
 export interface ITask {
+  uuid: string;
   name: string;
   difficulty: Difficulty;
   category: Category;
