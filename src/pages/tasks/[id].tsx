@@ -3,9 +3,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import { Comment, CodeBlock, Input } from '@/common/components/';
-import useIndexedInputs from '@/common/hooks/useIndexedInputs';
+import { useIndexedInputs, useUserInputEvaluation } from '@/common/hooks/';
 import { useState } from 'react';
-import useUserInputEvaluation from '@/common/hooks/useUserInputEvaluation';
 
 export default function Task({ taskData }: { taskData: ITask }) {
   const [userInputs, handleChangedInput] = useIndexedInputs();

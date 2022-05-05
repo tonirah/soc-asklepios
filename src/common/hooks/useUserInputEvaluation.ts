@@ -6,7 +6,7 @@ type EvaluateInputs = (
   userInputs: (string | undefined)[],
 ) => void;
 
-export default function useUserInputEvaluation(
+export function useUserInputEvaluation(
   initialUserInputEvaluation: boolean[] = [],
 ): [boolean[], EvaluateInputs] {
   const [userInputEvaluation, setUserInputEvaluation] = useState(

@@ -3,14 +3,6 @@ import { GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      allTasks,
-    },
-  };
-};
-
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   return (
     <>
@@ -29,3 +21,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      allTasks,
+    },
+  };
+};
