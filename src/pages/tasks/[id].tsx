@@ -4,31 +4,33 @@ import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import { Comment, CodeBlock, Input } from '@/common/components/';
 import { useIndexedInputs, useUserInputEvaluation } from '@/common/hooks/';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
-  // states
-  const [userInputs, handleChangedInput] = useIndexedInputs();
-  const [userInputEvaluation, evaluateInputs] = useUserInputEvaluation();
   const [isLineHintActive, setIsLineHintActive] = useState(false);
+  const toggleIsLineHintActive = () =>
+    setIsLineHintActive((isLineHintActive) => !isLineHintActive);
 
-  // listeners
+  const [userInputs, handleChangedInput] = useIndexedInputs();
+
+  const [userInputEvaluation, evaluateInputs] = useUserInputEvaluation();
   const onClickEvaluate = () => {
     evaluateInputs(taskData.inputs, userInputs);
   };
 
-  const toggleIsLineHintActive = () =>
-    setIsLineHintActive((isLineHintActive) => !isLineHintActive);
-
-  // methods
-  const isSolved = () => {
+  // based on 'userInputEvaluation', only calculated when changed
+  const isSolved = useMemo(() => {
     if (userInputEvaluation.length === 0) {
       return false;
     }
     return userInputEvaluation.every((isValid) => isValid === true);
-  };
+  }, [userInputEvaluation]);
+  useEffect(() => {
+    if (isSolved) {
+      setIsLineHintActive(true);
+    }
+  }, [isSolved]);
 
-  // rendering
   return (
     <>
       <Head>
@@ -39,7 +41,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
       <CodeBlock code={taskData.dirtyCode} />
 
-      {isSolved() && (
+      {isSolved && (
         <>
           <CodeBlock code={taskData.cleanCode} />
           <Comment comment={taskData.comment} />
@@ -57,13 +59,19 @@ export default function Task({ taskData }: { taskData: ITask }) {
         />
       ))}
 
-      <div className="my-4">
-        <button className="mr-3" onClick={toggleIsLineHintActive}>
-          Codestellen hervorheben
-        </button>
-        <button className="mr-3" onClick={onClickEvaluate}>
-          Evaluieren
-        </button>
+      <div className="my-4 mx-3 flex gap-3">
+        <div>
+          <input
+            className="mr-1"
+            type="checkbox"
+            id="lineHighlighter"
+            onClick={toggleIsLineHintActive}
+            onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
+            checked={isLineHintActive}
+          />
+          <label htmlFor="lineHighlighter">Codestellen hervorheben</label>
+        </div>
+        <button onClick={onClickEvaluate}>Evaluieren</button>
         <Link href={`/`}>
           <a>Zurück</a>
         </Link>
