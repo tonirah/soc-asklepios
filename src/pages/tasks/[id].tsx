@@ -7,25 +7,45 @@ import { useIndexedInputs, useUserInputEvaluation } from '@/common/hooks/';
 import { useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
+  // states
   const [userInputs, handleChangedInput] = useIndexedInputs();
   const [userInputEvaluation, evaluateInputs] = useUserInputEvaluation();
-
   const [isLineHintActive, setIsLineHintActive] = useState(false);
-  const toggleIsLineHintActive = () =>
-    setIsLineHintActive((isLineHintActive) => !isLineHintActive);
 
+  // listeners
   const onClickEvaluate = () => {
     evaluateInputs(taskData.inputs, userInputs);
   };
 
+  const toggleIsLineHintActive = () =>
+    setIsLineHintActive((isLineHintActive) => !isLineHintActive);
+
+  // methods
+  const isSolved = () => {
+    if (userInputEvaluation.length === 0) {
+      return false;
+    }
+    return userInputEvaluation.every((isValid) => isValid === true);
+  };
+
+  // rendering
   return (
     <>
       <Head>
         <title>{taskData.title}</title>
       </Head>
+
       <h1 className="underline decoration-double">{taskData.title}</h1>
+
       <CodeBlock code={taskData.dirtyCode} />
-      <CodeBlock code={taskData.cleanCode} />
+
+      {isSolved() && (
+        <>
+          <CodeBlock code={taskData.cleanCode} />
+          <Comment comment={taskData.comment} />
+        </>
+      )}
+
       {taskData.inputs.map((input, index) => (
         <Input
           key={index}
@@ -36,7 +56,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           isValid={userInputEvaluation[index]}
         />
       ))}
-      <Comment comment={taskData.comment} />
+
       <div className="my-4">
         <button className="mr-3" onClick={toggleIsLineHintActive}>
           Codestellen hervorheben
