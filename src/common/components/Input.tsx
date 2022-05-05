@@ -1,20 +1,20 @@
 import { CodeSmell, IInputData, IOption, Refactoring } from '@/modules/tasks/';
 import { useCombobox } from 'downshift';
-import { Dispatch, useState } from 'react';
-import { IInputAction } from '@/common/hooks/useIndexedInputs';
+import { useState } from 'react';
+import { HandleChangedInput } from '@/common/hooks';
 
 const MIN_CHARACTERS = 2;
 
 export function Input({
   index,
   inputData,
-  inputDispatch,
+  handleChangedInput,
   isLineHintActive,
   isValid,
 }: {
   index: number;
   inputData: IInputData;
-  inputDispatch: Dispatch<IInputAction>;
+  handleChangedInput: HandleChangedInput;
   isLineHintActive: boolean;
   isValid?: boolean;
 }) {
@@ -40,7 +40,7 @@ export function Input({
 
   const onInputValueChange = ({ inputValue }: { inputValue?: string }) => {
     filterAvailableOptions(inputValue);
-    inputDispatch({ type: `setInput`, index, value: inputValue });
+    handleChangedInput(index, inputValue);
   };
 
   const {

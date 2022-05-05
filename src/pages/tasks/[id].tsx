@@ -7,7 +7,7 @@ import useIndexedInputs from '@/common/hooks/useIndexedInputs';
 import { useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
-  const [userInputs, inputDispatch] = useIndexedInputs([]);
+  const [userInputs, handleChangedInput] = useIndexedInputs([]);
   const [userInputEvaluation, setUserInputEvaluation] = useState<boolean[]>([]);
 
   const [isLineHintActive, setIsLineHintActive] = useState(false);
@@ -47,7 +47,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           key={index}
           index={index}
           inputData={input}
-          inputDispatch={inputDispatch}
+          handleChangedInput={handleChangedInput}
           isLineHintActive={isLineHintActive}
           isValid={userInputEvaluation[index]}
         />

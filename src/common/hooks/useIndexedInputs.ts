@@ -1,27 +1,18 @@
-import { useReducer } from 'react';
+import { useState } from 'react';
 
-export interface IInputAction {
-  type: 'setInput'; // only one for now
-  index: number;
-  value?: string;
-}
-
-const inputReducer = (
-  prevState: (string | undefined)[],
-  inputAction: IInputAction,
-) => {
-  switch (inputAction.type) {
-    case `setInput`:
-      const newState = [...prevState];
-      newState[inputAction.index] = inputAction.value;
-      return newState;
-    default:
-      return prevState;
-  }
-};
+export type HandleChangedInput = (index: number, value?: string) => void;
 
 export default function useIndexedInputs(
-  initialSelectedInputs: (string | undefined)[],
-) {
-  return useReducer(inputReducer, initialSelectedInputs);
+  initialInputs: (string | undefined)[],
+): [(string | undefined)[], HandleChangedInput] {
+  const [inputs, setInputs] = useState(initialInputs);
+
+  const handleChangedInput = (index: number, value?: string) => {
+    setInputs((prevInputs) => {
+      const newInputs = [...prevInputs];
+      newInputs[index] = value;
+      return newInputs;
+    });
+  };
+  return [inputs, handleChangedInput];
 }
