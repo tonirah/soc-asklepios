@@ -21,6 +21,7 @@ interface ITaskProgressStorage {
 
 interface IProgressContext {
   resetProgress: () => void;
+  getTotalScore: () => number;
   getTaskProgress: (uuid: string) => TaskProgress | undefined;
   setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
   getTaskPoints: (uuid: string) => number;
@@ -29,6 +30,17 @@ interface IProgressContext {
 export const ProgressContext = createContext<IProgressContext>(
   {} as IProgressContext,
 );
+
+function calculatePoints(taskProgress?: TaskProgress): number {
+  switch (taskProgress) {
+    case TaskProgress.Visited:
+      return POINTS_FOR_VISITED;
+    case TaskProgress.Solved:
+      return POINTS_FOR_SOLVED;
+    default:
+      return 0;
+  }
+}
 
 // https://stackoverflow.com/a/51573816
 // more sophisticated: https://www.basefactor.com/global-state-with-react
@@ -44,6 +56,14 @@ export default function ProgressProvider({
   const resetProgress = () => {
     setProgress([]);
     clearLocalStorage();
+  };
+
+  const getTotalScore = () => {
+    let score = 0;
+    progress.map((taskProgressStorage) => {
+      score = score + calculatePoints(taskProgressStorage?.taskProgress);
+    });
+    return score;
   };
 
   const getTaskProgress = (uuid: string): TaskProgress | undefined => {
@@ -65,20 +85,14 @@ export default function ProgressProvider({
 
   const getTaskPoints = (uuid: string) => {
     const taskProgress = getTaskProgress(uuid);
-    switch (taskProgress) {
-      case TaskProgress.Visited:
-        return POINTS_FOR_VISITED;
-      case TaskProgress.Solved:
-        return POINTS_FOR_SOLVED;
-      default:
-        return 0;
-    }
+    return calculatePoints(taskProgress);
   };
 
   return (
     <ProgressContext.Provider
       value={{
         resetProgress,
+        getTotalScore,
         getTaskProgress,
         setTaskProgress,
         getTaskPoints,

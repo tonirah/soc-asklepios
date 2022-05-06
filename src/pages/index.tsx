@@ -6,14 +6,21 @@ import { useContext } from 'react';
 import { ProgressContext, TaskProgress } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const { setTaskProgress, getTaskProgress, resetProgress, getTaskPoints } =
-    useContext(ProgressContext);
+  const {
+    setTaskProgress,
+    getTaskProgress,
+    resetProgress,
+    getTaskPoints,
+    getTotalScore,
+  } = useContext(ProgressContext);
 
   return (
     <>
       <Head>
         <title>Soc Asklepios</title>
       </Head>
+
+      <h1>Soc Asklepios (Gesamtpunkte: {getTotalScore()})</h1>
       <ul>
         {allTasks.map((task, index) => (
           <li key={`task-${index}`}>
