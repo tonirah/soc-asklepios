@@ -3,20 +3,20 @@ import { useLocalstorageState } from 'rooks';
 
 const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY ?? `soc-progress`;
 
-export enum ProgressState {
+export enum TaskProgress {
   Visited = `Visited`,
   Solved = `Solved`,
 }
 
-interface ITaskProgress {
+interface ITaskProgressStorage {
   uuid: string;
-  progressState: ProgressState;
+  taskProgress: TaskProgress;
 }
 
 interface IProgressContext {
   resetProgress: () => void;
-  getTaskProgress: (uuid: string) => ProgressState | undefined;
-  setTaskProgress: (uuid: string, progressState: ProgressState) => void;
+  getTaskProgress: (uuid: string) => TaskProgress | undefined;
+  setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
 }
 
 export const ProgressContext = createContext<IProgressContext>(
@@ -31,7 +31,7 @@ export default function ProgressProvider({
   children: ReactNode;
 }) {
   const [progress, setProgress, clearLocalStorage] = useLocalstorageState<
-    (ITaskProgress | undefined)[]
+    (ITaskProgressStorage | undefined)[]
   >(LOCAL_STORAGE_KEY, []);
 
   const resetProgress = () => {
@@ -40,18 +40,18 @@ export default function ProgressProvider({
   };
 
   const getTaskProgress = (uuid: string) => {
-    const taskProgress = progress.find(
-      (taskProgress) => taskProgress?.uuid === uuid,
+    const taskProgressStorage = progress.find(
+      (taskProgressStorage) => taskProgressStorage?.uuid === uuid,
     );
-    return taskProgress?.progressState;
+    return taskProgressStorage?.taskProgress;
   };
 
-  const setTaskProgress = (uuid: string, progressState: ProgressState) => {
+  const setTaskProgress = (uuid: string, taskProgress: TaskProgress) => {
     setProgress((previousProgress) => {
       const newProgress = previousProgress.filter(
-        (taskProgress) => taskProgress?.uuid !== uuid,
+        (taskProgressStorage) => taskProgressStorage?.uuid !== uuid,
       );
-      newProgress.push({ uuid, progressState });
+      newProgress.push({ uuid, taskProgress });
       return newProgress;
     });
   };

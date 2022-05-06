@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
-import { ProgressContext, ProgressState } from '@/common/hooks/';
+import { ProgressContext, TaskProgress } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const { setTaskProgress, getTaskProgress, resetProgress } =
@@ -28,29 +28,25 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       <div className="my-4 flex gap-4">
         <button
           onClick={() =>
-            setTaskProgress(allTasks[0].uuid, ProgressState.Visited)
+            setTaskProgress(allTasks[0].uuid, TaskProgress.Visited)
           }
         >
           Visit Task 1
         </button>
         <button
-          onClick={() =>
-            setTaskProgress(allTasks[0].uuid, ProgressState.Solved)
-          }
+          onClick={() => setTaskProgress(allTasks[0].uuid, TaskProgress.Solved)}
         >
           Solve Task 1
         </button>
         <button
           onClick={() =>
-            setTaskProgress(allTasks[1].uuid, ProgressState.Visited)
+            setTaskProgress(allTasks[1].uuid, TaskProgress.Visited)
           }
         >
           Visit Task 2
         </button>
         <button
-          onClick={() =>
-            setTaskProgress(allTasks[1].uuid, ProgressState.Solved)
-          }
+          onClick={() => setTaskProgress(allTasks[1].uuid, TaskProgress.Solved)}
         >
           Solve Task 2
         </button>
