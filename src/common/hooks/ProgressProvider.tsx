@@ -1,7 +1,13 @@
 import { createContext, ReactNode } from 'react';
 import { useLocalstorageState } from 'rooks';
+import {
+  parseRequiredInt,
+  parseRequiredString,
+} from '@/common/utils/parseRequired';
 
-const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY ?? `soc-progress`;
+const LOCAL_STORAGE_KEY = parseRequiredString(process.env.LOCAL_STORAGE_KEY);
+const POINTS_FOR_VISITED = parseRequiredInt(process.env.POINTS_FOR_VISITED);
+const POINTS_FOR_SOLVED = parseRequiredInt(process.env.POINTS_FOR_SOLVED);
 
 export enum TaskProgress {
   Visited = `Visited`,
@@ -17,6 +23,7 @@ interface IProgressContext {
   resetProgress: () => void;
   getTaskProgress: (uuid: string) => TaskProgress | undefined;
   setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
+  getTaskPoints: (uuid: string) => number;
 }
 
 export const ProgressContext = createContext<IProgressContext>(
@@ -39,7 +46,7 @@ export default function ProgressProvider({
     clearLocalStorage();
   };
 
-  const getTaskProgress = (uuid: string) => {
+  const getTaskProgress = (uuid: string): TaskProgress | undefined => {
     const taskProgressStorage = progress.find(
       (taskProgressStorage) => taskProgressStorage?.uuid === uuid,
     );
@@ -56,12 +63,25 @@ export default function ProgressProvider({
     });
   };
 
+  const getTaskPoints = (uuid: string) => {
+    const taskProgress = getTaskProgress(uuid);
+    switch (taskProgress) {
+      case TaskProgress.Visited:
+        return POINTS_FOR_VISITED;
+      case TaskProgress.Solved:
+        return POINTS_FOR_SOLVED;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <ProgressContext.Provider
       value={{
         resetProgress,
         getTaskProgress,
         setTaskProgress,
+        getTaskPoints,
       }}
     >
       {children}

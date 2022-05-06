@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ProgressContext, TaskProgress } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const { setTaskProgress, getTaskProgress, resetProgress } =
+  const { setTaskProgress, getTaskProgress, resetProgress, getTaskPoints } =
     useContext(ProgressContext);
 
   return (
@@ -19,7 +19,8 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           <li key={`task-${index}`}>
             <Link href={`/tasks/${task.uuid}`}>
               <a>
-                {task.name} ({getTaskProgress(task.uuid)})
+                {task.name}, {getTaskPoints(task.uuid)} Punkte (
+                {getTaskProgress(task.uuid)})
               </a>
             </Link>
           </li>
