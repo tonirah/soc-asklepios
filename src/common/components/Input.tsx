@@ -2,10 +2,11 @@ import { CodeSmell, IInputData, IOption, Refactoring } from '@/modules/tasks/';
 import { useCombobox } from 'downshift';
 import { useState } from 'react';
 import { HandleChangedInput } from '@/common/hooks';
+import { parseRequiredInt } from '@/common/utils/parseRequired';
 
-const MIN_CHARACTERS_FOR_COMBOBOX = process.env.MIN_CHARACTERS_FOR_COMBOBOX
-  ? parseInt(process.env.MIN_CHARACTERS_FOR_COMBOBOX, 10)
-  : 2;
+const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
+  process.env.MIN_CHARACTERS_FOR_COMBOBOX,
+);
 
 export function Input({
   index,
