@@ -2,11 +2,18 @@ import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
-import { Comment, CodeBlock, Input } from '@/common/components/';
-import { useIndexedInputs, useUserInputEvaluation } from '@/common/hooks/';
-import { useEffect, useMemo, useState } from 'react';
+import { CodeBlock, Comment, Input } from '@/common/components/';
+import {
+  ProgressContext,
+  TaskProgress,
+  useIndexedInputs,
+  useUserInputEvaluation,
+} from '@/common/hooks/';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
+  const { setTaskProgress, getTaskPoints } = useContext(ProgressContext);
+
   const [isLineHintActive, setIsLineHintActive] = useState(false);
   const toggleIsLineHintActive = () =>
     setIsLineHintActive((isLineHintActive) => !isLineHintActive);
@@ -25,9 +32,11 @@ export default function Task({ taskData }: { taskData: ITask }) {
     }
     return userInputEvaluation.every((isValid) => isValid === true);
   }, [userInputEvaluation]);
+  // TODO: fix ESLint warning (https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook)
   useEffect(() => {
     if (isSolved) {
       setIsLineHintActive(true);
+      setTaskProgress(taskData.uuid, TaskProgress.Solved);
     }
   }, [isSolved]);
 
@@ -37,7 +46,9 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.name}</title>
       </Head>
 
-      <h1 className="underline decoration-double">{taskData.name}</h1>
+      <h1 className="underline decoration-double">
+        {taskData.name} (Punkte: {getTaskPoints(taskData.uuid)})
+      </h1>
 
       <CodeBlock code={taskData.dirtyCode} />
 
