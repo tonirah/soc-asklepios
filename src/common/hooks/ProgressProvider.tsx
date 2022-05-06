@@ -15,8 +15,9 @@ interface ITaskProgress {
 
 interface IProgressContext {
   getProgress: () => (ITaskProgress | undefined)[];
-  setTaskProgress: (uuid: string, progressState: ProgressState) => void;
   resetProgress: () => void;
+  getTaskProgress: (uuid: string) => ProgressState | undefined;
+  setTaskProgress: (uuid: string, progressState: ProgressState) => void;
 }
 
 export const ProgressContext = createContext<IProgressContext>(
@@ -36,6 +37,18 @@ export default function ProgressProvider({
 
   const getProgress = () => progress;
 
+  const resetProgress = () => {
+    setProgress([]);
+    clearLocalStorage();
+  };
+
+  const getTaskProgress = (uuid: string) => {
+    const taskProgress = progress.find(
+      (taskProgress) => taskProgress?.uuid === uuid,
+    );
+    return taskProgress?.progressState;
+  };
+
   const setTaskProgress = (uuid: string, progressState: ProgressState) => {
     setProgress((previousProgress) => {
       const newProgress = previousProgress.filter(
@@ -46,17 +59,13 @@ export default function ProgressProvider({
     });
   };
 
-  const resetProgress = () => {
-    setProgress([]);
-    clearLocalStorage();
-  };
-
   return (
     <ProgressContext.Provider
       value={{
         getProgress,
-        setTaskProgress,
         resetProgress,
+        getTaskProgress,
+        setTaskProgress,
       }}
     >
       {children}

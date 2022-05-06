@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ProgressContext, ProgressState } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const { getProgress, setTaskProgress, resetProgress } =
+  const { setTaskProgress, getTaskProgress, resetProgress } =
     useContext(ProgressContext);
 
   return (
@@ -18,7 +18,9 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         {allTasks.map((task, index) => (
           <li key={`task-${index}`}>
             <Link href={`/tasks/${task.uuid}`}>
-              <a>{task.name}</a>
+              <a>
+                {task.name} ({getTaskProgress(task.uuid)})
+              </a>
             </Link>
           </li>
         ))}
@@ -54,12 +56,6 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         </button>
         <button onClick={() => resetProgress()}>Reset Progress</button>
       </div>
-
-      {getProgress().map((taskProgress, index) => (
-        <div key={index}>
-          {taskProgress?.uuid}: {taskProgress?.progressState}
-        </div>
-      ))}
     </>
   );
 }
