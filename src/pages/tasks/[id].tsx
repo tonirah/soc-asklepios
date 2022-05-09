@@ -7,9 +7,9 @@ import {
   ProgressContext,
   TaskProgress,
   useIndexedInputs,
-  useUserInputEvaluation,
+  useInputEvaluation,
 } from '@/common/hooks/';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
   const { setTaskProgress, getTaskPoints } = useContext(ProgressContext);
@@ -20,25 +20,18 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   const [userInputs, handleChangedInput] = useIndexedInputs();
 
-  const [userInputEvaluation, evaluateInputs] = useUserInputEvaluation();
+  const [inputEvaluation, evaluateInputs] = useInputEvaluation();
   const onClickEvaluate = () => {
     evaluateInputs(taskData.inputs, userInputs);
   };
 
-  // based on 'userInputEvaluation', only calculated when changed
-  const isSolved = useMemo(() => {
-    if (userInputEvaluation.length === 0) {
-      return false;
-    }
-    return userInputEvaluation.every((isValid) => isValid === true);
-  }, [userInputEvaluation]);
   useEffect(() => {
-    if (isSolved) {
+    if (inputEvaluation.isSolved) {
       setIsLineHintActive(true);
       setTaskProgress(taskData.uuid, TaskProgress.Solved);
     }
     // TODO: optimize performance? https://trello.com/c/6mgbrTan/119-optimization-useeffect-dependencies
-  }, [isSolved, setTaskProgress, taskData.uuid]);
+  }, [inputEvaluation.isSolved, setTaskProgress, taskData.uuid]);
 
   return (
     <>
@@ -52,7 +45,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
       <CodeBlock code={taskData.dirtyCode} />
 
-      {isSolved && (
+      {inputEvaluation.isSolved && (
         <>
           <CodeBlock code={taskData.cleanCode} />
           <Comment comment={taskData.comment} />
@@ -66,7 +59,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           inputData={input}
           handleChangedInput={handleChangedInput}
           isLineHintActive={isLineHintActive}
-          isValid={userInputEvaluation[index]}
+          isValid={inputEvaluation.evaluationValues[index]}
         />
       ))}
 
