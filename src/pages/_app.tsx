@@ -6,15 +6,15 @@ import { parseRequiredBoolean } from '@/common/utils/parseRequired';
 
 const SSR_ENABLED = parseRequiredBoolean(process.env.SSR_ENABLED);
 
-const ProgressProvider = dynamic(
-  () => import(`@/common/hooks/ProgressProvider`),
+const ProgressContextProvider = dynamic(
+  () => import(`@/common/hooks/ProgressContextProvider`),
   { ssr: SSR_ENABLED },
 );
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ProgressProvider>
+    <ProgressContextProvider>
       <Component {...pageProps} />
-    </ProgressProvider>
+    </ProgressContextProvider>
   );
 }

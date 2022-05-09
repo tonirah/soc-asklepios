@@ -44,7 +44,7 @@ function calculatePoints(taskProgress?: TaskProgress): number {
 
 // https://stackoverflow.com/a/51573816
 // more sophisticated: https://www.basefactor.com/global-state-with-react
-export default function ProgressProvider({
+export default function ProgressContextProvider({
   children,
 }: {
   children: ReactNode;
