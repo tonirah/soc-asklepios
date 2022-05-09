@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useCallback } from 'react';
 import { useLocalstorageState } from 'rooks';
 import {
   parseRequiredInt,
@@ -42,8 +42,6 @@ function calculatePoints(taskProgress?: TaskProgress): number {
   }
 }
 
-// https://stackoverflow.com/a/51573816
-// more sophisticated: https://www.basefactor.com/global-state-with-react
 export default function ProgressContextProvider({
   children,
 }: {
@@ -73,15 +71,20 @@ export default function ProgressContextProvider({
     return taskProgressStorage?.taskProgress;
   };
 
-  const setTaskProgress = (uuid: string, taskProgress: TaskProgress) => {
-    setProgress((previousProgress) => {
-      const newProgress = previousProgress.filter(
-        (taskProgressStorage) => taskProgressStorage?.uuid !== uuid,
-      );
-      newProgress.push({ uuid, taskProgress });
-      return newProgress;
-    });
-  };
+  // see https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
+  const setTaskProgress = useCallback(
+    (uuid: string, taskProgress: TaskProgress) => {
+      console.log(`set state progress`);
+      setProgress((previousProgress) => {
+        const newProgress = previousProgress.filter(
+          (taskProgressStorage) => taskProgressStorage?.uuid !== uuid,
+        );
+        newProgress.push({ uuid, taskProgress });
+        return newProgress;
+      });
+    },
+    [setProgress],
+  );
 
   const getTaskPoints = (uuid: string) => {
     const taskProgress = getTaskProgress(uuid);

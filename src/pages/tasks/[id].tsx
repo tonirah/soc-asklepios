@@ -30,8 +30,12 @@ export default function Task({ taskData }: { taskData: ITask }) {
       setIsLineHintActive(true);
       setTaskProgress(taskData.uuid, TaskProgress.Solved);
     }
-    // TODO: optimize performance? https://trello.com/c/6mgbrTan/119-optimization-useeffect-dependencies
-  }, [inputEvaluation.isSolved, setTaskProgress, taskData.uuid]);
+  }, [
+    inputEvaluation.isSolved,
+    setIsLineHintActive,
+    setTaskProgress,
+    taskData.uuid,
+  ]);
 
   return (
     <>
