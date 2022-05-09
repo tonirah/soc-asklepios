@@ -32,13 +32,13 @@ export default function Task({ taskData }: { taskData: ITask }) {
     }
     return userInputEvaluation.every((isValid) => isValid === true);
   }, [userInputEvaluation]);
-  // TODO: fix ESLint warning (https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook)
   useEffect(() => {
     if (isSolved) {
       setIsLineHintActive(true);
       setTaskProgress(taskData.uuid, TaskProgress.Solved);
     }
-  }, [isSolved]);
+    // TODO: optimize performance? https://trello.com/c/6mgbrTan/119-optimization-useeffect-dependencies
+  }, [isSolved, setTaskProgress, taskData.uuid]);
 
   return (
     <>
