@@ -12,7 +12,8 @@ import {
 import { useContext, useEffect, useState } from 'react';
 
 export default function Task({ taskData }: { taskData: ITask }) {
-  const { setTaskProgress, getTaskPoints } = useContext(ProgressContext);
+  const { setTaskProgress, getTaskPoints, getTaskProgress, useVisitedTimer } =
+    useContext(ProgressContext);
 
   const [isLineHintActive, setIsLineHintActive] = useState(false);
   const toggleIsLineHintActive = () =>
@@ -37,6 +38,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
     taskData.uuid,
   ]);
 
+  useVisitedTimer(taskData.uuid);
+
   return (
     <>
       <Head>
@@ -44,7 +47,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
       </Head>
 
       <h1 className="underline decoration-double">
-        {taskData.name} (Punkte: {getTaskPoints(taskData.uuid)})
+        {taskData.name} (Status: {getTaskProgress(taskData.uuid)}, Punkte:{` `}
+        {getTaskPoints(taskData.uuid)})
       </h1>
 
       <CodeBlock code={taskData.dirtyCode} />

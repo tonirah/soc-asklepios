@@ -5,6 +5,7 @@ const env = {
   SSR_ENABLED: 'false',
   POINTS_FOR_VISITED: '1',
   POINTS_FOR_SOLVED: '4',
+  DELAY_FOR_VISITED: '10',
 };
 
 module.exports = {
