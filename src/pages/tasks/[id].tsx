@@ -21,22 +21,17 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   const [userInputs, handleChangedInput] = useIndexedInputs();
 
-  const [inputEvaluation, evaluateInputs] = useInputEvaluation();
+  const [inputEvaluation, isSolved, evaluateInputs] = useInputEvaluation();
   const onClickEvaluate = () => {
     evaluateInputs(taskData.inputs, userInputs);
   };
 
   useEffect(() => {
-    if (inputEvaluation.isSolved) {
+    if (isSolved) {
       setIsLineHintActive(true);
       setTaskProgress(taskData.uuid, TaskProgress.Solved);
     }
-  }, [
-    inputEvaluation.isSolved,
-    setIsLineHintActive,
-    setTaskProgress,
-    taskData.uuid,
-  ]);
+  }, [isSolved, setIsLineHintActive, setTaskProgress, taskData.uuid]);
 
   useVisitedTimer(taskData.uuid);
 
@@ -53,7 +48,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
       <CodeBlock code={taskData.dirtyCode} />
 
-      {inputEvaluation.isSolved && (
+      {isSolved && (
         <>
           <CodeBlock code={taskData.cleanCode} />
           <Comment comment={taskData.comment} />
@@ -67,7 +62,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           inputData={input}
           handleChangedInput={handleChangedInput}
           isLineHintActive={isLineHintActive}
-          isValid={inputEvaluation.evaluationValues[index]}
+          isValid={inputEvaluation[index]}
         />
       ))}
 

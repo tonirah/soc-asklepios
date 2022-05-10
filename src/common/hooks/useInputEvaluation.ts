@@ -1,22 +1,10 @@
 import { IInputData } from '@/modules/tasks';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 type EvaluateInputs = (
   inputDataArray: IInputData[],
   userInputs: (string | undefined)[],
 ) => void;
-
-interface IInputEvaluation {
-  isSolved: boolean;
-  evaluationValues: boolean[];
-}
-
-const isSolved = (evaluationValues: boolean[]) => {
-  if (evaluationValues.length === 0) {
-    return false;
-  }
-  return evaluationValues.every((isValid) => isValid);
-};
 
 const isValid = (
   inputs: (string | undefined)[],
@@ -37,29 +25,29 @@ const isValid = (
 };
 
 export function useInputEvaluation(
-  initialEvaluationValues: boolean[] = [],
-): [IInputEvaluation, EvaluateInputs] {
-  const initialInputEvaluation: IInputEvaluation = {
-    isSolved: isSolved(initialEvaluationValues),
-    evaluationValues: initialEvaluationValues,
-  };
+  initialInputEvaluation: boolean[] = [],
+): [boolean[], boolean, EvaluateInputs] {
   const [inputEvaluation, setInputEvaluation] = useState(
     initialInputEvaluation,
   );
 
-  const evaluateInputs = (
-    inputDataArray: IInputData[],
-    inputs: (string | undefined)[],
-  ) => {
-    const evaluationValues = inputDataArray.map((inputData, index) => {
-      return isValid(inputs, index, inputData);
-    });
+  const isSolved = useMemo(() => {
+    if (inputEvaluation.length === 0) {
+      return false;
+    }
+    return inputEvaluation.every((isValid) => isValid);
+  }, [inputEvaluation]);
 
-    setInputEvaluation({
-      evaluationValues,
-      isSolved: isSolved(evaluationValues),
-    });
-  };
+  const evaluateInputs = useCallback(
+    (inputDataArray: IInputData[], inputs: (string | undefined)[]) => {
+      const inputEvaluation = inputDataArray.map((inputData, index) => {
+        return isValid(inputs, index, inputData);
+      });
 
-  return [inputEvaluation, evaluateInputs];
+      setInputEvaluation(inputEvaluation);
+    },
+    [setInputEvaluation],
+  );
+
+  return [inputEvaluation, isSolved, evaluateInputs];
 }
