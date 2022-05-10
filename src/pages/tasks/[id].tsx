@@ -57,7 +57,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
       {taskData.inputs.map((input, index) => (
         <Input
-          key={index}
+          key={`input-${index}`}
           index={index}
           inputData={input}
           handleChangedInput={handleChangedInput}

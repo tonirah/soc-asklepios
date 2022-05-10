@@ -82,7 +82,7 @@ export function Input({
           {isOpen &&
             availableOptions.map((item, index) => (
               <li
-                key={{ index }}
+                key={`option-${index}`}
                 {...getItemProps({ item, index })}
                 className="odd:bg-gray-200 even:bg-gray-300"
               >

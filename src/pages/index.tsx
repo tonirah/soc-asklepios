@@ -27,8 +27,8 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         {getCategoryProgressPercentage(Category.Category1)} %)
       </h1>
       <ul>
-        {allTasks.map((task, index) => (
-          <li key={`task-${index}`}>
+        {allTasks.map((task) => (
+          <li key={task.uuid}>
             <Link href={`/tasks/${task.uuid}`}>
               <a>
                 {task.name}, {getTaskPoints(task.uuid)} Punkte (
