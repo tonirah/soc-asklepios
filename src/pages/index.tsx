@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import { allTasks, ITask } from '@/modules/tasks';
+import { allTasks, Category, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { ProgressContext, TaskProgress } from '@/common/hooks/';
@@ -11,6 +11,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
     getTaskProgress,
     resetProgress,
     getTaskPoints,
+    getCategoryProgressPercentage,
     getTotalScore,
   } = useContext(ProgressContext);
 
@@ -20,7 +21,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <title>Soc Asklepios</title>
       </Head>
 
-      <h1>Soc Asklepios (Gesamtpunkte: {getTotalScore()})</h1>
+      <h1>
+        Soc Asklepios (Gesamtpunkte: {getTotalScore()}, Fortschritt Kategorie 1:
+        {` `}
+        {getCategoryProgressPercentage(Category.Category1)} )
+      </h1>
       <ul>
         {allTasks.map((task, index) => (
           <li key={`task-${index}`}>

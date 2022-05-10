@@ -10,6 +10,7 @@ import {
   parseRequiredInt,
   parseRequiredString,
 } from '@/common/utils/parseRequired';
+import { allTasks, Category } from '@/modules/tasks';
 
 const LOCAL_STORAGE_KEY = parseRequiredString(process.env.LOCAL_STORAGE_KEY);
 const POINTS_FOR_VISITED = parseRequiredInt(process.env.POINTS_FOR_VISITED);
@@ -30,8 +31,9 @@ interface IProgressContext {
   resetProgress: () => void;
   getTotalScore: () => number;
   getTaskProgress: (uuid: string) => TaskProgress | undefined;
-  setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
   getTaskPoints: (uuid: string) => number;
+  getCategoryProgressPercentage: (category: Category) => number;
+  setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
   useVisitedTimer: (uuid: string) => void;
 }
 
@@ -52,10 +54,30 @@ const calculatePoints = (taskProgress?: TaskProgress): number => {
 
 const calculateTotalScore = (progress: ITaskProgressStorage[]) => {
   let score = 0;
-  progress.map((taskProgressStorage) => {
+  progress.forEach((taskProgressStorage) => {
     score = score + calculatePoints(taskProgressStorage.taskProgress);
   });
   return score;
+};
+
+const calculateCategoryProgressPercentage = (
+  category: Category,
+  progress: ITaskProgressStorage[],
+) => {
+  const tasksOfCategory = allTasks.filter((task) => task.category === category);
+
+  if (tasksOfCategory.length === 0) {
+    throw new Error(`No tasks found for category "${category}"`);
+  }
+
+  const progressOfCategory = progress.filter((progressState) =>
+    tasksOfCategory.some((task) => task.uuid === progressState.uuid),
+  );
+
+  const maxPoints = tasksOfCategory.length * POINTS_FOR_SOLVED;
+  const points = calculateTotalScore(progressOfCategory);
+
+  return Math.round((100 * points) / maxPoints);
 };
 
 // callback methods wrapped with Reacts useCallback()
@@ -88,6 +110,21 @@ export default function ProgressContextProvider({
     [progress],
   );
 
+  const getTaskPoints = useCallback(
+    (uuid: string) => {
+      const taskProgress = getTaskProgress(uuid);
+      return calculatePoints(taskProgress);
+    },
+    [getTaskProgress],
+  );
+
+  const getCategoryProgressPercentage = useCallback(
+    (category: Category) => {
+      return calculateCategoryProgressPercentage(category, progress);
+    },
+    [progress],
+  );
+
   const setTaskProgress = useCallback(
     (uuid: string, taskProgress: TaskProgress) => {
       setProgress((previousProgress) => {
@@ -99,14 +136,6 @@ export default function ProgressContextProvider({
       });
     },
     [setProgress],
-  );
-
-  const getTaskPoints = useCallback(
-    (uuid: string) => {
-      const taskProgress = getTaskProgress(uuid);
-      return calculatePoints(taskProgress);
-    },
-    [getTaskProgress],
   );
 
   const useVisitedTimer = (uuid: string) => {
@@ -139,8 +168,9 @@ export default function ProgressContextProvider({
         resetProgress,
         getTotalScore,
         getTaskProgress,
-        setTaskProgress,
         getTaskPoints,
+        getCategoryProgressPercentage,
+        setTaskProgress,
         useVisitedTimer,
       }}
     >
