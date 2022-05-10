@@ -34,7 +34,10 @@ interface IProgressContext {
   getTaskPoints: (uuid: string) => number;
   getCategoryProgressPercentage: (category: Category) => number;
   setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
-  useVisitedTimer: (uuid: string) => void;
+  useVisitedTimer: (
+    uuid: string,
+    getTaskProgress: IProgressContext['getTaskProgress'],
+  ) => void;
 }
 
 export const ProgressContext = createContext<IProgressContext>(
@@ -138,7 +141,10 @@ export default function ProgressContextProvider({
     [setProgress],
   );
 
-  const useVisitedTimer = (uuid: string) => {
+  const useVisitedTimer = (
+    uuid: string,
+    getTaskProgress: IProgressContext['getTaskProgress'],
+  ) => {
     const getTaskProgressRef = useRef(getTaskProgress);
     useEffect(() => {
       getTaskProgressRef.current = getTaskProgress;

@@ -24,7 +24,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       <h1>
         Soc Asklepios (Gesamtpunkte: {getTotalScore()}, Fortschritt Kategorie 1:
         {` `}
-        {getCategoryProgressPercentage(Category.Category1)} )
+        {getCategoryProgressPercentage(Category.Category1)} %)
       </h1>
       <ul>
         {allTasks.map((task, index) => (

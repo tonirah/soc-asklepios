@@ -33,7 +33,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
     }
   }, [isSolved, setIsLineHintActive, setTaskProgress, taskData.uuid]);
 
-  useVisitedTimer(taskData.uuid);
+  useVisitedTimer(taskData.uuid, getTaskProgress);
 
   return (
     <>
