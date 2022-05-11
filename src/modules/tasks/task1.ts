@@ -17,7 +17,11 @@ export const task1: ITask = {
   cleanCode: `function helloWorld() { return 'hello, world'; }`,
   cleanCodeHighlightedLines: `1`,
 
-  comment: `**Dummy-Kommentar**. Mehr Infos unter [react-markdown](https://github.com/remarkjs/react-markdown).`,
+  comment: `
+  **Dummy-Kommentar**.
+  Mehr Infos unter [react-markdown](/).
+
+  Was passert, wenn hier eine extrem lange, ausführliche Erklärung steht?`,
 
   inputs: [
     {

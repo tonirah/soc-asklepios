@@ -1,7 +1,9 @@
 export function CodeBlock({ code }: { code: string }) {
   return (
-    <pre>
-      <code>{code}</code>
-    </pre>
+    <div className="mockup-code">
+      <pre>
+        <code>{code}</code>
+      </pre>
+    </div>
   );
 }

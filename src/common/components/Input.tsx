@@ -59,40 +59,44 @@ export function Input({
     onInputValueChange,
   });
 
-  const setBackground = () => {
+  // TODO: also set label text color
+  const getColor = () => {
     if (isValid === undefined) {
       return ``;
     } else if (isValid) {
-      return `bg-green-500`;
+      return `bg-success`;
     } else {
-      return `bg-red-500`;
+      return `bg-error`;
     }
   };
 
   return (
-    <div className={`flex gap-3 py-6 max-w-fit ${setBackground()}`}>
-      <label className="w-28 text-right" {...getLabelProps()}>
-        {inputData.type}:
+    <div
+      className={`form-control w-full max-w-xs ${getColor()} text-error-content`}
+    >
+      <label className="label" {...getLabelProps()}>
+        <span className="label-text pl-1">
+          {index + 1} | {inputData.type}:
+        </span>
+        {isLineHintActive && (
+          <span className="label-text-alt">Z. {inputData.lines}</span>
+        )}
       </label>
       <div>
         <div {...getComboboxProps()}>
-          <input {...getInputProps()} className="bg-gray-200" />
+          <input {...getInputProps()} className="input input-bordered w-full" />
         </div>
-        <ul {...getMenuProps()}>
+        <ul
+          {...getMenuProps()}
+          className="absolute menu bg-neutral mt-1 w-full max-w-xs overflow-auto max-h-96"
+        >
           {isOpen &&
             availableOptions.map((item, index) => (
-              <li
-                key={`option-${index}`}
-                {...getItemProps({ item, index })}
-                className="odd:bg-gray-200 even:bg-gray-300"
-              >
-                {item.value}
+              <li key={`option-${index}`} {...getItemProps({ item, index })}>
+                <a>{item.value}</a>
               </li>
             ))}
         </ul>
-      </div>
-      <div className="w-28">
-        {isLineHintActive && <span>Z. {inputData.lines}</span>}
       </div>
     </div>
   );

@@ -17,28 +17,49 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
   return (
     <>
       <Head>
-        <title>Soc Asklepios</title>
+        <title>SOC Asklepios</title>
       </Head>
 
-      <h1>Soc Asklepios</h1>
-      <p>Gesamtpunkte: {getTotalScore()}</p>
-      <p>
-        Fortschritt Kategorie 1:{` `}
-        {getCategoryProgressPercentage(Category.Category1)} %)
-      </p>
-      <ul>
-        {allTasks.map((task) => (
-          <li key={task.uuid}>
-            <Link href={`/tasks/${task.uuid}`}>
-              <a>
-                {task.name}, {getTaskPoints(task.uuid)} Punkte (
-                {getTaskProgress(task.uuid)})
+      <div className="container mx-auto text-center py-28 px-2">
+        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed -mb-2">
+          SOC Asklepios
+        </h1>
+
+        <div className="flex justify-center items-start gap-3 mb-12">
+          <div className="stats">
+            <div className="stat">
+              <div className="stat-title">Gesamtpunkte</div>
+              <div className="stat-value">{getTotalScore()}</div>
+            </div>
+          </div>
+          <div className="px-6 py-4">
+            <div className="opacity-60 mb-3">Fortschritt Kategorie 1</div>
+            <progress
+              className="block progress progress-success"
+              value={getCategoryProgressPercentage(Category.Category1)}
+              max="100"
+            ></progress>
+          </div>
+        </div>
+
+        {allTasks.map((task) => {
+          const taskProgress = getTaskProgress(task.uuid);
+          return (
+            <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
+              <a className="btn btn-block btn-link">
+                {task.name} ({getTaskPoints(task.uuid)} Punkte,{` `}
+                {taskProgress ? taskProgress : `Not yet visited`})
               </a>
             </Link>
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => resetProgress()}>Reset Progress</button>
+          );
+        })}
+        <button
+          className="btn btn-outline btn-accent mt-16"
+          onClick={() => resetProgress()}
+        >
+          Reset Progress
+        </button>
+      </div>
     </>
   );
 }

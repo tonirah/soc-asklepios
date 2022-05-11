@@ -41,47 +41,61 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.name}</title>
       </Head>
 
-      <h1 className="underline decoration-double">
-        {taskData.name} (Status: {getTaskProgress(taskData.uuid)}, Punkte:{` `}
-        {getTaskPoints(taskData.uuid)})
-      </h1>
+      <div className="container mx-auto py-28 px-2">
+        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed mb-5">
+          {taskData.name} (Status: {getTaskProgress(taskData.uuid)}, Punkte:
+          {` `}
+          {getTaskPoints(taskData.uuid)})
+        </h1>
 
-      <CodeBlock code={taskData.dirtyCode} />
-
-      {isSolved && (
-        <>
-          <CodeBlock code={taskData.cleanCode} />
-          <Comment comment={taskData.comment} />
-        </>
-      )}
-
-      {taskData.inputs.map((input, index) => (
-        <Input
-          key={`input-${index}`}
-          index={index}
-          inputData={input}
-          handleChangedInput={handleChangedInput}
-          isLineHintActive={isLineHintActive}
-          isValid={inputEvaluation[index]}
-        />
-      ))}
-
-      <div className="my-4 mx-3 flex gap-3">
-        <div>
-          <input
-            className="mr-1"
-            type="checkbox"
-            id="lineHighlighter"
-            onClick={toggleIsLineHintActive}
-            onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
-            checked={isLineHintActive}
-          />
-          <label htmlFor="lineHighlighter">Codestellen hervorheben</label>
+        <div className="flex flex-col lg:flex-row gap-3 mb-3">
+          <div className="basis-1/2">
+            <CodeBlock code={taskData.dirtyCode} />
+          </div>
+          <div className="basis-1/2">
+            {isSolved && <CodeBlock code={taskData.cleanCode} />}
+          </div>
         </div>
-        <button onClick={onClickEvaluate}>Evaluieren</button>
-        <Link href={`/`}>
-          <a>Zurück</a>
-        </Link>
+        {isSolved && <Comment comment={taskData.comment} />}
+
+        <div className="flex flex-wrap gap-3 mt-12">
+          {taskData.inputs.map((input, index) => (
+            <Input
+              key={`input-${index}`}
+              index={index}
+              inputData={input}
+              handleChangedInput={handleChangedInput}
+              isLineHintActive={isLineHintActive}
+              isValid={inputEvaluation[index]}
+            />
+          ))}
+        </div>
+
+        <div className="mt-12 mb-3 flex">
+          <label
+            htmlFor="lineHighlighter"
+            className="label justify-start gap-1.5 cursor-pointer p-0"
+          >
+            <input
+              className="toggle"
+              type="checkbox"
+              id="lineHighlighter"
+              onClick={toggleIsLineHintActive}
+              onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
+              checked={isLineHintActive}
+            />
+            <span className="label-text">Codestellen hervorheben</span>
+          </label>
+        </div>
+
+        <div className="flex gap-3">
+          <button className="btn btn-primary" onClick={onClickEvaluate}>
+            Evaluieren
+          </button>
+          <Link href={`/`}>
+            <a className="btn">Zurück</a>
+          </Link>
+        </div>
       </div>
     </>
   );
