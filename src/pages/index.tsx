@@ -3,11 +3,10 @@ import { GetStaticProps } from 'next';
 import { allTasks, Category, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
-import { ProgressContext, TaskProgress } from '@/common/hooks/';
+import { ProgressContext } from '@/common/hooks/';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const {
-    setTaskProgress,
     getTaskProgress,
     resetProgress,
     getTaskPoints,
@@ -21,11 +20,12 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <title>Soc Asklepios</title>
       </Head>
 
-      <h1>
-        Soc Asklepios (Gesamtpunkte: {getTotalScore()}, Fortschritt Kategorie 1:
-        {` `}
+      <h1>Soc Asklepios</h1>
+      <p>Gesamtpunkte: {getTotalScore()}</p>
+      <p>
+        Fortschritt Kategorie 1:{` `}
         {getCategoryProgressPercentage(Category.Category1)} %)
-      </h1>
+      </p>
       <ul>
         {allTasks.map((task) => (
           <li key={task.uuid}>
@@ -38,33 +38,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           </li>
         ))}
       </ul>
-      <div className="my-4 flex gap-4">
-        <button
-          onClick={() =>
-            setTaskProgress(allTasks[0].uuid, TaskProgress.Visited)
-          }
-        >
-          Visit Task 1
-        </button>
-        <button
-          onClick={() => setTaskProgress(allTasks[0].uuid, TaskProgress.Solved)}
-        >
-          Solve Task 1
-        </button>
-        <button
-          onClick={() =>
-            setTaskProgress(allTasks[1].uuid, TaskProgress.Visited)
-          }
-        >
-          Visit Task 2
-        </button>
-        <button
-          onClick={() => setTaskProgress(allTasks[1].uuid, TaskProgress.Solved)}
-        >
-          Solve Task 2
-        </button>
-        <button onClick={() => resetProgress()}>Reset Progress</button>
-      </div>
+      <button onClick={() => resetProgress()}>Reset Progress</button>
     </>
   );
 }
