@@ -47,15 +47,17 @@ export default function Task({ taskData }: { taskData: ITask }) {
           {` `}
           {getTaskPoints(taskData.uuid)})
         </h1>
-
-        <div className="flex flex-col lg:flex-row gap-3 mb-3">
-          <div className="basis-1/2">
+        <div className="flex flex-col lg:flex-row gap-3 mb-3 w-full">
+          <div className="lg:w-0 flex-auto">
             <CodeBlock code={taskData.dirtyCode} />
           </div>
-          <div className="basis-1/2">
-            {isSolved && <CodeBlock code={taskData.cleanCode} />}
-          </div>
+          {isSolved && (
+            <div className="lg:w-0 flex-auto">
+              <CodeBlock code={taskData.cleanCode} />
+            </div>
+          )}
         </div>
+
         {isSolved && <Comment comment={taskData.comment} />}
 
         <div className="flex flex-wrap gap-3 mt-12">
