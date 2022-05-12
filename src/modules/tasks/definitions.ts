@@ -1,5 +1,5 @@
 export enum Category {
-  Category1 = `Category 1`,
+  CentralFlightSystem = `Central Flight System`,
 }
 
 export enum Difficulty {

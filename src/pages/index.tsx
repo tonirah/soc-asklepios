@@ -33,10 +33,14 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </div>
           </div>
           <div className="px-6 py-4">
-            <div className="opacity-60 mb-3">Fortschritt Kategorie 1</div>
+            <div className="opacity-60 mb-3">
+              {Category.CentralFlightSystem}
+            </div>
             <progress
               className="block progress progress-success"
-              value={getCategoryProgressPercentage(Category.Category1)}
+              value={getCategoryProgressPercentage(
+                Category.CentralFlightSystem,
+              )}
               max="100"
             ></progress>
           </div>
