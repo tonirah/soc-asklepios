@@ -61,17 +61,12 @@ export function Input({
   });
 
   const formControlClasses = classNames(
-    `form-control rounded-box w-full max-w-xs transition-all`,
+    `form-control rounded-box p-0.5 w-full max-w-xs transition-all`,
     {
       [`bg-error`]: isValid === false,
       [`bg-success`]: isValid,
     },
   );
-
-  const inputClasses = classNames(`input input-bordered w-full`, {
-    [`input-error`]: isValid === false,
-    [`input-success`]: isValid,
-  });
 
   return (
     <div className={formControlClasses}>
@@ -85,7 +80,11 @@ export function Input({
       </label>
       <div>
         <div {...getComboboxProps()}>
-          <input {...getInputProps()} className={inputClasses} />
+          <input
+            {...getInputProps()}
+            className="input input-bordered w-full"
+            disabled={isValid}
+          />
         </div>
         <ul
           {...getMenuProps()}

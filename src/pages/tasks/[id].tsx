@@ -10,6 +10,7 @@ import {
   useInputEvaluation,
 } from '@/common/hooks/';
 import { useContext, useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 export default function Task({ taskData }: { taskData: ITask }) {
   const { setTaskProgress, getTaskPoints, getTaskProgress, useVisitedTimer } =
@@ -47,7 +48,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           {` `}
           {getTaskPoints(taskData.uuid)})
         </h1>
-        <div className="flex flex-col lg:flex-row gap-3 mb-3 w-full">
+        <div className="flex flex-col lg:flex-row gap-3 mb-12 w-full">
           <div className="lg:w-0 flex-auto">
             <CodeBlock code={taskData.dirtyCode} />
           </div>
@@ -58,9 +59,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           )}
         </div>
 
-        {isSolved && <Comment comment={taskData.comment} />}
-
-        <div className="flex flex-wrap gap-3 mt-12">
+        <div className="flex flex-wrap gap-3 mb-3">
           {taskData.inputs.map((input, index) => (
             <Input
               key={`input-${index}`}
@@ -72,6 +71,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
             />
           ))}
         </div>
+
+        {isSolved && <Comment comment={taskData.comment} />}
 
         <div className="mt-12 mb-3 flex">
           <label
@@ -91,11 +92,23 @@ export default function Task({ taskData }: { taskData: ITask }) {
         </div>
 
         <div className="flex gap-3">
-          <button className="btn btn-primary" onClick={onClickEvaluate}>
+          <button
+            className={classNames(`btn`, {
+              [`btn-primary`]: !isSolved,
+              [`btn-disabled`]: isSolved,
+            })}
+            onClick={onClickEvaluate}
+          >
             Evaluieren
           </button>
           <Link href={`/`}>
-            <a className="btn">Zurück</a>
+            <a
+              className={classNames(`btn`, {
+                [`btn-primary`]: isSolved,
+              })}
+            >
+              Zurück
+            </a>
           </Link>
         </div>
       </div>
