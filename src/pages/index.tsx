@@ -4,12 +4,12 @@ import { allTasks, Category, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
+import { TaskProgressIcon } from '@/common/components';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const {
     getTaskProgress,
     resetProgress,
-    getTaskPoints,
     getCategoryProgressPercentage,
     getTotalScore,
   } = useContext(ProgressContext);
@@ -46,17 +46,22 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           </div>
         </div>
 
-        {allTasks.map((task) => {
-          const taskProgress = getTaskProgress(task.uuid);
-          return (
-            <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
-              <a className="btn btn-block btn-link">
-                {task.name} ({getTaskPoints(task.uuid)} Punkte,{` `}
-                {taskProgress ? taskProgress : `Not yet visited`})
-              </a>
-            </Link>
-          );
-        })}
+        <div className="w-max mx-auto">
+          {allTasks.map((task) => {
+            return (
+              <div key={task.uuid} className="flex flex-row items-center">
+                <TaskProgressIcon
+                  taskProgress={getTaskProgress(task.uuid)}
+                  className="h-8 w-8"
+                />
+                <Link href={`/tasks/${task.uuid}`}>
+                  <a className="btn btn-link px-1">{task.name}</a>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+
         <button
           className="btn btn-outline btn-accent mt-16"
           onClick={() => resetProgress()}

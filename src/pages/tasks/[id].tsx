@@ -2,7 +2,12 @@ import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
-import { CodeBlock, Comment, Input } from '@/common/components/';
+import {
+  CodeBlock,
+  Comment,
+  Input,
+  TaskProgressIcon,
+} from '@/common/components/';
 import {
   ProgressContext,
   TaskProgress,
@@ -43,12 +48,23 @@ export default function Task({ taskData }: { taskData: ITask }) {
       </Head>
 
       <div className="container mx-auto py-28 px-2">
-        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed mb-5">
-          {taskData.name} (Status: {getTaskProgress(taskData.uuid)}, Punkte:
-          {` `}
-          {getTaskPoints(taskData.uuid)})
-        </h1>
-        <div className="flex flex-col lg:flex-row gap-3 mb-12 w-full">
+        <div className="flex flex-row items-center mb-3">
+          <TaskProgressIcon
+            className="h-16 w-16 mr-1 shrink-0"
+            taskProgress={getTaskProgress(taskData.uuid)}
+          />
+          <div>
+            <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning">
+              {taskData.name}
+            </h1>
+            <p className="text-info font-mono">
+              Punkte:{` `}
+              <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-3 mb-8 w-full items-end">
           <div className="lg:w-0 flex-auto">
             <CodeBlock code={taskData.dirtyCode} />
           </div>
@@ -58,7 +74,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
             </div>
           )}
         </div>
-
         <div className="flex flex-wrap gap-3 mb-3">
           {taskData.inputs.map((input, index) => (
             <Input
@@ -71,9 +86,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             />
           ))}
         </div>
-
         {isSolved && <Comment comment={taskData.comment} />}
-
         <div className="mt-12 mb-3 flex">
           <label
             htmlFor="lineHighlighter"
@@ -90,7 +103,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
             <span className="label-text">Codestellen hervorheben</span>
           </label>
         </div>
-
         <div className="flex gap-3">
           <button
             className={classNames(`btn`, {
