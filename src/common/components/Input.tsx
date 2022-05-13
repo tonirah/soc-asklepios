@@ -3,6 +3,7 @@ import { useCombobox } from 'downshift';
 import { useState } from 'react';
 import { HandleChangedInput } from '@/common/hooks';
 import { parseRequiredInt } from '@/common/utils/parseRequired';
+import classNames from 'classnames';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
   process.env.MIN_CHARACTERS_FOR_COMBOBOX,
@@ -59,21 +60,21 @@ export function Input({
     onInputValueChange,
   });
 
-  // TODO: also set label text color
-  const getColor = () => {
-    if (isValid === undefined) {
-      return ``;
-    } else if (isValid) {
-      return `bg-success`;
-    } else {
-      return `bg-error`;
-    }
-  };
+  const formControlClasses = classNames(
+    `form-control rounded-box w-full max-w-xs transition-all`,
+    {
+      [`bg-error`]: isValid === false,
+      [`bg-success`]: isValid,
+    },
+  );
+
+  const inputClasses = classNames(`input input-bordered w-full`, {
+    [`input-error`]: isValid === false,
+    [`input-success`]: isValid,
+  });
 
   return (
-    <div
-      className={`form-control w-full max-w-xs ${getColor()} text-error-content`}
-    >
+    <div className={formControlClasses}>
       <label className="label" {...getLabelProps()}>
         <span className="label-text pl-1">
           {index + 1} | {inputData.type}:
@@ -84,7 +85,7 @@ export function Input({
       </label>
       <div>
         <div {...getComboboxProps()}>
-          <input {...getInputProps()} className="input input-bordered w-full" />
+          <input {...getInputProps()} className={inputClasses} />
         </div>
         <ul
           {...getMenuProps()}
