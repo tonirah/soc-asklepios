@@ -5,6 +5,7 @@ import Head from 'next/head';
 import {
   CodeBlock,
   Comment,
+  HighlightColor,
   Input,
   TaskProgressIcon,
 } from '@/common/components/';
@@ -41,6 +42,10 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   useVisitedTimer(taskData.uuid, getTaskProgress);
 
+  const dirtyCodeHighlightedLines = taskData.inputs
+    .map((input) => input.lines)
+    .join();
+
   return (
     <>
       <Head>
@@ -66,11 +71,23 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
         <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
           <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300">
-            <CodeBlock code={taskData.dirtyCode} className="text-sm" />
+            <CodeBlock
+              code={taskData.dirtyCode}
+              highlightedLines={dirtyCodeHighlightedLines}
+              highlightColor={HighlightColor.Red}
+              isLineHintActive={isLineHintActive}
+              className="text-sm"
+            />
           </div>
           {isSolved && (
             <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300">
-              <CodeBlock code={taskData.cleanCode} className="text-sm" />
+              <CodeBlock
+                code={taskData.cleanCode}
+                highlightedLines={taskData.cleanCodeHighlightedLines}
+                highlightColor={HighlightColor.Green}
+                isLineHintActive={isLineHintActive}
+                className="text-sm"
+              />
             </div>
           )}
         </div>
