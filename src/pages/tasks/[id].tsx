@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import {
+  codeBackgroundColor,
   CodeBlock,
   Comment,
   Input,
@@ -64,12 +65,18 @@ export default function Task({ taskData }: { taskData: ITask }) {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-3 mb-8 w-full items-end">
-          <div className="lg:w-0 flex-auto">
+        <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
+          <div
+            className=" flex flex-col justify-end xl:w-0 flex-auto"
+            style={{ background: codeBackgroundColor }}
+          >
             <CodeBlock code={taskData.dirtyCode} />
           </div>
           {isSolved && (
-            <div className="lg:w-0 flex-auto">
+            <div
+              className=" flex flex-col justify-end xl:w-0 flex-auto"
+              style={{ background: codeBackgroundColor }}
+            >
               <CodeBlock code={taskData.cleanCode} />
             </div>
           )}
