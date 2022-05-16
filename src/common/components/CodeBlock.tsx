@@ -1,9 +1,12 @@
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
+import style from 'react-syntax-highlighter/dist/cjs/styles/prism/prism';
+SyntaxHighlighter.registerLanguage(`java`, java);
+
 export function CodeBlock({ code }: { code: string }) {
   return (
-    <div className="mockup-code">
-      <pre>
-        <code>{code}</code>
-      </pre>
-    </div>
+    <SyntaxHighlighter language="java" style={style} showLineNumbers={true}>
+      {code}
+    </SyntaxHighlighter>
   );
 }
