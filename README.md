@@ -13,6 +13,16 @@ To start the project in development mode, run `npm run dev`.
 
 Open `http://localhost:3000` with your browser to see the result.
 
+## Serve static app locally in production mode
+```bash
+npm run export
+cd ./out
+# serve directory locally, e.g. via php server
+php -S localhost:3000
+```
+
+Open `http://localhost:3000` with your browser to see the result.
+
 ## Scripts
 
 - `npm run dev` — Starts the application in development mode at `http://localhost:3000`.
