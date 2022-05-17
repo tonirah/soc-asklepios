@@ -61,6 +61,7 @@ export default function Info() {
       </p>
     </>
   );
+
   return (
     <>
       <Head>

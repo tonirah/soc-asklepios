@@ -5,7 +5,7 @@ export function Comment(props: { comment: string }) {
   return (
     <div className="alert alert-info text-info-content">
       <div>
-        <LightBulbIcon className="h-8 w-8 flex-none" />
+        <LightBulbIcon className="h-8 w-8 flex-none mr-2" />
         <div>
           <ReactMarkdown
             components={{

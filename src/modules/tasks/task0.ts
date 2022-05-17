@@ -60,6 +60,12 @@ const cleanCode = `class PropulsionController {
   }
 }`;
 
+const comment = `Der durch den Kommentar beschriebene Code kann in eine Methode mit ähnlichem Namen ausgelagert werden.
+
+Dann ist auch das Abstraktionsniveau innerhalb von \`increaseVelocity()\` konsistent.
+
+Details: [Code Smells](/info/#code-smells), [Refactorings](/info/#refactorings)`;
+
 export const task0: ITask = {
   uuid: `031b215a-dc73-41e1-bcfb-d796a173f75e`,
   name: `Velocity increase control`,
@@ -69,8 +75,7 @@ export const task0: ITask = {
   dirtyCode,
   cleanCode,
   cleanCodeHighlightedLines: `10-15,23`,
-
-  comment: `**Dummy-Kommentar**. Mehr Infos unter [react-markdown](https://github.com/remarkjs/react-markdown).`,
+  comment,
 
   inputs: [
     {
