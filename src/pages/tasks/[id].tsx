@@ -62,10 +62,13 @@ export default function Task({ taskData }: { taskData: ITask }) {
             <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning">
               {taskData.name}
             </h1>
-            <p className="text-info font-mono">
+            <span className="font-mono tracking-wider text-warning mr-4">
+              {taskData.category},
+            </span>
+            <span className="font-mono tracking-wider text-info">
               Punkte:{` `}
               <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
-            </p>
+            </span>
           </div>
         </div>
 
