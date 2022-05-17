@@ -1,75 +1,109 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import { GetStaticProps } from 'next';
+import { allTasks, Category, ITask } from '@/modules/tasks';
+import Link from 'next/link';
+import { useContext } from 'react';
+import { ProgressContext } from '@/common/hooks/';
+import { TaskProgressIcon } from '@/common/components';
+import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 
-import styles from '@/styles/Home.module.css';
+export default function Home({ allTasks }: { allTasks: ITask[] }) {
+  const {
+    getTaskProgress,
+    resetProgress,
+    getCategoryProgressPercentage,
+    getTotalScore,
+  } = useContext(ProgressContext);
 
-export default function Home() {
+  const title = `SOC Asklepios`;
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>TypeScript starter for Next.js</title>
-        <meta
-          name="description"
-          content="TypeScript starter for Next.js that includes all you need to build amazing apps"
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+      <div className="container mx-auto text-center py-28 px-2">
+        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed -mb-3">
+          <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
+          {title}
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{` `}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <p className={styles.description}>This is not an official starter!</p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+        <Link href={`/info`}>
+          <a className="btn btn-link gap-1">
+            <InformationCircleIcon className="h-6 w-6 text-info" />
+            Story, Mission, Refactorings, Code Smells
           </a>
+        </Link>
+        <div className="divider max-w-5xl mx-auto mb-8"></div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="flex justify-center items-center gap-3 mb-8">
+          <div className="stats flex-none">
+            <div className="stat">
+              <div className="stat-title">Gesamtpunkte</div>
+              <div className="stat-value">{getTotalScore()}</div>
+            </div>
+          </div>
+          <div className="">
+            <div className="opacity-60 mb-1">
+              {Category.CentralFlightSystem}
+            </div>
+            <progress
+              className="block progress progress-success mb-4"
+              value={getCategoryProgressPercentage(
+                Category.CentralFlightSystem,
+              )}
+              max="100"
+            ></progress>
+            <div className="opacity-60 mb-1">
+              {Category.VentilationThermalControl}
+            </div>
+            <progress
+              className="block progress progress-accent mb-4"
+              value={getCategoryProgressPercentage(
+                Category.VentilationThermalControl,
+              )}
+              max="100"
+            ></progress>
+          </div>
         </div>
-      </main>
+        <div className="divider max-w-5xl mx-auto mb-8"></div>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=typescript-nextjs-starter"
-          target="_blank"
-          rel="noopener noreferrer"
+        <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-warning mb-4">
+          Tasks
+        </h2>
+        <div className="w-max mx-auto mb-8">
+          {allTasks.map((task) => {
+            return (
+              <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
+                <a className="btn btn-link block w-fit">
+                  <div key={task.uuid} className="flex flex-row items-center">
+                    <TaskProgressIcon
+                      taskProgress={getTaskProgress(task.uuid)}
+                      className="h-8 w-8 mr-1"
+                    />
+                    {task.name}
+                  </div>
+                </a>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="divider max-w-5xl mx-auto mb-8"></div>
+
+        <button
+          className="btn btn-sm btn-outline btn-accent"
+          onClick={() => resetProgress()}
         >
-          Powered by{` `}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+          Fortschritt zurücksetzen
+        </button>
+      </div>
+    </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      allTasks,
+    },
+  };
+};
