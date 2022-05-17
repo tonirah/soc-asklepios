@@ -52,7 +52,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.name}</title>
       </Head>
 
-      <div className="container mx-auto py-28 px-2">
+      <div className="container mx-auto py-10 px-2">
         <div className="flex flex-row items-center mb-3">
           <TaskProgressIcon
             className="h-16 w-16 mr-1 shrink-0"
