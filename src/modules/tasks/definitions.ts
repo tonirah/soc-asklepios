@@ -1,5 +1,6 @@
 export enum Category {
   CentralFlightSystem = `Central Flight System`,
+  VentilationThermalControl = `Cabin Ventilation and Thermal Control`,
 }
 
 export enum Difficulty {

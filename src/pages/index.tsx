@@ -21,32 +21,46 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       </Head>
 
       <div className="container mx-auto text-center py-28 px-2">
-        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed -mb-2">
+        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed mb-2">
           SOC Asklepios
         </h1>
 
-        <div className="flex justify-center items-start gap-3 mb-12">
-          <div className="stats">
+        <div className="flex justify-center items-center gap-3 mb-8">
+          <div className="stats flex-none">
             <div className="stat">
               <div className="stat-title">Gesamtpunkte</div>
               <div className="stat-value">{getTotalScore()}</div>
             </div>
           </div>
-          <div className="px-6 py-4">
-            <div className="opacity-60 mb-3">
+          <div className="">
+            <div className="opacity-60 mb-1">
               {Category.CentralFlightSystem}
             </div>
             <progress
-              className="block progress progress-success"
+              className="block progress progress-success mb-4"
               value={getCategoryProgressPercentage(
                 Category.CentralFlightSystem,
               )}
               max="100"
             ></progress>
+            <div className="opacity-60 mb-1">
+              {Category.VentilationThermalControl}
+            </div>
+            <progress
+              className="block progress progress-accent mb-4"
+              value={getCategoryProgressPercentage(
+                Category.VentilationThermalControl,
+              )}
+              max="100"
+            ></progress>
           </div>
         </div>
+        <div className="divider max-w-5xl mx-auto mb-10"></div>
 
-        <div className="w-max mx-auto">
+        <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-warning mb-5">
+          Tasks:
+        </h2>
+        <div className="w-max mx-auto mb-8">
           {allTasks.map((task) => {
             return (
               <div key={task.uuid} className="flex flex-row items-center">
@@ -61,9 +75,10 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             );
           })}
         </div>
+        <div className="divider max-w-5xl mx-auto mb-10"></div>
 
         <button
-          className="btn btn-outline btn-accent mt-16"
+          className="btn btn-outline btn-accent"
           onClick={() => resetProgress()}
         >
           Fortschritt zurücksetzen
