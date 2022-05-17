@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
 import { TaskProgressIcon } from '@/common/components';
-import { InformationCircleIcon } from '@heroicons/react/outline';
+import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const {
@@ -15,15 +15,17 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
     getTotalScore,
   } = useContext(ProgressContext);
 
+  const title = `SOC Asklepios`;
   return (
     <>
       <Head>
-        <title>SOC Asklepios</title>
+        <title>{title}</title>
       </Head>
 
       <div className="container mx-auto text-center py-28 px-2">
         <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed -mb-3">
-          SOC Asklepios
+          <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
+          {title}
         </h1>
         <Link href={`/info`}>
           <a className="btn btn-link gap-1">
