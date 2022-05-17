@@ -13,6 +13,7 @@ export enum Refactoring {
   ExtractClass = `Extract Class`,
   MoveMethod = `Move Method`,
   ExtractMethod = `Extract Method`,
+  GuardClauses = `Replace Nested Conditional with Guard Clauses`,
 }
 
 export enum CodeSmell {

@@ -64,7 +64,7 @@ const comment = `Der durch den Kommentar beschriebene Code kann in eine Methode 
 
 Dann ist auch das Abstraktionsniveau innerhalb von \`increaseVelocity()\` konsistent.
 
-Details: [Code Smells](/info/#code-smells), [Refactorings](/info/#refactorings)`;
+Details: [Code Smells](/info/#code-smells), [Refactorings](/info/#refactorings).`;
 
 export const task0: ITask = {
   uuid: `031b215a-dc73-41e1-bcfb-d796a173f75e`,

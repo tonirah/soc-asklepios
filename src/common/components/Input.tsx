@@ -61,7 +61,7 @@ export function Input({
   });
 
   const formControlClasses = classNames(
-    `form-control rounded-box p-0.5 w-full max-w-xs transition-all`,
+    `form-control rounded-box p-0.5 w-full max-w-sm transition-all`,
     {
       [`bg-error`]: isValid === false,
       [`bg-success`]: isValid,
@@ -88,7 +88,7 @@ export function Input({
         </div>
         <ul
           {...getMenuProps()}
-          className="absolute menu bg-neutral mt-1 w-full max-w-xs overflow-auto max-h-96"
+          className="absolute menu bg-neutral mt-1 w-full max-w-sm overflow-auto max-h-96"
         >
           {isOpen &&
             availableOptions.map((item, index) => (
