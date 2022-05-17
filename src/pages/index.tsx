@@ -66,7 +66,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           className="btn btn-outline btn-accent mt-16"
           onClick={() => resetProgress()}
         >
-          Reset Progress
+          Fortschritt zurücksetzen
         </button>
       </div>
     </>
