@@ -1,4 +1,5 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+console.log('base path:' + basePath);
 
 // process.env only supports string values
 const env = {
