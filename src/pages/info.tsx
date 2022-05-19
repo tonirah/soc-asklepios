@@ -1,66 +1,13 @@
 import Head from 'next/head';
+import { CodeSmell, Refactoring } from '@/modules/tasks';
+import { parseRequiredInt } from '@/common/utils/parseRequired';
+
+const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
+  process.env.MIN_CHARACTERS_FOR_COMBOBOX,
+);
 
 export default function Info() {
   const title = `SOC Asklepios: Story, Mission, Refactorings, Code Smells`;
-
-  const veggieIpsum = (
-    <>
-      <p>
-        Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh
-        onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo
-        beet greens corn soko endive gumbo gourd. Parsley shallot courgette
-        tatsoi pea sprouts fava bean collard greens dandelion okra wakame
-        tomato. Dandelion cucumber earthnut pea peanut soko zucchini. Turnip
-        greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi
-        amaranth water spinach avocado daikon napa cabbage asparagus winter
-        purslane kale. Celery potato scallion desert raisin horseradish spinach
-        carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot
-        green bean swiss chard seakale pumpkin onion chickpea gram corn pea.
-        Brussels sprout coriander water chestnut gourd swiss chard wakame
-        kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts
-        nori azuki bean chickweed potato bell pepper artichoke. Nori grape
-        silver beet broccoli kombu beet greens fava bean potato quandong celery.
-        Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens
-        parsnip.
-      </p>
-      <p>
-        Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki
-        bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley
-        jÃ­cama salsify. Celery quandong swiss chard chicory earthnut pea
-        potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed
-        collard greens nori. Grape wattle seed kombu beetroot horseradish carrot
-        squash brussels sprout chard. Pea horseradish azuki bean lettuce avocado
-        asparagus okra. Kohlrabi radish okra azuki bean corn fava bean mustard
-        tigernut jÃ­cama green bean celtuce collard greens avocado quandong
-        fennel gumbo black-eyed pea. Grape silver beet watercress potato
-        tigernut corn groundnut. Chickweed okra pea winter purslane coriander
-        yarrow sweet pepper radish garlic brussels sprout groundnut summer
-        purslane earthnut pea tomato spring onion azuki bean gourd. Gumbo kakadu
-        plum komatsuna black-eyed pea green bean zucchini gourd winter purslane
-        silver beet rock melon radish asparagus spinach.
-      </p>
-      <p>
-        Beetroot water spinach okra water chestnut ricebean pea catsear
-        courgette summer purslane. Water spinach arugula pea tatsoi aubergine
-        spring onion bush tomato kale radicchio turnip chicory salsify pea
-        sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion
-        sorrel courgette turnip greens tigernut soybean radish artichoke wattle
-        seed endive groundnut broccoli arugula. Soko radicchio bunya nuts gram
-        dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels
-        sprout cabbage.
-      </p>
-      <p>
-        Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper
-        napa cabbage lettuce tomato kale arugula melon sierra leone bologi
-        rutabaga tigernut. Sea lettuce gumbo grape kale kombu cauliflower
-        salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot
-        winter purslane turnip greens garlic. JÃ­cama garlic courgette coriander
-        radicchio plantain scallion cauliflower fava bean desert raisin spring
-        onion chicory bunya nuts. Sea lettuce water spinach gram fava bean leek
-        dandelion silver beet eggplant bush tomato.
-      </p>
-    </>
-  );
 
   return (
     <>
@@ -72,8 +19,8 @@ export default function Info() {
         <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning text-center mb-10">
           {title}
         </h1>
-        <div className="bg-neutral shadow-xl mx-auto py-12 max-w-6xl">
-          <div className="prose lg:prose-lg mx-auto max-w-5xl px-5">
+        <div className="bg-base-300 border border-neutral shadow-xl mx-auto py-12 max-w-3xl">
+          <div className="prose lg:prose-lg mx-auto px-5">
             <h2>Story</h2>
             <p className="lead">
               „Im Jahr 2094. Du befindest dich auf einer interplanetaren Reise,
@@ -84,9 +31,21 @@ export default function Info() {
             </p>
             <h3>Mission</h3>
             <p>
-              Löse die Refactoring-Aufgaben, damit die Systeme nacheinander
-              wieder hochgefahren werden können und das Raumschiff sicher landen
-              kann.
+              <strong>
+                Löse die Refactoring-Aufgaben, damit die Systeme nacheinander
+                wieder hochgefahren werden können und das Raumschiff sicher
+                landen kann.
+              </strong>
+            </p>
+            <p>
+              Für jede Codestelle musst du passende Refactorings und/oder Code
+              Smells eingeben. Mögliche Eingaben sind weiter unten auf dieser
+              Seite aufgelistet.
+            </p>
+            <p>
+              Sobald du mindestens{` `}
+              {MIN_CHARACTERS_FOR_COMBOBOX} Buchstaben eingegeben hast werden
+              dir mögliche Eingaben vorgeschlagen (Combobox mit Autosuggest).
             </p>
             <h3>Details</h3>
             <p>
@@ -112,9 +71,17 @@ export default function Info() {
             </p>
 
             <h2 id="code-smells">Liste von Code Smells</h2>
-            {veggieIpsum}
+            <ul>
+              {Object.values(CodeSmell).map((codeSmell) => (
+                <li key={codeSmell}>{codeSmell}</li>
+              ))}
+            </ul>
             <h2 id="refactorings">Liste von Refactorings</h2>
-            {veggieIpsum}
+            <ul>
+              {Object.values(Refactoring).map((refactoring) => (
+                <li key={refactoring}>{refactoring}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

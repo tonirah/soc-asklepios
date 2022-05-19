@@ -73,7 +73,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
         </div>
 
         <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
-          <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300">
+          <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral shadow-xl">
             <CodeBlock
               code={taskData.dirtyCode}
               highlightedLines={dirtyCodeHighlightedLines}
@@ -83,7 +83,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             />
           </div>
           {isSolved && (
-            <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300">
+            <div className=" flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral shadow-xl">
               <CodeBlock
                 code={taskData.cleanCode}
                 highlightedLines={taskData.cleanCodeHighlightedLines}
