@@ -6,6 +6,8 @@ import {
   Refactoring,
 } from './definitions';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ``;
+
 const dirtyCode = `...
   public O2LevelStatus getO2LevelStatus(OxygenSensorData  levelOfOxygen) {
     O2LevelStatus status;
@@ -34,7 +36,7 @@ const cleanCode = `...
 
 const comment = `Viel besser lesbar (testbar/wartbar/erweiterbar), und in diesem Fall auch kürzer.
 
-Details: [Refactorings](/info/#refactorings).`;
+Details: [Refactorings](${basePath}/info/#refactorings).`;
 
 export const task1: ITask = {
   uuid: `bf8bb3be-bd1a-4380-8d5b-87270cb58f7c`,
