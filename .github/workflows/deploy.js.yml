@@ -10,6 +10,9 @@ on:
 jobs:
   build-and-deploy-to-gh-pages:
 
+    env:
+      NEXT_PUBLIC_BASE_PATH: /soc-asklepios
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -30,7 +33,7 @@ jobs:
 
     - name: Build and export
       run: npm run export && touch ./out/.nojekyll
-      
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:

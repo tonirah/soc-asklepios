@@ -1,3 +1,5 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 // process.env only supports string values
 const env = {
   LOCAL_STORAGE_KEY: 'soc-progress',
@@ -12,4 +14,7 @@ module.exports = {
   env,
   reactStrictMode: true,
   trailingSlash: true,
+  // gh-pages build configuration
+  basePath: basePath,
+  assetPrefix: `${basePath}/`,
 };
