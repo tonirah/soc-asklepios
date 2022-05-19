@@ -1,5 +1,5 @@
 # SOC Asklepios
-> A serious game to learn software refactorings and safe your spaceship.
+> A serious game to learn software refactorings and save your spaceship.
 ## [🚀 LAUNCH THE GAME 🚀](https://tonirah.github.io/soc-asklepios/)
 
 ---
