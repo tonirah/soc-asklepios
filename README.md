@@ -1,11 +1,12 @@
 # SOC Asklepios
 > A serious game to learn software refactorings and safe your spaceship.
+## [🚀 LAUNCH THE GAME 🚀](https://tonirah.github.io/soc-asklepios/)
 
-## Requirements
-
-- Node.js >= 12.22.0
+---
 
 ## Development
+
+Node.js >= 12.22.0 required, 16.x recommended.
 
 Install dependencies with `npm install`.
 

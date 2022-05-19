@@ -10,16 +10,16 @@ export enum Difficulty {
 }
 
 export enum Refactoring {
-  ExtractClass = `Extract Class`,
-  MoveMethod = `Move Method`,
-  ExtractMethod = `Extract Method`,
-  GuardClauses = `Replace Nested Conditional with Guard Clauses`,
+  ExtractClass = `Klasse extrahieren (Extract Class)`,
+  MoveMethod = `Methode verlagern (Move Method)`,
+  ExtractMethod = `Methode extrahieren (Extract Method)`,
+  GuardClauses = `Verschachtelte Bedingungen durch Wächter ersetzen (Replace Nested Conditional with Guard Clauses)`,
 }
 
 export enum CodeSmell {
-  Comment = `Comment`,
-  LongMethod = `Long Method`,
-  LongParameterList = `Long Parameter List`,
+  Comment = `Kommentar (Comment)`,
+  LongMethod = `Lange Methode (Long Method)`,
+  LongParameterList = `Lange Parameterliste (Long Parameter List)`,
 }
 
 export interface IOption<Type> {

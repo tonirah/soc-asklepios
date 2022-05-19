@@ -68,7 +68,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <div className="divider max-w-5xl mx-auto mb-8"></div>
 
         <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-warning mb-4">
-          Tasks
+          Kritische Codestellen
         </h2>
         <div className="w-max mx-auto mb-8">
           {allTasks.map((task) => {
