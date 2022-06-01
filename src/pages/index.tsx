@@ -30,7 +30,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <Link href={`/info`}>
           <a className="btn btn-link gap-1">
             <InformationCircleIcon className="h-6 w-6 text-info" />
-            Story, Mission, Refactorings, Code Smells
+            Story, Mission, Refactorings
           </a>
         </Link>
         <div className="divider max-w-5xl mx-auto mb-8"></div>

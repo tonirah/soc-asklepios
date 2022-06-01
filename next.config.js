@@ -8,6 +8,7 @@ const env = {
   POINTS_FOR_VISITED: '1',
   POINTS_FOR_SOLVED: '4',
   DELAY_FOR_VISITED: '10',
+  CODE_SMELLS_ENABLED: 'false',
 };
 
 module.exports = {

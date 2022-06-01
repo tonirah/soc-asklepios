@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { CodeSmell, Refactoring } from '@/modules/tasks';
+import { Refactoring } from '@/modules/tasks';
 import { parseRequiredInt } from '@/common/utils/parseRequired';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
@@ -7,7 +7,7 @@ const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
 );
 
 export default function Info() {
-  const title = `SOC Asklepios: Story, Mission, Refactorings, Code Smells`;
+  const title = `SOC Asklepios: Story, Mission, Refactorings`;
 
   return (
     <>
@@ -38,9 +38,8 @@ export default function Info() {
               </strong>
             </p>
             <p>
-              Für jede Codestelle musst du passende Refactorings und/oder Code
-              Smells eingeben. Mögliche Eingaben sind weiter unten auf dieser
-              Seite aufgelistet.
+              Für jede Codestelle musst du passende Refactorings eingeben.
+              Mögliche Eingaben sind weiter unten auf dieser Seite aufgelistet.
             </p>
             <p>
               Sobald du mindestens{` `}
@@ -70,12 +69,12 @@ export default function Info() {
               sie die einzelnen Systeme auf ein Minimum heruntergefahren.
             </p>
 
-            <h2 id="code-smells">Liste von Code Smells</h2>
-            <ul>
-              {Object.values(CodeSmell).map((codeSmell) => (
-                <li key={codeSmell}>{codeSmell}</li>
-              ))}
-            </ul>
+            {/*<h2 id="code-smells">Liste von Code Smells</h2>*/}
+            {/*<ul>*/}
+            {/*  {Object.values(CodeSmell).map((codeSmell) => (*/}
+            {/*    <li key={codeSmell}>{codeSmell}</li>*/}
+            {/*  ))}*/}
+            {/*</ul>*/}
             <h2 id="refactorings">Liste von Refactorings</h2>
             <ul>
               {Object.values(Refactoring).map((refactoring) => (

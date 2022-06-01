@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { allTasks, ITask } from '@/modules/tasks';
+import { allTasks, IInputData, InputType, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import {
   CodeBlock,
@@ -17,8 +17,22 @@ import {
 } from '@/common/hooks/';
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { parseRequiredBoolean } from '@/common/utils/parseRequired';
+
+const CODE_SMELLS_ENABLED = parseRequiredBoolean(
+  process.env.CODE_SMELLS_ENABLED,
+);
+
+function getTaskInputs(taskInputs: IInputData[], codeSmellsEnabled: boolean) {
+  if (!codeSmellsEnabled) {
+    return taskInputs.filter(({ type }) => type !== InputType.CodeSmell);
+  }
+  return taskInputs;
+}
 
 export default function Task({ taskData }: { taskData: ITask }) {
+  const taskInputs = getTaskInputs(taskData.inputs, CODE_SMELLS_ENABLED);
+
   const { setTaskProgress, getTaskPoints, getTaskProgress, useVisitedTimer } =
     useContext(ProgressContext);
 
@@ -30,7 +44,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   const [inputEvaluation, isSolved, evaluateInputs] = useInputEvaluation();
   const onClickEvaluate = () => {
-    evaluateInputs(taskData.inputs, userInputs);
+    evaluateInputs(taskInputs, userInputs);
   };
 
   useEffect(() => {
@@ -42,7 +56,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   useVisitedTimer(taskData.uuid, getTaskProgress);
 
-  const dirtyCodeHighlightedLines = taskData.inputs
+  const dirtyCodeHighlightedLines = taskInputs
     .map((input) => input.lines)
     .join();
 
@@ -95,7 +109,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
           )}
         </div>
         <div className="flex flex-wrap gap-3 mb-3">
-          {taskData.inputs.map((input, index) => (
+          {taskInputs.map((input, index) => (
             <Input
               key={`input-${index}`}
               index={index}
