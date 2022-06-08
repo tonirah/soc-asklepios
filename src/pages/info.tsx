@@ -21,9 +21,11 @@ export default function Info() {
         <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning text-center mb-10">
           {title}
         </h1>
-        <div className="bg-base-300 border border-neutral shadow-xl mx-auto py-12 max-w-3xl">
+        <div className="bg-base-300 border border-neutral shadow-xl mx-auto py-12 max-w-3xl rounded-box">
           <div className="prose lg:prose-lg mx-auto px-5">
-            <h2>Story</h2>
+            <h2 className="text-secondary underline decoration-warning">
+              Story
+            </h2>
             <p className="lead">
               „Im Jahr 2094. Du befindest dich auf einer interplanetaren Reise,
               und warst bis gerade eben im Hyperschlaf. Die AI (SOLID) des
@@ -31,7 +33,9 @@ export default function Info() {
               die Boardsoftware zu prüfen und zu refaktorisieren, um sicher auf
               dem Planet 'Yagni' landen zu können.“
             </p>
-            <h3>Mission</h3>
+            <h3 className="text-secondary underline decoration-warning">
+              Mission
+            </h3>
             <p>
               <strong>
                 Löse die Refactoring-Aufgaben, damit die Systeme nacheinander
@@ -48,7 +52,9 @@ export default function Info() {
               {MIN_CHARACTERS_FOR_COMBOBOX} Buchstaben eingegeben hast werden
               dir mögliche Eingaben vorgeschlagen (Combobox mit Autosuggest).
             </p>
-            <h3>Details</h3>
+            <h3 className="text-secondary underline decoration-warning">
+              Details
+            </h3>
             <p>
               Du bist Astronautin und Softwareentwicklerin, und der einzige
               wache Mensch auf dem Schiff. Andere können nicht geweckt werden,
@@ -77,7 +83,12 @@ export default function Info() {
             {/*    <li key={codeSmell}>{codeSmell}</li>*/}
             {/*  ))}*/}
             {/*</ul>*/}
-            <h2 id="refactorings">Liste von Refactorings</h2>
+            <h2
+              id="refactorings"
+              className="text-secondary underline decoration-warning"
+            >
+              Liste von Refactorings
+            </h2>
             <ul>
               {Object.values(Refactoring).map((refactoring) => (
                 <li key={refactoring}>{refactoring}</li>

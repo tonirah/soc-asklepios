@@ -82,7 +82,7 @@ export function Input({
         <div {...getComboboxProps()}>
           <input
             {...getInputProps()}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full shadow-xl"
             disabled={isValid}
           />
         </div>
