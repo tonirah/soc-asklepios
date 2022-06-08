@@ -1,6 +1,8 @@
 export enum Category {
-  CentralFlightSystem = `Central Flight System`,
-  VentilationThermalControl = `Cabin Ventilation and Thermal Control`,
+  CentralFlightSystem = `Central Flight System (CFS)`,
+  VentilationThermalControl = `Cabin Ventilation and Thermal Control (VTC)`,
+  CrewHealthCryosleep = `Crew Health and Cryosleep (CHC)`,
+  SpaceRadiationProtection = `Space Radiation Protection (SRP)`,
 }
 
 export enum Difficulty {
