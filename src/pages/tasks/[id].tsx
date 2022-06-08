@@ -18,6 +18,7 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { parseRequiredBoolean } from '@/common/utils/parseRequired';
+import { ArrowCircleLeftIcon, BeakerIcon } from '@heroicons/react/outline';
 
 const CODE_SMELLS_ENABLED = parseRequiredBoolean(
   process.env.CODE_SMELLS_ENABLED,
@@ -145,6 +146,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             })}
             onClick={onClickEvaluate}
           >
+            <BeakerIcon className="h-5 w-5 mr-1" />
             Evaluieren
           </button>
           <Link href={`/`}>
@@ -153,6 +155,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
                 [`btn-primary`]: isSolved,
               })}
             >
+              <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
               Zurück
             </a>
           </Link>

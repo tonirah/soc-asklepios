@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
 import { TaskProgressIcon } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
+import { ExclamationIcon } from '@heroicons/react/solid';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const {
@@ -113,6 +114,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           className="btn btn-sm btn-outline btn-accent"
           onClick={() => resetProgress()}
         >
+          <ExclamationIcon className="h-5 w-5 mr-1" />
           Fortschritt zurücksetzen
         </button>
       </div>

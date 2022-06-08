@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Refactoring } from '@/modules/tasks';
 import { parseRequiredInt } from '@/common/utils/parseRequired';
+import Link from 'next/link';
+import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
   process.env.MIN_CHARACTERS_FOR_COMBOBOX,
@@ -82,6 +84,14 @@ export default function Info() {
               ))}
             </ul>
           </div>
+        </div>
+        <div className="mt-4 text-center">
+          <Link href={`/`}>
+            <a className="btn">
+              <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
+              Zurück
+            </a>
+          </Link>
         </div>
       </div>
     </>
