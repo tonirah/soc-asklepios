@@ -16,6 +16,7 @@ export enum Refactoring {
   MoveMethod = `Methode verlagern (Move Method)`,
   ExtractMethod = `Methode extrahieren (Extract Method)`,
   GuardClauses = `Verschachtelte Bedingungen durch Wächter ersetzen (Replace Nested Conditional with Guard Clauses)`,
+  DecomposeConditional = `Bedingung zerlegen (Decompose Conditional)`,
 }
 
 export enum CodeSmell {

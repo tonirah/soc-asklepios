@@ -42,12 +42,12 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               <div className="stat-value">{getTotalScore()}</div>
             </div>
           </div>
-          <div className="">
+          <div>
             <div className="opacity-60 mb-1">
               {Category.CentralFlightSystem}
             </div>
             <progress
-              className="block progress progress-success mb-4"
+              className="block progress progress-accent mb-4"
               value={getCategoryProgressPercentage(
                 Category.CentralFlightSystem,
               )}
@@ -57,12 +57,32 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               {Category.VentilationThermalControl}
             </div>
             <progress
-              className="block progress progress-accent mb-4"
+              className="block progress progress-info mb-4"
               value={getCategoryProgressPercentage(
                 Category.VentilationThermalControl,
               )}
               max="100"
             ></progress>
+            <div className="opacity-60 mb-1">
+              {Category.CrewHealthCryosleep}
+            </div>
+            <progress
+              className="block progress progress-secondary  mb-4"
+              value={getCategoryProgressPercentage(
+                Category.CrewHealthCryosleep,
+              )}
+              max="100"
+            ></progress>
+            {/*<div className="opacity-60 mb-1">*/}
+            {/*  {Category.SpaceRadiationProtection}*/}
+            {/*</div>*/}
+            {/*<progress*/}
+            {/*  className="block progress progress-primary mb-4"*/}
+            {/*  value={getCategoryProgressPercentage(*/}
+            {/*    Category.SpaceRadiationProtection,*/}
+            {/*  )}*/}
+            {/*  max="100"*/}
+            {/*></progress>*/}
           </div>
         </div>
         <div className="divider max-w-5xl mx-auto mb-8"></div>
