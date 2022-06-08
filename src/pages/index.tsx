@@ -23,75 +23,89 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <title>{title}</title>
       </Head>
 
-      <div className="container mx-auto text-center py-28 px-2">
-        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed -mb-3">
+      <div className="container mx-auto text-center py-10 px-2">
+        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
           {title}
         </h1>
-        <Link href={`/info`}>
-          <a className="btn btn-link gap-1">
-            <InformationCircleIcon className="h-6 w-6 text-info" />
-            Story, Mission, Refactorings
-          </a>
-        </Link>
-        <div className="divider max-w-5xl mx-auto mb-8"></div>
 
-        <div className="flex justify-center items-center gap-3 mb-8">
-          <div className="stats flex-none">
-            <div className="stat">
-              <div className="stat-title">Gesamtpunkte</div>
-              <div className="stat-value">{getTotalScore()}</div>
+        <div className="flex flex-col xl:flex-row gap-3 items-center w-full bg-neutral border-neutral border rounded-box shadow-xl mb-12">
+          <div className="flex flex-col xl:w-0 flex-auto">
+            <div className="text-neutral-content pt-8 pb-3 px-8">
+              <p>
+                „Im Jahr 2094. Du befindest dich auf einer interplanetaren
+                Reise, und warst bis gerade eben im Hyperschlaf. Die AI (SOLID)
+                des Schiffes 'SOC Asklepios' hat dich geweckt. Du musst ihr
+                helfen, die Boardsoftware zu prüfen und zu refaktorisieren, um
+                sicher auf dem Planet 'Yagni' landen zu können.“
+              </p>
+              <Link href={`/info`}>
+                <a className="btn btn-link">
+                  <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
+                  Story, Mission, Refactorings
+                </a>
+              </Link>
             </div>
           </div>
-          <div>
-            <div className="opacity-60 mb-1">
-              {Category.CentralFlightSystem}
+          <div className=" flex flex-col xl:w-0 flex-auto bg-base-300 w-full">
+            <div className="flex justify-center items-center gap-3 py-2 px-2">
+              <div className="stats flex-none bg-inherit">
+                <div className="stat">
+                  <div className="stat-title">Gesamtpunkte</div>
+                  <div className="stat-value">{getTotalScore()}</div>
+                </div>
+              </div>
+              <div>
+                <div className="opacity-60 mb-1">
+                  {Category.CentralFlightSystem}
+                </div>
+                <progress
+                  className="block progress progress-accent mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.CentralFlightSystem,
+                  )}
+                  max="100"
+                ></progress>
+                <div className="opacity-60 mb-1">
+                  {Category.VentilationThermalControl}
+                </div>
+                <progress
+                  className="block progress progress-secondary mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.VentilationThermalControl,
+                  )}
+                  max="100"
+                ></progress>
+                <div className="opacity-60 mb-1">
+                  {Category.CrewHealthCryosleep}
+                </div>
+                <progress
+                  className="block progress progress-success  mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.CrewHealthCryosleep,
+                  )}
+                  max="100"
+                ></progress>
+                {/* TODO: use Category.SpaceRadiationProtection when it gets task */}
+                <div className="opacity-60 mb-1">
+                  {Category.CrewHealthCryosleep}
+                </div>
+                <progress
+                  className="block progress progress-primary mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.CrewHealthCryosleep,
+                  )}
+                  max="100"
+                ></progress>
+              </div>
             </div>
-            <progress
-              className="block progress progress-accent mb-4"
-              value={getCategoryProgressPercentage(
-                Category.CentralFlightSystem,
-              )}
-              max="100"
-            ></progress>
-            <div className="opacity-60 mb-1">
-              {Category.VentilationThermalControl}
-            </div>
-            <progress
-              className="block progress progress-info mb-4"
-              value={getCategoryProgressPercentage(
-                Category.VentilationThermalControl,
-              )}
-              max="100"
-            ></progress>
-            <div className="opacity-60 mb-1">
-              {Category.CrewHealthCryosleep}
-            </div>
-            <progress
-              className="block progress progress-secondary  mb-4"
-              value={getCategoryProgressPercentage(
-                Category.CrewHealthCryosleep,
-              )}
-              max="100"
-            ></progress>
-            {/*<div className="opacity-60 mb-1">*/}
-            {/*  {Category.SpaceRadiationProtection}*/}
-            {/*</div>*/}
-            {/*<progress*/}
-            {/*  className="block progress progress-primary mb-4"*/}
-            {/*  value={getCategoryProgressPercentage(*/}
-            {/*    Category.SpaceRadiationProtection,*/}
-            {/*  )}*/}
-            {/*  max="100"*/}
-            {/*></progress>*/}
           </div>
         </div>
-        <div className="divider max-w-5xl mx-auto mb-8"></div>
 
         <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-warning mb-4">
           Kritische Codestellen
         </h2>
-        <div className="w-max mx-auto mb-8">
+        <div className="w-max mx-auto mb-24">
           {allTasks.map((task) => {
             return (
               <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
@@ -108,8 +122,8 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             );
           })}
         </div>
-        <div className="divider max-w-5xl mx-auto mb-8"></div>
 
+        <div className="divider max-w-lg mx-auto mb-2"></div>
         <button
           className="btn btn-sm btn-outline btn-accent"
           onClick={() => resetProgress()}
