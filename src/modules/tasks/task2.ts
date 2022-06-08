@@ -62,7 +62,7 @@ export const task2: ITask = {
   uuid: `f71993ba-c4da-4490-8286-0bedd08a6871`,
   name: `Astronaut Sleep Duration`,
   difficulty: Difficulty.Simple,
-  category: Category.CrewHealthCryosleep,
+  category: Category.CrewHealthHypersleep,
 
   dirtyCode,
   cleanCode,

@@ -77,23 +77,23 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                   max="100"
                 ></progress>
                 <div className="opacity-60 mb-1">
-                  {Category.CrewHealthCryosleep}
+                  {Category.CrewHealthHypersleep}
                 </div>
                 <progress
                   className="block progress progress-success  mb-4"
                   value={getCategoryProgressPercentage(
-                    Category.CrewHealthCryosleep,
+                    Category.CrewHealthHypersleep,
                   )}
                   max="100"
                 ></progress>
                 {/* TODO: use Category.SpaceRadiationProtection when it gets task */}
                 <div className="opacity-60 mb-1">
-                  {Category.CrewHealthCryosleep}
+                  {Category.CrewHealthHypersleep}
                 </div>
                 <progress
                   className="block progress progress-primary mb-4"
                   value={getCategoryProgressPercentage(
-                    Category.CrewHealthCryosleep,
+                    Category.CrewHealthHypersleep,
                   )}
                   max="100"
                 ></progress>
