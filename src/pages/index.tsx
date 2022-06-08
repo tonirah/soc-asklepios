@@ -48,7 +48,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </div>
           </div>
           <div className=" flex flex-col xl:w-0 flex-auto bg-base-300 w-full">
-            <div className="flex justify-center items-center gap-3 py-2 px-2">
+            <div className="flex justify-evenly items-center gap-3 py-4 px-2">
               <div className="stats flex-none bg-inherit">
                 <div className="stat">
                   <div className="stat-title">Gesamtpunkte</div>
