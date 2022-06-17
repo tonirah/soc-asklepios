@@ -61,7 +61,8 @@ const comment = `Da die komplexen Codestellen in Methoden ausgelagert wurden, is
 export const task2: ITask = {
   uuid: `f71993ba-c4da-4490-8286-0bedd08a6871`,
   name: `Astronaut Sleep Duration`,
-  difficulty: Difficulty.Simple,
+  difficulty: Difficulty.Hard,
+  showAllOptions: false,
   category: Category.CrewHealthHypersleep,
 
   dirtyCode,

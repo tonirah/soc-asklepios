@@ -13,38 +13,49 @@ export function Input({
   index,
   inputData,
   handleChangedInput,
+  showAllOptions,
   isLineHintActive,
   isValid,
 }: {
   index: number;
   inputData: IInputData;
   handleChangedInput: HandleChangedInput;
+  showAllOptions: boolean;
   isLineHintActive: boolean;
   isValid?: boolean;
 }) {
-  const [availableOptions, setAvailableOptions] = useState<
-    IOption<Refactoring | CodeSmell>[]
-  >([]);
+  const initialOptions = showAllOptions ? inputData.options : [];
+  const [availableOptions, setAvailableOptions] =
+    useState<IOption<Refactoring | CodeSmell>[]>(initialOptions);
+
+  const inputPlaceholder = `Mit der Eingabe beginnen${
+    showAllOptions ? `` : ` (mindestens ${MIN_CHARACTERS_FOR_COMBOBOX} Zeichen)`
+  }...`;
 
   const shouldProvideOptions = (inputValue: string) => {
+    if (showAllOptions) {
+      return true;
+    }
     return inputValue.length >= MIN_CHARACTERS_FOR_COMBOBOX;
   };
 
-  const filterAvailableOptions = (inputValue?: string) => {
-    let filteredOptions: IOption<Refactoring | CodeSmell>[] = [];
-
-    if (inputValue && shouldProvideOptions(inputValue)) {
-      filteredOptions = inputData.options.filter((option) =>
-        option.value.toLowerCase().includes(inputValue.toLowerCase()),
-      );
+  const filterAvailableOptions = (inputValue: string) => {
+    if (!shouldProvideOptions(inputValue)) {
+      return setAvailableOptions([]);
     }
 
-    setAvailableOptions(filteredOptions);
+    return setAvailableOptions(
+      inputData.options.filter((option) =>
+        option.value.toLowerCase().includes(inputValue.toLowerCase()),
+      ),
+    );
   };
 
   const onInputValueChange = ({ inputValue }: { inputValue?: string }) => {
-    filterAvailableOptions(inputValue);
-    handleChangedInput(index, inputValue);
+    if (inputValue !== undefined) {
+      filterAvailableOptions(inputValue);
+      handleChangedInput(index, inputValue);
+    }
   };
 
   const {
@@ -54,13 +65,14 @@ export function Input({
     getInputProps,
     getComboboxProps,
     getItemProps,
+    getToggleButtonProps,
   } = useCombobox({
     items: availableOptions,
     itemToString: (option) => (option ? option.value : ``),
     onInputValueChange,
   });
 
-  const formControlClasses = classNames(
+  const getFormControlClasses = classNames(
     `form-control rounded-box p-0.5 w-full transition-all`,
     {
       [`bg-error`]: isValid === false,
@@ -68,8 +80,19 @@ export function Input({
     },
   );
 
+  function getInputWrapperProps() {
+    if (showAllOptions) {
+      // make input element clickable to toggle options
+      return {
+        className: `cursor-pointer`,
+        ...getToggleButtonProps(),
+      };
+    }
+    return {};
+  }
+
   return (
-    <div className={formControlClasses}>
+    <div className={getFormControlClasses}>
       <label className="label" {...getLabelProps()}>
         <span className="label-text pl-1">
           {index + 1} | {inputData.type}:
@@ -80,11 +103,14 @@ export function Input({
       </label>
       <div>
         <div {...getComboboxProps()}>
-          <input
-            {...getInputProps()}
-            className="input input-bordered w-full shadow-xl"
-            disabled={isValid}
-          />
+          <div {...getInputWrapperProps()}>
+            <input
+              {...getInputProps()}
+              className="input input-bordered w-full shadow-xl"
+              disabled={isValid}
+              placeholder={inputPlaceholder}
+            />
+          </div>
         </div>
         <div className="absolute container pr-5">
           <ul {...getMenuProps()} className="menu bg-neutral mt-1">

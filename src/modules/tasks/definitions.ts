@@ -45,6 +45,7 @@ export interface ITask {
   uuid: string;
   name: string;
   difficulty: Difficulty;
+  showAllOptions: boolean;
   category: Category;
   dirtyCode: string;
   cleanCode: string;

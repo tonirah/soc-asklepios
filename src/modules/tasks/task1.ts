@@ -42,6 +42,7 @@ export const task1: ITask = {
   uuid: `bf8bb3be-bd1a-4380-8d5b-87270cb58f7c`,
   name: `O2 Level Status`,
   difficulty: Difficulty.Simple,
+  showAllOptions: true,
   category: Category.VentilationThermalControl,
 
   dirtyCode,

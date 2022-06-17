@@ -110,14 +110,15 @@ export default function Task({ taskData }: { taskData: ITask }) {
           )}
         </div>
         <div className="flex flex-wrap gap-3 mb-3">
-          {taskInputs.map((input, index) => (
+          {taskInputs.map((inputData, index) => (
             <Input
               key={`input-${index}`}
               index={index}
-              inputData={input}
+              inputData={inputData}
               handleChangedInput={handleChangedInput}
               isLineHintActive={isLineHintActive}
               isValid={inputEvaluation[index]}
+              showAllOptions={taskData.showAllOptions}
             />
           ))}
         </div>
