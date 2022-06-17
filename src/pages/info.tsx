@@ -18,12 +18,12 @@ export default function Info() {
       </Head>
 
       <div className="container mx-auto py-16 px-2">
-        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning text-center mb-10">
+        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-10">
           {title}
         </h1>
         <div className="bg-base-300 border border-neutral shadow-xl mx-auto py-12 max-w-3xl rounded-box">
           <div className="prose lg:prose-lg mx-auto px-5">
-            <h2 className="text-secondary underline decoration-warning">
+            <h2 className="text-secondary underline decoration-accent">
               Story
             </h2>
             <p className="lead">
@@ -33,7 +33,7 @@ export default function Info() {
               die Boardsoftware zu prüfen und zu refaktorisieren, um sicher auf
               dem Planet 'Yagni' landen zu können.“
             </p>
-            <h3 className="text-secondary underline decoration-warning">
+            <h3 className="text-secondary underline decoration-accent">
               Mission
             </h3>
             <p>
@@ -52,7 +52,7 @@ export default function Info() {
               {MIN_CHARACTERS_FOR_COMBOBOX} Buchstaben eingegeben hast werden
               dir mögliche Eingaben vorgeschlagen (Combobox mit Autosuggest).
             </p>
-            <h3 className="text-secondary underline decoration-warning">
+            <h3 className="text-secondary underline decoration-accent">
               Details
             </h3>
             <p>
@@ -85,7 +85,7 @@ export default function Info() {
             {/*</ul>*/}
             <h2
               id="refactorings"
-              className="text-secondary underline decoration-warning"
+              className="text-secondary underline decoration-accent"
             >
               Liste von Refactorings
             </h2>

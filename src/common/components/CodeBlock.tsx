@@ -5,9 +5,9 @@ SyntaxHighlighter.registerLanguage(`java`, java);
 import rangeParser from 'parse-numeric-range';
 import React from 'react';
 
-const redColor = `rgba(230, 67, 67, 0.4)`;
-const greenColor = `rgba(22, 150, 74, 0.4)`;
-const neutralColor = `rgba(71, 85, 105, 0.6)`;
+const redColor = `#702e34`;
+const greenColor = `#1c5037`;
+const neutralColor = `#475569`;
 
 export enum HighlightColor {
   Red = `Red`,

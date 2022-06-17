@@ -74,10 +74,10 @@ export default function Task({ taskData }: { taskData: ITask }) {
             taskProgress={getTaskProgress(taskData.uuid)}
           />
           <div>
-            <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-warning">
+            <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent">
               {taskData.name}
             </h1>
-            <span className="font-mono tracking-wider text-warning mr-4">
+            <span className="font-mono tracking-wider text-accent mr-4">
               {taskData.category},
             </span>
             <span className="font-mono tracking-wider text-info">

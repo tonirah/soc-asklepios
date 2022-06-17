@@ -24,7 +24,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       </Head>
 
       <div className="container mx-auto text-center py-10 px-2">
-        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-warning leading-relaxed">
+        <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
           {title}
         </h1>
@@ -32,12 +32,13 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         <div className="flex flex-col xl:flex-row gap-3 items-center w-full bg-neutral border-neutral border rounded-box shadow-xl mb-12">
           <div className="flex flex-col xl:w-0 flex-auto">
             <div className="text-neutral-content pt-8 pb-3 px-8">
-              <p>
-                „Im Jahr 2094. Du befindest dich auf einer interplanetaren
-                Reise, und warst bis gerade eben im Hyperschlaf. Die AI (SOLID)
-                des Schiffes 'SOC Asklepios' hat dich geweckt. Du musst ihr
-                helfen, die Boardsoftware zu prüfen und zu refaktorisieren, um
-                sicher auf dem Planet 'Yagni' landen zu können.“
+              <p className="font-mono">
+                <span className="font-bold">„Im Jahr 2094.</span> Du befindest
+                dich auf einer interplanetaren Reise, und warst bis gerade eben
+                im Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat
+                dich geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen
+                und zu refaktorisieren, um sicher auf dem Planet 'Yagni' landen
+                zu können.<span className="font-bold">“</span>
               </p>
               <Link href={`/info`}>
                 <a className="btn btn-link">
@@ -102,7 +103,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           </div>
         </div>
 
-        <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-warning mb-4">
+        <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mb-4">
           Kritische Codestellen
         </h2>
         <div className="w-max mx-auto mb-24">
@@ -125,7 +126,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
 
         <div className="divider max-w-lg mx-auto mb-2"></div>
         <button
-          className="btn btn-sm btn-outline btn-accent"
+          className="btn btn-sm btn-outline btn-warning"
           onClick={() => resetProgress()}
         >
           <ExclamationIcon className="h-5 w-5 mr-1" />
