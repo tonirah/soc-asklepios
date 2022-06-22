@@ -14,6 +14,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
     resetProgress,
     getCategoryProgressPercentage,
     getTotalScore,
+    getRandomTaskId,
   } = useContext(ProgressContext);
 
   const title = `SOC Asklepios`;
@@ -57,47 +58,79 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 </div>
               </div>
               <div>
-                <div className="opacity-60 mb-1">
-                  {Category.CentralFlightSystem}
-                </div>
-                <progress
-                  className="block progress progress-accent mb-4"
-                  value={getCategoryProgressPercentage(
+                <Link
+                  href={`/tasks/${getRandomTaskId(
                     Category.CentralFlightSystem,
-                  )}
-                  max="100"
-                ></progress>
-                <div className="opacity-60 mb-1">
-                  {Category.VentilationThermalControl}
-                </div>
-                <progress
-                  className="block progress progress-secondary mb-4"
-                  value={getCategoryProgressPercentage(
+                  )}`}
+                >
+                  <a>
+                    <div className="opacity-60 mb-1">
+                      {Category.CentralFlightSystem}
+                    </div>
+                    <progress
+                      className="block progress progress-accent mb-4"
+                      value={getCategoryProgressPercentage(
+                        Category.CentralFlightSystem,
+                      )}
+                      max="100"
+                    ></progress>
+                  </a>
+                </Link>
+                <Link
+                  href={`/tasks/${getRandomTaskId(
                     Category.VentilationThermalControl,
-                  )}
-                  max="100"
-                ></progress>
-                <div className="opacity-60 mb-1">
-                  {Category.CrewHealthHypersleep}
-                </div>
-                <progress
-                  className="block progress progress-success  mb-4"
-                  value={getCategoryProgressPercentage(
+                  )}`}
+                >
+                  <a>
+                    <div className="opacity-60 mb-1">
+                      {Category.VentilationThermalControl}
+                    </div>
+                    <progress
+                      className="block progress progress-secondary mb-4"
+                      value={getCategoryProgressPercentage(
+                        Category.VentilationThermalControl,
+                      )}
+                      max="100"
+                    ></progress>
+                  </a>
+                </Link>
+                <Link
+                  href={`/tasks/${getRandomTaskId(
                     Category.CrewHealthHypersleep,
-                  )}
-                  max="100"
-                ></progress>
+                  )}`}
+                >
+                  <a>
+                    <div className="opacity-60 mb-1">
+                      {Category.CrewHealthHypersleep}
+                    </div>
+                    <progress
+                      className="block progress progress-success  mb-4"
+                      value={getCategoryProgressPercentage(
+                        Category.CrewHealthHypersleep,
+                      )}
+                      max="100"
+                    ></progress>
+                  </a>
+                </Link>
                 {/* TODO: use Category.SpaceRadiationProtection when it gets task */}
-                <div className="opacity-60 mb-1">
-                  {Category.CrewHealthHypersleep}
-                </div>
-                <progress
-                  className="block progress progress-primary mb-4"
-                  value={getCategoryProgressPercentage(
+                <Link
+                  href={`/tasks/${getRandomTaskId(
                     Category.CrewHealthHypersleep,
-                  )}
-                  max="100"
-                ></progress>
+                  )}`}
+                >
+                  <a>
+                    <div className="opacity-60 mb-1">
+                      {Category.CrewHealthHypersleep}
+                    </div>
+                    <progress
+                      className="block progress progress-primary mb-4"
+                      value={getCategoryProgressPercentage(
+                        Category.CrewHealthHypersleep,
+                      )}
+                      max="100"
+                    ></progress>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

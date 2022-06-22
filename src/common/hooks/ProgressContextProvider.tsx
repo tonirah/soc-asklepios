@@ -10,7 +10,7 @@ import {
   parseRequiredInt,
   parseRequiredString,
 } from '@/common/utils/parseRequired';
-import { allTasks, Category } from '@/modules/tasks';
+import { allTasks, Category, UuidV4 } from '@/modules/tasks';
 
 const LOCAL_STORAGE_KEY = parseRequiredString(process.env.LOCAL_STORAGE_KEY);
 const POINTS_FOR_VISITED = parseRequiredInt(process.env.POINTS_FOR_VISITED);
@@ -23,19 +23,20 @@ export enum TaskProgress {
 }
 
 interface ITaskProgressStorage {
-  uuid: string;
+  uuid: UuidV4;
   taskProgress: TaskProgress;
 }
 
 interface IProgressContext {
   resetProgress: () => void;
   getTotalScore: () => number;
-  getTaskProgress: (uuid: string) => TaskProgress | undefined;
-  getTaskPoints: (uuid: string) => number;
+  getTaskProgress: (uuid: UuidV4) => TaskProgress | undefined;
+  getTaskPoints: (uuid: UuidV4) => number;
   getCategoryProgressPercentage: (category: Category) => number;
-  setTaskProgress: (uuid: string, taskProgress: TaskProgress) => void;
+  getRandomTaskId: (category: Category) => UuidV4;
+  setTaskProgress: (uuid: UuidV4, taskProgress: TaskProgress) => void;
   useVisitedTimer: (
-    uuid: string,
+    uuid: UuidV4,
     getTaskProgress: IProgressContext['getTaskProgress'],
   ) => void;
 }
@@ -63,15 +64,20 @@ const calculateTotalScore = (progress: ITaskProgressStorage[]) => {
   return score;
 };
 
-const calculateCategoryProgressPercentage = (
-  category: Category,
-  progress: ITaskProgressStorage[],
-) => {
+const getTasksOfCategory = (category: Category) => {
   const tasksOfCategory = allTasks.filter((task) => task.category === category);
 
   if (tasksOfCategory.length === 0) {
     throw new Error(`No tasks found for category "${category}"`);
   }
+  return tasksOfCategory;
+};
+
+const calculateCategoryProgressPercentage = (
+  category: Category,
+  progress: ITaskProgressStorage[],
+) => {
+  const tasksOfCategory = getTasksOfCategory(category);
 
   const progressOfCategory = progress.filter((progressState) =>
     tasksOfCategory.some((task) => task.uuid === progressState.uuid),
@@ -104,7 +110,7 @@ export default function ProgressContextProvider({
   }, [progress]);
 
   const getTaskProgress = useCallback(
-    (uuid: string): TaskProgress | undefined => {
+    (uuid: UuidV4): TaskProgress | undefined => {
       const taskProgressStorage = progress.find(
         (taskProgressStorage) => taskProgressStorage.uuid === uuid,
       );
@@ -114,7 +120,7 @@ export default function ProgressContextProvider({
   );
 
   const getTaskPoints = useCallback(
-    (uuid: string) => {
+    (uuid: UuidV4) => {
       const taskProgress = getTaskProgress(uuid);
       return calculatePoints(taskProgress);
     },
@@ -128,8 +134,27 @@ export default function ProgressContextProvider({
     [progress],
   );
 
+  const getRandomTaskId = useCallback(
+    (category: Category) => {
+      const allTasksOfCategory = getTasksOfCategory(category);
+
+      const openTasksOfCategory = allTasksOfCategory.filter((task) => {
+        const taskProgress = getTaskProgress(task.uuid);
+        return taskProgress !== TaskProgress.Solved;
+      });
+
+      const tasks =
+        openTasksOfCategory.length === 0
+          ? allTasksOfCategory
+          : openTasksOfCategory;
+
+      return tasks[Math.floor(Math.random() * tasks.length)].uuid;
+    },
+    [getTaskProgress],
+  );
+
   const setTaskProgress = useCallback(
-    (uuid: string, taskProgress: TaskProgress) => {
+    (uuid: UuidV4, taskProgress: TaskProgress) => {
       setProgress((previousProgress) => {
         const newProgress = previousProgress.filter(
           (taskProgressStorage) => taskProgressStorage?.uuid !== uuid,
@@ -142,7 +167,7 @@ export default function ProgressContextProvider({
   );
 
   const useVisitedTimer = (
-    uuid: string,
+    uuid: UuidV4,
     getTaskProgress: IProgressContext['getTaskProgress'],
   ) => {
     const getTaskProgressRef = useRef(getTaskProgress);
@@ -176,6 +201,7 @@ export default function ProgressContextProvider({
         getTaskProgress,
         getTaskPoints,
         getCategoryProgressPercentage,
+        getRandomTaskId,
         setTaskProgress,
         useVisitedTimer,
       }}

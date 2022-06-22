@@ -41,8 +41,10 @@ export interface IInputData {
   lines: string;
 }
 
+export type UuidV4 = string;
+
 export interface ITask {
-  uuid: string;
+  uuid: UuidV4;
   name: string;
   difficulty: Difficulty;
   showAllOptions: boolean;
