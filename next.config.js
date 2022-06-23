@@ -18,4 +18,8 @@ module.exports = {
   // gh-pages build configuration
   basePath: basePath,
   assetPrefix: `${basePath}/`,
+  images: {
+    loader: 'custom',
+    unoptimized: true,
+  },
 };
