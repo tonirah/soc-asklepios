@@ -67,23 +67,21 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <title>{taskData.name}</title>
       </Head>
 
-      <div className="flex flex-row justify-center mb-3">
-        <TaskProgressIcon
-          className="h-16 w-16 mr-1 shrink-0"
-          taskProgress={getTaskProgress(taskData.uuid)}
-        />
-        <div>
-          <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent">
-            {taskData.name}
-          </h1>
-          <span className="font-mono tracking-wider text-accent mr-4">
-            {taskData.category},
-          </span>
-          <span className="font-mono tracking-wider text-info">
-            Punkte:{` `}
-            <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
-          </span>
-        </div>
+      <div className="mb-3">
+        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent sm:-mb-3">
+          <TaskProgressIcon
+            className="h-16 w-16 inline-block mr-1"
+            taskProgress={getTaskProgress(taskData.uuid)}
+          />
+          {taskData.name}
+        </h1>
+        <span className="font-mono tracking-wider text-accent">
+          {taskData.category},{` `}
+        </span>
+        <span className="font-mono tracking-wider text-info">
+          Punkte:{` `}
+          <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
+        </span>
       </div>
 
       <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
