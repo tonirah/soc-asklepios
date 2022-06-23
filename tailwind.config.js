@@ -1,9 +1,11 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ``;
+
 module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
       backgroundImage: {
-        space: "url('/images/space.png')",
+        space: `url('${basePath}/images/space.png')`,
       },
     },
   },
