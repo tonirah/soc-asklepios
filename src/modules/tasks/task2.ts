@@ -7,7 +7,7 @@ import {
 } from './definitions';
 
 const dirtyCode = `class AstronautHealth {
-  ...
+  // ...
 
   public updateSleepDuration(){
     if (
@@ -26,7 +26,7 @@ const dirtyCode = `class AstronautHealth {
 }`;
 
 const cleanCode = `class AstronautHealth {
-  ...
+  // ...
 
   private boolean hasCriticalHealthCondition() {
     return (

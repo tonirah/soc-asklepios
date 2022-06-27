@@ -8,7 +8,7 @@ import {
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ``;
 
-const dirtyCode = `...
+const dirtyCode = `// ...
   public O2LevelStatus getO2LevelStatus(OxygenSensorData  levelOfOxygen) {
     O2LevelStatus status;
     if (levelOfOxygen < this.lowerLimit) {
@@ -20,9 +20,9 @@ const dirtyCode = `...
     }
     return status;
   }
-...`;
+// ...`;
 
-const cleanCode = `...
+const cleanCode = `// ...
   public O2LevelStatus getO2LevelStatus(OxygenSensorData  levelOfOxygen) {
     if (levelOfOxygen < this.lowerLimit) {
       return O2LevelStatus.TOO_LOW;
@@ -32,7 +32,7 @@ const cleanCode = `...
     }
     return O2LevelStatus.RIGHT_AMOUNT;
   }
-...`;
+// ...`;
 
 const comment = `Viel besser lesbar (testbar/wartbar/erweiterbar), und in diesem Fall auch kürzer.
 
