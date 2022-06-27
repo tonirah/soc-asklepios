@@ -53,9 +53,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
             >
               <a>
-                <div className="opacity-60 mb-1">
-                  {Category.CentralFlightSystem}
-                </div>
+                <div className="mb-1">{Category.CentralFlightSystem}</div>
                 <progress
                   className="block progress progress-accent mb-4"
                   value={getCategoryProgressPercentage(
@@ -73,9 +71,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               )}`}
             >
               <a>
-                <div className="opacity-60 mb-1">
-                  {Category.VentilationThermalControl}
-                </div>
+                <div className="mb-1">{Category.VentilationThermalControl}</div>
                 <progress
                   className="block progress progress-secondary mb-4"
                   value={getCategoryProgressPercentage(
@@ -108,28 +104,25 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                   )}
                   max="100"
                 ></progress>
-                <div className="opacity-60">
-                  {Category.CrewHealthHypersleep}
-                </div>
+                <div className="">{Category.CrewHealthHypersleep}</div>
               </a>
             </Link>
           </div>
           <div className="text-right w-1/2">
             <Link
-              href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
+              href={`/tasks/${getRandomTaskId(
+                Category.SpaceRadiationProtection,
+              )}`}
             >
-              {/* TODO: use Category.SpaceRadiationProtection when it gets task */}
               <a>
                 <progress
                   className="block progress progress-primary mt-4 mb-1"
                   value={getCategoryProgressPercentage(
-                    Category.CrewHealthHypersleep,
+                    Category.SpaceRadiationProtection,
                   )}
                   max="100"
                 ></progress>
-                <div className="opacity-60">
-                  {Category.CrewHealthHypersleep}
-                </div>
+                <div className="">{Category.SpaceRadiationProtection}</div>
               </a>
             </Link>
           </div>
