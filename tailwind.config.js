@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         space: `url('${basePath}/images/space.png')`,
+        soc: `url('${basePath}/images/soc.png')`,
       },
     },
   },

@@ -83,13 +83,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
-        <div className="bg-base-300 text-base-content border-primary border-4 border-double shadow-lg shadow-primary rounded-box mx-auto w-full lg:w-3/4 aspect-video flex flex-col justify-evenly items-center mb-2">
-          <div className="font-mono text-4xl">{`<Spaceship>`}</div>
+        <div className="bg-soc bg-contain text-base-content rounded-box mx-auto w-full lg:w-3/4 aspect-video flex flex-col justify-evenly items-center mb-2">
           <div>
             <div className="opacity-60">Gesamtpunkte</div>
             <div className="font-bold text-6xl">{getTotalScore()}</div>
           </div>
-          <div className="font-mono text-4xl">{`</Spaceship>`}</div>
         </div>
         <div className="flex w-full gap-2 justify-center items-start">
           <div className="text-left w-1/2">
