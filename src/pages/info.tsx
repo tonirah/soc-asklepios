@@ -20,7 +20,7 @@ export default function Info() {
       <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-10">
         {title}
       </h1>
-      <div className="bg-base-300 border border-neutral shadow-xl mx-auto py-12 max-w-3xl rounded-box">
+      <div className="bg-base-300/70 border border-neutral shadow-xl mx-auto py-12 max-w-3xl rounded-box">
         <div className="prose lg:prose-lg mx-auto px-5">
           <h2 className="text-secondary underline decoration-accent">Story</h2>
           <p className="lead">

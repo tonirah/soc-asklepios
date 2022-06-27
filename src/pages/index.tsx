@@ -29,7 +29,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         {title}
       </h1>
 
-      <div className="bg-neutral rounded-box shadow-xl mb-12 text-neutral-content pt-8 pb-3 px-8">
+      <div className="bg-neutral/70 rounded-box shadow-xl mb-12 text-neutral-content pt-8 pb-3 px-8">
         <p className="font-mono">
           <span className="font-bold">„Im Jahr 2094.</span> Du befindest dich
           auf einer interplanetaren Reise, und warst bis gerade eben im
