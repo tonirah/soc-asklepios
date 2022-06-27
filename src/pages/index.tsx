@@ -48,11 +48,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
 
       <div className="mx-auto w-full xl:w-4/5 2xl:w-2/3 mb-12">
         <div className="flex w-full gap-2 justify-center items-end">
-          <div className="text-left w-1/2">
+          <div className="w-1/2">
             <Link
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
             >
-              <a>
+              <a className="btn btn-block btn-link justify-start">
                 <div className="mb-1">{Category.CentralFlightSystem}</div>
                 <progress
                   className="block progress progress-accent mb-4"
@@ -64,13 +64,13 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               </a>
             </Link>
           </div>
-          <div className="text-right w-1/2">
+          <div className="w-1/2">
             <Link
               href={`/tasks/${getRandomTaskId(
                 Category.VentilationThermalControl,
               )}`}
             >
-              <a>
+              <a className="btn btn-block btn-link justify-end">
                 <div className="mb-1">{Category.VentilationThermalControl}</div>
                 <progress
                   className="block progress progress-secondary mb-4"
@@ -90,11 +90,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           </div>
         </div>
         <div className="flex w-full gap-2 justify-center items-start">
-          <div className="text-left w-1/2">
+          <div className="w-1/2">
             <Link
               href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
             >
-              <a>
+              <a className="btn btn-block btn-link justify-start">
                 <progress
                   className="block progress progress-success mt-4 mb-1"
                   value={getCategoryProgressPercentage(
@@ -106,13 +106,13 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               </a>
             </Link>
           </div>
-          <div className="text-right w-1/2">
+          <div className="w-1/2">
             <Link
               href={`/tasks/${getRandomTaskId(
                 Category.SpaceRadiationProtection,
               )}`}
             >
-              <a>
+              <a className="btn btn-block btn-link justify-end">
                 <progress
                   className="block progress progress-primary mt-4 mb-1"
                   value={getCategoryProgressPercentage(
