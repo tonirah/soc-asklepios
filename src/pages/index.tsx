@@ -52,7 +52,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             <Link
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
             >
-              <a className="btn btn-block btn-link justify-start">
+              <a className="btn btn-block btn-link justify-start h-fit">
                 <div className="mb-1">{Category.CentralFlightSystem}</div>
                 <progress
                   className="block progress progress-accent mb-4"
@@ -70,7 +70,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 Category.VentilationThermalControl,
               )}`}
             >
-              <a className="btn btn-block btn-link justify-end">
+              <a className="btn btn-block btn-link justify-end h-fit">
                 <div className="mb-1">{Category.VentilationThermalControl}</div>
                 <progress
                   className="block progress progress-secondary mb-4"
@@ -94,7 +94,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             <Link
               href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
             >
-              <a className="btn btn-block btn-link justify-start">
+              <a className="btn btn-block btn-link justify-start h-fit">
                 <progress
                   className="block progress progress-success mt-4 mb-1"
                   value={getCategoryProgressPercentage(
@@ -112,7 +112,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 Category.SpaceRadiationProtection,
               )}`}
             >
-              <a className="btn btn-block btn-link justify-end">
+              <a className="btn btn-block btn-link justify-end h-fit">
                 <progress
                   className="block progress progress-primary mt-4 mb-1"
                   value={getCategoryProgressPercentage(
