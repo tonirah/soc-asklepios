@@ -3,7 +3,7 @@ import { LightBulbIcon } from '@heroicons/react/outline';
 
 export function Comment(props: { comment: string }) {
   return (
-    <div className="alert alert-info text-info-content">
+    <div className="alert alert-info text-info-content text-left">
       <div>
         <LightBulbIcon className="h-8 w-8 flex-none mr-2" />
         <div>
