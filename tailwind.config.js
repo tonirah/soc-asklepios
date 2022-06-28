@@ -11,6 +11,7 @@ module.exports = {
         'chh-off': `url('${basePath}/images/ship/chh-off.png')`,
         'srp-off': `url('${basePath}/images/ship/srp-off.png')`,
         'srp-on': `url('${basePath}/images/ship/srp-on.png')`,
+        'center-off': `url('${basePath}/images/ship/center-off.png')`,
       },
     },
   },

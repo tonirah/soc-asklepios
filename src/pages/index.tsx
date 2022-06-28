@@ -83,13 +83,49 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
-        <div className="mx-auto w-full lg:w-3/4 aspect-video flex hover:cursor-pointer mb-2">
-          <div className="bg-cfs-off bg-contain w-1/3"></div>
-          <div className="w-1/3 flex flex-col">
-            <div className="bg-vtc-off bg-contain h-full"></div>
-            <div className="bg-chh-off bg-contain h-full"></div>
+        <div className="mx-auto w-full lg:w-3/4 aspect-video flex mb-2">
+          <div className="w-full">
+            <Link
+              href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
+            >
+              <a>
+                <div className="h-full w-full bg-cfs-off bg-contain"></div>
+              </a>
+            </Link>
           </div>
-          <div className="w-1/3">
+          <div className="w-full flex flex-col">
+            <div className="h-full">
+              <Link
+                href={`/tasks/${getRandomTaskId(
+                  Category.VentilationThermalControl,
+                )}`}
+              >
+                <a>
+                  <div className="h-full w-full bg-vtc-off bg-contain"></div>
+                </a>
+              </Link>
+            </div>
+            <div className="bg-center-off bg-contain h-full">
+              <div className="opacity-80 text-xs sm:text-base mt-3">
+                Gesamtpunkte
+              </div>
+              <div className="font-bold text-4xl sm:text-6xl">
+                {getTotalScore()}
+              </div>
+            </div>
+            <div className="h-full">
+              <Link
+                href={`/tasks/${getRandomTaskId(
+                  Category.CrewHealthHypersleep,
+                )}`}
+              >
+                <a>
+                  <div className="h-full w-full bg-chh-off bg-contain"></div>
+                </a>
+              </Link>
+            </div>
+          </div>
+          <div className="w-full">
             <Link
               href={`/tasks/${getRandomTaskId(
                 Category.SpaceRadiationProtection,
@@ -100,10 +136,6 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               </a>
             </Link>
           </div>
-          {/*<div>*/}
-          {/*  <div className="opacity-60">Gesamtpunkte</div>*/}
-          {/*  <div className="font-bold text-6xl">{getTotalScore()}</div>*/}
-          {/*</div>*/}
         </div>
         <div className="flex w-full gap-2 justify-center items-start">
           <div className="w-1/2">
