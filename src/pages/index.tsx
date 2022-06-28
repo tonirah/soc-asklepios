@@ -89,7 +89,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
             >
               <a>
-                <div className="h-full w-full bg-cfs-off bg-contain"></div>
+                <div className="h-full w-full bg-cfs-off hover:bg-cfs-hover bg-contain"></div>
               </a>
             </Link>
           </div>
@@ -101,7 +101,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 )}`}
               >
                 <a>
-                  <div className="h-full w-full bg-vtc-off bg-contain"></div>
+                  <div className="h-full w-full bg-vtc-off hover:bg-vtc-hover bg-contain"></div>
                 </a>
               </Link>
             </div>
@@ -120,7 +120,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 )}`}
               >
                 <a>
-                  <div className="h-full w-full bg-chh-off bg-contain"></div>
+                  <div className="h-full w-full bg-chh-off hover:bg-chh-hover bg-contain"></div>
                 </a>
               </Link>
             </div>
@@ -132,7 +132,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               )}`}
             >
               <a>
-                <div className="h-full w-full bg-srp-off hover:bg-srp-on bg-contain"></div>
+                <div className="h-full w-full bg-srp-off hover:bg-srp-hover bg-contain"></div>
               </a>
             </Link>
           </div>
