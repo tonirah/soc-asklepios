@@ -83,11 +83,27 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
-        <div className="bg-soc bg-contain text-base-content rounded-box mx-auto w-full lg:w-3/4 aspect-video flex flex-col justify-evenly items-center mb-2">
-          <div>
-            <div className="opacity-60">Gesamtpunkte</div>
-            <div className="font-bold text-6xl">{getTotalScore()}</div>
+        <div className="mx-auto w-full lg:w-3/4 aspect-video flex hover:cursor-pointer mb-2">
+          <div className="bg-cfs-off bg-contain w-1/3"></div>
+          <div className="w-1/3 flex flex-col">
+            <div className="bg-vtc-off bg-contain h-full"></div>
+            <div className="bg-chh-off bg-contain h-full"></div>
           </div>
+          <div className="w-1/3">
+            <Link
+              href={`/tasks/${getRandomTaskId(
+                Category.SpaceRadiationProtection,
+              )}`}
+            >
+              <a>
+                <div className="h-full w-full bg-srp-off hover:bg-srp-on bg-contain"></div>
+              </a>
+            </Link>
+          </div>
+          {/*<div>*/}
+          {/*  <div className="opacity-60">Gesamtpunkte</div>*/}
+          {/*  <div className="font-bold text-6xl">{getTotalScore()}</div>*/}
+          {/*</div>*/}
         </div>
         <div className="flex w-full gap-2 justify-center items-start">
           <div className="w-1/2">

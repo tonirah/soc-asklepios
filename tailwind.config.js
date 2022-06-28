@@ -5,8 +5,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        space: `url('${basePath}/images/space.png')`,
-        soc: `url('${basePath}/images/soc.png')`,
+        space: `url('${basePath}/images/ship/space.png')`,
+        'cfs-off': `url('${basePath}/images/ship/cfs-off.png')`,
+        'vtc-off': `url('${basePath}/images/ship/vtc-off.png')`,
+        'chh-off': `url('${basePath}/images/ship/chh-off.png')`,
+        'srp-off': `url('${basePath}/images/ship/srp-off.png')`,
+        'srp-on': `url('${basePath}/images/ship/srp-on.png')`,
       },
     },
   },
