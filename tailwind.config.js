@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        space: `url('${basePath}/images/ship/space.png')`,
+        space: `url('${basePath}/images/space.png')`,
         'cfs-off': `url('${basePath}/images/ship/cfs-off.png')`,
         'vtc-off': `url('${basePath}/images/ship/vtc-off.png')`,
         'chh-off': `url('${basePath}/images/ship/chh-off.png')`,
