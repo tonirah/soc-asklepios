@@ -29,23 +29,6 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         {title}
       </h1>
 
-      <div className="bg-neutral/70 rounded-box shadow-xl mb-12 text-neutral-content pt-8 pb-3 px-8">
-        <p className="font-mono">
-          <span className="font-bold">„Im Jahr 2094.</span> Du befindest dich
-          auf einer interplanetaren Reise, und warst bis gerade eben im
-          Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
-          geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
-          refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu können.
-          <span className="font-bold">“</span>
-        </p>
-        <Link href={`/info`}>
-          <a className="btn btn-link">
-            <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
-            Story, Mission, Refactorings
-          </a>
-        </Link>
-      </div>
-
       <div className="mx-auto w-full xl:w-4/5 2xl:w-2/3 mb-12">
         <div className="flex w-full gap-2 justify-center items-end">
           <div className="w-1/2">
@@ -83,7 +66,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
-        <div className="mx-auto w-full lg:w-3/4 aspect-video flex mb-2">
+        <div className="mx-auto w-full aspect-video flex mb-2">
           <div className="w-full">
             <Link
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
@@ -173,6 +156,23 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="bg-neutral/70 rounded-box shadow-xl mb-12 text-neutral-content pt-8 pb-3 px-8">
+        <p className="font-mono">
+          <span className="font-bold">„Im Jahr 2094.</span> Du befindest dich
+          auf einer interplanetaren Reise, und warst bis gerade eben im
+          Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
+          geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
+          refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu können.
+          <span className="font-bold">“</span>
+        </p>
+        <Link href={`/info`}>
+          <a className="btn btn-link">
+            <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
+            Story, Mission, Refactorings
+          </a>
+        </Link>
       </div>
 
       <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mb-4">
