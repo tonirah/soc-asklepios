@@ -72,7 +72,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
             >
               <a>
-                <div className="h-full w-full bg-cfs-off hover:bg-cfs-hover bg-contain"></div>
+                <div className="h-full w-full bg-cfs-highlight lg:bg-cfs-base hover:bg-cfs-highlight bg-contain"></div>
               </a>
             </Link>
           </div>
@@ -84,11 +84,11 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 )}`}
               >
                 <a>
-                  <div className="h-full w-full bg-vtc-off hover:bg-vtc-hover bg-contain"></div>
+                  <div className="h-full w-full bg-vtc-highlight lg:bg-vtc-base hover:bg-vtc-highlight bg-contain"></div>
                 </a>
               </Link>
             </div>
-            <div className="bg-center-off bg-contain h-full">
+            <div className="bg-soc-center-base bg-contain h-full">
               <div className="opacity-80 text-xs sm:text-base mt-3">
                 Gesamtpunkte
               </div>
@@ -103,7 +103,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 )}`}
               >
                 <a>
-                  <div className="h-full w-full bg-chh-off hover:bg-chh-hover bg-contain"></div>
+                  <div className="h-full w-full bg-chh-highlight lg:bg-chh-base hover:bg-chh-highlight bg-contain"></div>
                 </a>
               </Link>
             </div>
@@ -115,7 +115,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
               )}`}
             >
               <a>
-                <div className="h-full w-full bg-srp-off hover:bg-srp-hover bg-contain"></div>
+                <div className="h-full w-full bg-srp-highlight lg:bg-srp-base hover:bg-srp-highlight bg-contain"></div>
               </a>
             </Link>
           </div>
