@@ -17,7 +17,7 @@ module.exports = {
   trailingSlash: true,
   // gh-pages build configuration
   basePath: basePath,
-  assetPrefix: `${basePath}/`,
+  assetPrefix: `${basePath}`,
   images: {
     loader: 'custom',
     unoptimized: true,

@@ -2,11 +2,15 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { allTasks, Category, ITask } from '@/modules/tasks';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ProgressContext } from '@/common/hooks/';
-import { TaskProgressIcon } from '@/common/components';
+import { Image, TaskProgressIcon } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { ExclamationIcon } from '@heroicons/react/solid';
+
+import vtcBase from '../../public/images/ship/vtc-base.png';
+import vtcHighlight from '../../public/images/ship/vtc-highlight.png';
+import socCenterBase from '../../public/images/ship/soc-center-base.png';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const {
@@ -16,6 +20,10 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
     getTotalScore,
     getRandomTaskId,
   } = useContext(ProgressContext);
+
+  const [isHovering, setIsHovered] = useState(false);
+  const onMouseEnter = () => setIsHovered(true);
+  const onMouseLeave = () => setIsHovered(false);
 
   const title = `SOC Asklepios`;
   return (
@@ -84,16 +92,41 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
                 )}`}
               >
                 <a>
-                  <div className="h-full w-full bg-vtc-highlight lg:bg-vtc-base hover:bg-vtc-highlight bg-contain"></div>
+                  <div
+                    className="h-full w-full"
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                  >
+                    {isHovering ? (
+                      <Image
+                        src={vtcHighlight}
+                        layout="responsive"
+                        className="object-contain"
+                      />
+                    ) : (
+                      <Image
+                        src={vtcBase}
+                        layout="responsive"
+                        className="object-contain"
+                      />
+                    )}
+                  </div>
                 </a>
               </Link>
             </div>
-            <div className="bg-soc-center-base bg-contain h-full">
-              <div className="opacity-80 text-xs sm:text-base mt-3">
-                Gesamtpunkte
-              </div>
-              <div className="font-bold text-4xl sm:text-6xl">
-                {getTotalScore()}
+            <div className="relative h-full">
+              <Image
+                src={socCenterBase}
+                layout="responsive"
+                className="object-contain"
+              />
+              <div className="absolute top-0 w-full">
+                <div className="opacity-80 text-xs sm:text-base mt-3">
+                  Gesamtpunkte
+                </div>
+                <div className="font-bold text-4xl sm:text-6xl">
+                  {getTotalScore()}
+                </div>
               </div>
             </div>
             <div className="h-full">
