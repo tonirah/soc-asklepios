@@ -1,29 +1,15 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import { allTasks, Category, ITask } from '@/modules/tasks';
+import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
-import { Image, TaskProgressIcon } from '@/common/components';
+import { Spaceship, TaskProgressIcon } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { ExclamationIcon } from '@heroicons/react/solid';
 
-import vtcBase from '../../public/images/ship/vtc-base.png';
-import vtcHighlight from '../../public/images/ship/vtc-highlight.png';
-import socCenterBase from '../../public/images/ship/soc-center-base.png';
-
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const {
-    getTaskProgress,
-    resetProgress,
-    getCategoryProgressPercentage,
-    getTotalScore,
-    getRandomTaskId,
-  } = useContext(ProgressContext);
-
-  const [isHovering, setIsHovered] = useState(false);
-  const onMouseEnter = () => setIsHovered(true);
-  const onMouseLeave = () => setIsHovered(false);
+  const { getTaskProgress, resetProgress } = useContext(ProgressContext);
 
   const title = `SOC Asklepios`;
   return (
@@ -38,157 +24,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       </h1>
 
       <div className="mx-auto w-full xl:w-4/5 2xl:w-2/3 mb-12">
-        <div className="flex w-full gap-2 justify-center items-end">
-          <div className="w-1/2">
-            <Link
-              href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
-            >
-              <a className="btn btn-block btn-link justify-start h-fit">
-                <div className="mb-1">{Category.CentralFlightSystem}</div>
-                <progress
-                  className="block progress progress-accent mb-4"
-                  value={getCategoryProgressPercentage(
-                    Category.CentralFlightSystem,
-                  )}
-                  max="100"
-                ></progress>
-              </a>
-            </Link>
-          </div>
-          <div className="w-1/2">
-            <Link
-              href={`/tasks/${getRandomTaskId(
-                Category.VentilationThermalControl,
-              )}`}
-            >
-              <a className="btn btn-block btn-link justify-end h-fit">
-                <div className="mb-1">{Category.VentilationThermalControl}</div>
-                <progress
-                  className="block progress progress-secondary mb-4"
-                  value={getCategoryProgressPercentage(
-                    Category.VentilationThermalControl,
-                  )}
-                  max="100"
-                ></progress>
-              </a>
-            </Link>
-          </div>
-        </div>
-        <div className="mx-auto w-full aspect-video flex mb-2">
-          <div className="w-full">
-            <Link
-              href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
-            >
-              <a>
-                <div className="h-full w-full bg-cfs-highlight lg:bg-cfs-base hover:bg-cfs-highlight bg-contain"></div>
-              </a>
-            </Link>
-          </div>
-          <div className="w-full flex flex-col">
-            <div className="h-full">
-              <Link
-                href={`/tasks/${getRandomTaskId(
-                  Category.VentilationThermalControl,
-                )}`}
-              >
-                <a>
-                  <div
-                    className="h-full w-full"
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                  >
-                    {isHovering ? (
-                      <Image
-                        src={vtcHighlight}
-                        layout="responsive"
-                        className="object-contain"
-                      />
-                    ) : (
-                      <Image
-                        src={vtcBase}
-                        layout="responsive"
-                        className="object-contain"
-                      />
-                    )}
-                  </div>
-                </a>
-              </Link>
-            </div>
-            <div className="relative h-full">
-              <Image
-                src={socCenterBase}
-                layout="responsive"
-                className="object-contain"
-              />
-              <div className="absolute top-0 w-full">
-                <div className="opacity-80 text-xs sm:text-base mt-3">
-                  Gesamtpunkte
-                </div>
-                <div className="font-bold text-4xl sm:text-6xl">
-                  {getTotalScore()}
-                </div>
-              </div>
-            </div>
-            <div className="h-full">
-              <Link
-                href={`/tasks/${getRandomTaskId(
-                  Category.CrewHealthHypersleep,
-                )}`}
-              >
-                <a>
-                  <div className="h-full w-full bg-chh-highlight lg:bg-chh-base hover:bg-chh-highlight bg-contain"></div>
-                </a>
-              </Link>
-            </div>
-          </div>
-          <div className="w-full">
-            <Link
-              href={`/tasks/${getRandomTaskId(
-                Category.SpaceRadiationProtection,
-              )}`}
-            >
-              <a>
-                <div className="h-full w-full bg-srp-highlight lg:bg-srp-base hover:bg-srp-highlight bg-contain"></div>
-              </a>
-            </Link>
-          </div>
-        </div>
-        <div className="flex w-full gap-2 justify-center items-start">
-          <div className="w-1/2">
-            <Link
-              href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
-            >
-              <a className="btn btn-block btn-link justify-start h-fit">
-                <progress
-                  className="block progress progress-success mt-4 mb-1"
-                  value={getCategoryProgressPercentage(
-                    Category.CrewHealthHypersleep,
-                  )}
-                  max="100"
-                ></progress>
-                <div className="">{Category.CrewHealthHypersleep}</div>
-              </a>
-            </Link>
-          </div>
-          <div className="w-1/2">
-            <Link
-              href={`/tasks/${getRandomTaskId(
-                Category.SpaceRadiationProtection,
-              )}`}
-            >
-              <a className="btn btn-block btn-link justify-end h-fit">
-                <progress
-                  className="block progress progress-primary mt-4 mb-1"
-                  value={getCategoryProgressPercentage(
-                    Category.SpaceRadiationProtection,
-                  )}
-                  max="100"
-                ></progress>
-                <div className="">{Category.SpaceRadiationProtection}</div>
-              </a>
-            </Link>
-          </div>
-        </div>
+        <Spaceship />
       </div>
 
       <div className="bg-neutral/70 rounded-box shadow-xl mb-12 text-neutral-content pt-8 pb-3 px-8">

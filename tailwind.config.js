@@ -6,19 +6,6 @@ module.exports = {
     extend: {
       backgroundImage: {
         space: `url('${basePath}/images/space.png')`,
-        'cfs-base': `url('${basePath}/images/ship/cfs-base.png')`,
-        'cfs-highlight': `url('${basePath}/images/ship/cfs-highlight.png')`,
-        'cfs-solved': `url('${basePath}/images/ship/cfs-solved.png')`,
-        'vtc-base': `url('${basePath}/images/ship/vtc-base.png')`,
-        'vtc-highlight': `url('${basePath}/images/ship/vtc-highlight.png')`,
-        'vtc-solved': `url('${basePath}/images/ship/vtc-solved.png')`,
-        'chh-base': `url('${basePath}/images/ship/chh-base.png')`,
-        'chh-highlight': `url('${basePath}/images/ship/chh-highlight.png')`,
-        'chh-solved': `url('${basePath}/images/ship/chh-solved.png')`,
-        'srp-base': `url('${basePath}/images/ship/srp-base.png')`,
-        'srp-highlight': `url('${basePath}/images/ship/srp-highlight.png')`,
-        'srp-solved': `url('${basePath}/images/ship/srp-solved.png')`,
-        'soc-center-base': `url('${basePath}/images/ship/soc-center-base.png')`,
       },
     },
   },
@@ -32,7 +19,6 @@ module.exports = {
           accent: '#fcf156',
           neutral: '#383f5c',
           'base-100': '#181f3d',
-          // 'base-100': '#161d38', // darker base color
 
           info: '#8be9fd',
           success: '#11b82c',
