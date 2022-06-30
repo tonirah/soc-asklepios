@@ -18,28 +18,28 @@ import cfsBase from '@/public/images/ship/cfs-base.png';
 import cfsHighlighted from '@/public/images/ship/cfs-highlighted.png';
 import cfsSolved from '@/public/images/ship/cfs-solved.png';
 
-interface CategoryImages {
+interface SpaceshipPartImages {
   base: StaticImageData;
   highlighted: StaticImageData;
   solved: StaticImageData;
 }
 
-const cfsImages: CategoryImages = {
+const cfsImages: SpaceshipPartImages = {
   base: cfsBase,
   highlighted: cfsHighlighted,
   solved: cfsSolved,
 };
-const vtcImages: CategoryImages = {
+const vtcImages: SpaceshipPartImages = {
   base: vtcBase,
   highlighted: vtcHighlighted,
   solved: vtcSolved,
 };
-const chhImages: CategoryImages = {
+const chhImages: SpaceshipPartImages = {
   base: chhBase,
   highlighted: chhHighlighted,
   solved: chhSolved,
 };
-const srpImages: CategoryImages = {
+const srpImages: SpaceshipPartImages = {
   base: srpBase,
   highlighted: srpHighlighted,
   solved: srpSolved,
@@ -58,13 +58,32 @@ function getImages(category: Category) {
   }
 }
 
-export function ClickableSpaceshipPart({ category }: { category: Category }) {
-  const { getRandomTaskId } = useContext(ProgressContext);
-  const images = getImages(category);
+function getImage(
+  images: SpaceshipPartImages,
+  isHovered: boolean,
+  isSolved: boolean,
+) {
+  if (isSolved) {
+    return images.solved;
+  }
 
+  if (isHovered) {
+    return images.highlighted;
+  }
+
+  return images.base;
+}
+
+export function ClickableSpaceshipPart({ category }: { category: Category }) {
+  const { getRandomTaskId, getCategoryProgressPercentage } =
+    useContext(ProgressContext);
+
+  const isSolved = getCategoryProgressPercentage(category) === 100;
   const [isHovered, setIsHovered] = useState(false);
+
   const onMouseEnter = () => setIsHovered(true);
   const onMouseLeave = () => setIsHovered(false);
+  const images = getImages(category);
 
   return (
     <Link href={`/tasks/${getRandomTaskId(category)}`}>
@@ -74,21 +93,12 @@ export function ClickableSpaceshipPart({ category }: { category: Category }) {
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          {isHovered ? (
-            <Image
-              src={images.highlighted}
-              layout="responsive"
-              className="object-contain"
-              alt="SOC Asklepios Spaceship"
-            />
-          ) : (
-            <Image
-              src={images.base}
-              layout="responsive"
-              className="object-contain"
-              alt="SOC Asklepios Spaceship"
-            />
-          )}
+          <Image
+            src={getImage(images, isHovered, isSolved)}
+            layout="responsive"
+            className="object-contain"
+            alt="SOC Asklepios Spaceship"
+          />
         </div>
       </a>
     </Link>
