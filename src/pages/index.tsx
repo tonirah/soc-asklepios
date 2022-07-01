@@ -4,12 +4,14 @@ import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
-import { Spaceship, TaskProgressIcon } from '@/common/components';
+import { Spaceship, TaskProgressIcon, ThemeChanger } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { ExclamationIcon } from '@heroicons/react/solid';
+import { useTheme } from 'next-themes';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const { getTaskProgress, resetProgress } = useContext(ProgressContext);
+  const { theme } = useTheme();
 
   const title = `SOC Asklepios`;
   return (
@@ -21,9 +23,19 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed">
         <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
         {title}
+        <span className="mx-6 w-28 inline-block">
+          <ThemeChanger />
+        </span>
       </h1>
 
-      <div className="mx-auto w-full xl:w-4/5 2xl:w-2/3 mb-12">
+      <div
+        className={`mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12 ${
+          theme === `dark`
+            ? `bg-transparent`
+            : `bg-dark-blue bg-space bg-repeat`
+        }`}
+        data-theme="dark"
+      >
         <Spaceship />
       </div>
 

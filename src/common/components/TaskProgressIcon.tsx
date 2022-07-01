@@ -15,7 +15,7 @@ export function TaskProgressIcon({
   }
   if (taskProgress === TaskProgress.Visited) {
     return (
-      <SearchCircleIcon className={classNames(`text-accent`, className)} />
+      <SearchCircleIcon className={classNames(`text-warning`, className)} />
     );
   }
   return <FireIcon className={classNames(`text-error`, className)} />;

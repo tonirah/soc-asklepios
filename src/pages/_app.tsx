@@ -4,6 +4,7 @@ import '@/styles/global.css';
 import '@/common/utils/whyDidYouRender';
 import { parseRequiredBoolean } from '@/common/utils/parseRequired';
 import { Layout } from '@/common/components';
+import { ThemeProvider } from 'next-themes';
 
 const SSR_ENABLED = parseRequiredBoolean(process.env.SSR_ENABLED);
 
@@ -15,9 +16,11 @@ const ProgressContextProvider = dynamic(
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ProgressContextProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider defaultTheme="soc-asklepios-dark" enableSystem={false}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </ProgressContextProvider>
   );
 }

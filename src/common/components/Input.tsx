@@ -106,17 +106,21 @@ export function Input({
           <div {...getInputWrapperProps()}>
             <input
               {...getInputProps()}
-              className="input input-bordered w-full shadow-xl"
+              className="input input-bordered w-full shadow-md"
               disabled={isValid}
               placeholder={inputPlaceholder}
             />
           </div>
         </div>
-        <div className="absolute container pr-5">
-          <ul {...getMenuProps()} className="menu bg-neutral mt-1">
+        <div className="absolute container text-left pr-5">
+          <ul {...getMenuProps()} className="menu mt-1">
             {isOpen &&
               availableOptions.map((item, index) => (
-                <li key={`option-${index}`} {...getItemProps({ item, index })}>
+                <li
+                  key={`option-${index}`}
+                  {...getItemProps({ item, index })}
+                  className="odd:bg-neutral even:bg-neutral-focus"
+                >
                   <a>{item.value}</a>
                 </li>
               ))}

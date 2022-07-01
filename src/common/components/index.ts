@@ -6,3 +6,4 @@ export * from './Image';
 export * from './Layout';
 export * from './Spaceship';
 export * from './ClickableSpaceshipPart';
+export * from './ThemeChanger';

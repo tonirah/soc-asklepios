@@ -1,29 +1,36 @@
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
-import style from 'react-syntax-highlighter/dist/cjs/styles/prism/darcula';
+const dark =
+  require(`react-syntax-highlighter/dist/cjs/styles/prism/darcula`).default;
+const light =
+  require(`react-syntax-highlighter/dist/cjs/styles/prism/one-light`).default;
+console.log(light);
 SyntaxHighlighter.registerLanguage(`java`, java);
 import rangeParser from 'parse-numeric-range';
 import React from 'react';
+import { useTheme } from 'next-themes';
 
-const redColor = `#702e34`;
-const greenColor = `#1c5037`;
-const neutralColor = `#475569`;
+const darkColors = {
+  red: `#702e34`,
+  green: `#1c5037`,
+};
+
+const lightColors = {
+  red: `#ffd7d5`,
+  green: `#ccffd8`,
+};
 
 export enum HighlightColor {
-  Red = `Red`,
-  Green = `Green`,
-  Neutral = `Neutral`,
+  Red,
+  Green,
 }
 
-const getColorValue = (highlightColor?: HighlightColor) => {
-  switch (highlightColor) {
-    case HighlightColor.Green:
-      return greenColor;
-    case HighlightColor.Red:
-      return redColor;
-    default:
-      return neutralColor;
+const getColorValue = (highlightColor?: HighlightColor, theme?: string) => {
+  const colors = theme === `dark` ? darkColors : lightColors;
+  if (highlightColor === HighlightColor.Red) {
+    return colors.red;
   }
+  return colors.green;
 };
 
 const getLineProps = (
@@ -31,6 +38,7 @@ const getLineProps = (
   isLineHintActive: boolean,
   lineNumberArray: number[],
   highlightColor?: HighlightColor,
+  theme?: string,
 ) => {
   const htmlProps = {
     style: {
@@ -40,7 +48,7 @@ const getLineProps = (
   };
 
   if (isLineHintActive && lineNumberArray.includes(lineNumber)) {
-    htmlProps.style.backgroundColor = getColorValue(highlightColor);
+    htmlProps.style.backgroundColor = getColorValue(highlightColor, theme);
   }
   return htmlProps;
 };
@@ -58,14 +66,21 @@ export function CodeBlock({
   isLineHintActive: boolean;
   className?: string;
 }) {
+  const { theme } = useTheme();
+
   const lineNumberArray = [...new Set(rangeParser(highlightedLines))];
 
   return (
     <div className={className}>
       <SyntaxHighlighter
         language="java"
-        style={style}
-        customStyle={{ backgroundColor: `transparent` }}
+        style={theme === `dark` ? dark : light}
+        customStyle={
+          // trick to reapply customStyle after theme change
+          theme === `dark`
+            ? { backgroundColor: `transparent` }
+            : { backgroundColor: `inherit` }
+        }
         showLineNumbers={true}
         wrapLines={true}
         lineProps={(lineNumber) =>
@@ -74,6 +89,7 @@ export function CodeBlock({
             isLineHintActive,
             lineNumberArray,
             highlightColor,
+            theme,
           )
         }
       >
