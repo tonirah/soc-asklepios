@@ -10,7 +10,7 @@ import {
   parseRequiredInt,
   parseRequiredString,
 } from '@/common/utils/parseRequired';
-import { allTasks, Category, UuidV4 } from '@/modules/tasks';
+import { allTasks, Category, ITask, UuidV4 } from '@/modules/tasks';
 
 const LOCAL_STORAGE_KEY = parseRequiredString(process.env.LOCAL_STORAGE_KEY);
 const POINTS_FOR_VISITED = parseRequiredInt(process.env.POINTS_FOR_VISITED);
@@ -32,6 +32,7 @@ interface IProgressContext {
   getTotalScore: () => number;
   getTaskProgress: (uuid: UuidV4) => TaskProgress | undefined;
   getTaskPoints: (uuid: UuidV4) => number;
+  getProgressPercentage: () => number;
   getCategoryProgressPercentage: (category: Category) => number;
   getRandomTaskId: (category: Category) => UuidV4;
   setTaskProgress: (uuid: UuidV4, taskProgress: TaskProgress) => void;
@@ -56,7 +57,7 @@ const calculatePoints = (taskProgress?: TaskProgress): number => {
   }
 };
 
-const calculateTotalScore = (progress: ITaskProgressStorage[]) => {
+const calculateScore = (progress: ITaskProgressStorage[]) => {
   let score = 0;
   progress.forEach((taskProgressStorage) => {
     score = score + calculatePoints(taskProgressStorage.taskProgress);
@@ -73,6 +74,15 @@ const getTasksOfCategory = (category: Category) => {
   return tasksOfCategory;
 };
 
+const calculateProgressPercentage = (
+  tasks: ITask[],
+  progress: ITaskProgressStorage[],
+) => {
+  const maxPoints = tasks.length * POINTS_FOR_SOLVED;
+  const points = calculateScore(progress);
+  return Math.round((100 * points) / maxPoints);
+};
+
 const calculateCategoryProgressPercentage = (
   category: Category,
   progress: ITaskProgressStorage[],
@@ -83,10 +93,7 @@ const calculateCategoryProgressPercentage = (
     tasksOfCategory.some((task) => task.uuid === progressState.uuid),
   );
 
-  const maxPoints = tasksOfCategory.length * POINTS_FOR_SOLVED;
-  const points = calculateTotalScore(progressOfCategory);
-
-  return Math.round((100 * points) / maxPoints);
+  return calculateProgressPercentage(tasksOfCategory, progressOfCategory);
 };
 
 // callback methods wrapped with Reacts useCallback()
@@ -106,7 +113,7 @@ export default function ProgressContextProvider({
   }, [setProgress, clearLocalStorage]);
 
   const getTotalScore = useCallback(() => {
-    return calculateTotalScore(progress);
+    return calculateScore(progress);
   }, [progress]);
 
   const getTaskProgress = useCallback(
@@ -126,6 +133,10 @@ export default function ProgressContextProvider({
     },
     [getTaskProgress],
   );
+
+  const getProgressPercentage = useCallback(() => {
+    return calculateProgressPercentage(allTasks, progress);
+  }, [progress]);
 
   const getCategoryProgressPercentage = useCallback(
     (category: Category) => {
@@ -200,6 +211,7 @@ export default function ProgressContextProvider({
         getTotalScore,
         getTaskProgress,
         getTaskPoints,
+        getProgressPercentage,
         getCategoryProgressPercentage,
         getRandomTaskId,
         setTaskProgress,

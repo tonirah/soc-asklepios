@@ -18,6 +18,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         space: `url('${basePath}/images/space.png')`,
+        'yagni-dark': `url('${basePath}/images/yagni-dark.png')`,
+        'yagni-light': `url('${basePath}/images/yagni-light.png')`,
       },
       colors: {
         'dark-blue': darkBlue,

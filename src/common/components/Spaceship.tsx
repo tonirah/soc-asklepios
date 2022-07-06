@@ -17,10 +17,12 @@ export function Spaceship() {
           <Link
             href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
           >
-            <a className="btn btn-block btn-link justify-start h-fit">
-              <div className="mb-1">{Category.CentralFlightSystem}</div>
+            <a className="btn btn-block btn-link justify-start h-fit text-left">
+              <div className="rounded-box p-2 bg-neutral/70 w-full">
+                {Category.CentralFlightSystem}
+              </div>
               <progress
-                className="block progress progress-accent mb-4"
+                className="block progress progress-accent h-4 mb-4"
                 value={getCategoryProgressPercentage(
                   Category.CentralFlightSystem,
                 )}
@@ -35,10 +37,12 @@ export function Spaceship() {
               Category.VentilationThermalControl,
             )}`}
           >
-            <a className="btn btn-block btn-link justify-end h-fit">
-              <div className="mb-1">{Category.VentilationThermalControl}</div>
+            <a className="btn btn-block btn-link justify-end h-fit text-right">
+              <div className="rounded-box p-2 bg-neutral/70 w-full">
+                {Category.VentilationThermalControl}
+              </div>
               <progress
-                className="block progress progress-secondary mb-4"
+                className="block progress progress-secondary h-4 mb-4"
                 value={getCategoryProgressPercentage(
                   Category.VentilationThermalControl,
                 )}
@@ -89,15 +93,17 @@ export function Spaceship() {
           <Link
             href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
           >
-            <a className="btn btn-block btn-link justify-start h-fit">
+            <a className="btn btn-block btn-link justify-start h-fit text-left">
               <progress
-                className="block progress progress-success mt-4 mb-1"
+                className="block progress progress-success h-4 mt-4"
                 value={getCategoryProgressPercentage(
                   Category.CrewHealthHypersleep,
                 )}
                 max="100"
               ></progress>
-              <div className="">{Category.CrewHealthHypersleep}</div>
+              <div className="rounded-box p-2 bg-neutral/70 w-full">
+                {Category.CrewHealthHypersleep}
+              </div>
             </a>
           </Link>
         </div>
@@ -107,15 +113,17 @@ export function Spaceship() {
               Category.SpaceRadiationProtection,
             )}`}
           >
-            <a className="btn btn-block btn-link justify-end h-fit">
+            <a className="btn btn-block btn-link justify-end h-fit text-right">
               <progress
-                className="block progress progress-primary mt-4 mb-1"
+                className="block progress progress-primary h-4 mt-4"
                 value={getCategoryProgressPercentage(
                   Category.SpaceRadiationProtection,
                 )}
                 max="100"
               ></progress>
-              <div className="">{Category.SpaceRadiationProtection}</div>
+              <div className="rounded-box p-2 bg-neutral/70 w-full">
+                {Category.SpaceRadiationProtection}
+              </div>
             </a>
           </Link>
         </div>
