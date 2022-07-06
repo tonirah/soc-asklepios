@@ -6,10 +6,9 @@ import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks/';
 import { Spaceship, TaskProgressIcon, ThemeChanger } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
-import { ExclamationIcon } from '@heroicons/react/solid';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const { getTaskProgress, resetProgress } = useContext(ProgressContext);
+  const { getTaskProgress } = useContext(ProgressContext);
 
   const title = `SOC Asklepios`;
   return (
@@ -50,7 +49,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
       <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mb-4">
         Kritische Codestellen
       </h2>
-      <div className="w-max mx-auto mb-24">
+      <div className="w-max mx-auto">
         {allTasks.map((task) => {
           return (
             <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
@@ -67,15 +66,6 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
           );
         })}
       </div>
-
-      <div className="divider max-w-lg mx-auto mb-2"></div>
-      <button
-        className="btn btn-sm btn-outline btn-warning"
-        onClick={() => resetProgress()}
-      >
-        <ExclamationIcon className="h-5 w-5 mr-1" />
-        Fortschritt zurücksetzen
-      </button>
     </>
   );
 }
