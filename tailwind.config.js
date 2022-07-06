@@ -19,9 +19,9 @@ module.exports = {
       backgroundImage: {
         space: `url('${basePath}/images/space.png')`,
       },
-    },
-    colors: {
-      'dark-blue': darkBlue,
+      colors: {
+        'dark-blue': darkBlue,
+      },
     },
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],

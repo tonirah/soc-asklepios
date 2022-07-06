@@ -66,10 +66,8 @@ export function Spaceship() {
               className="object-contain"
               alt="SOC Asklepios Spaceship"
             />
-            <div className="absolute top-0 w-full">
-              <div className="opacity-80 text-xs sm:text-base mt-3">
-                Gesamtpunkte
-              </div>
+            <div className="absolute top-0 w-full drop-shadow text-white">
+              <div className="text-xs sm:text-base mt-3">Gesamtpunkte</div>
               <div className="font-bold text-4xl sm:text-6xl">
                 {getTotalScore()}
               </div>

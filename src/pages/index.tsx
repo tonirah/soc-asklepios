@@ -7,11 +7,9 @@ import { ProgressContext } from '@/common/hooks/';
 import { Spaceship, TaskProgressIcon, ThemeChanger } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { ExclamationIcon } from '@heroicons/react/solid';
-import { useTheme } from 'next-themes';
 
 export default function Home({ allTasks }: { allTasks: ITask[] }) {
   const { getTaskProgress, resetProgress } = useContext(ProgressContext);
-  const { theme } = useTheme();
 
   const title = `SOC Asklepios`;
   return (
@@ -28,14 +26,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
         </span>
       </h1>
 
-      <div
-        className={`mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12 ${
-          theme === `dark`
-            ? `bg-transparent`
-            : `bg-dark-blue bg-space bg-repeat`
-        }`}
-        data-theme="dark"
-      >
+      <div className="mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12">
         <Spaceship />
       </div>
 
