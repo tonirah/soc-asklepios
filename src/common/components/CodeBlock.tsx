@@ -4,7 +4,6 @@ const dark =
   require(`react-syntax-highlighter/dist/cjs/styles/prism/darcula`).default;
 const light =
   require(`react-syntax-highlighter/dist/cjs/styles/prism/one-light`).default;
-console.log(light);
 SyntaxHighlighter.registerLanguage(`java`, java);
 import rangeParser from 'parse-numeric-range';
 import React from 'react';
