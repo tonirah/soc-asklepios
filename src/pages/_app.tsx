@@ -16,7 +16,7 @@ const ProgressContextProvider = dynamic(
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ProgressContextProvider>
-      <ThemeProvider defaultTheme="soc-asklepios-dark" enableSystem={false}>
+      <ThemeProvider defaultTheme="dark" enableSystem={false}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
