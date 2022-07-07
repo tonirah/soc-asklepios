@@ -1,12 +1,13 @@
-import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, IInputData, InputType, ITask } from '@/modules/tasks';
 import Head from 'next/head';
 import {
   CodeBlock,
   Comment,
+  Footer,
   HighlightColor,
   Input,
+  Navbar,
   TaskProgressIcon,
 } from '@/common/components/';
 import {
@@ -19,6 +20,7 @@ import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { parseRequiredBoolean } from '@/common/utils/parseRequired';
 import { ArrowCircleLeftIcon, BeakerIcon } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 
 const CODE_SMELLS_ENABLED = parseRequiredBoolean(
   process.env.CODE_SMELLS_ENABLED,
@@ -61,103 +63,110 @@ export default function Task({ taskData }: { taskData: ITask }) {
     .map((input) => input.lines)
     .join();
 
+  const router = useRouter();
+
   return (
     <>
       <Head>
         <title>{taskData.name}</title>
       </Head>
 
-      <div className="mb-3">
-        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent sm:-mb-3">
-          <TaskProgressIcon
-            className="h-16 w-16 inline-block mr-1"
-            taskProgress={getTaskProgress(taskData.uuid)}
-          />
-          {taskData.name}
-        </h1>
-        <span className="font-mono tracking-wider text-accent">
-          {taskData.category},{` `}
-        </span>
-        <span className="font-mono tracking-wider text-secondary">
-          Punkte:{` `}
-          <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
-        </span>
-      </div>
+      <Navbar />
 
-      <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
-        <div className="flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
-          <CodeBlock
-            code={taskData.dirtyCode}
-            highlightedLines={dirtyCodeHighlightedLines}
-            highlightColor={HighlightColor.Red}
-            isLineHintActive={isLineHintActive}
-            className="text-sm"
-          />
+      <div className="container mx-auto text-center pt-24 pb-32 px-2">
+        <div className="mb-4">
+          <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent sm:-mb-3">
+            <TaskProgressIcon
+              className="h-16 w-16 inline-block mr-1"
+              taskProgress={getTaskProgress(taskData.uuid)}
+            />
+            {taskData.name}
+          </h1>
+          <span className="font-mono tracking-wider text-accent">
+            {taskData.category},{` `}
+          </span>
+          <span className="font-mono tracking-wider text-secondary">
+            Punkte:{` `}
+            <span className="font-bold">{getTaskPoints(taskData.uuid)}</span>
+          </span>
         </div>
-        {isSolved && (
+
+        <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
           <div className="flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
             <CodeBlock
-              code={taskData.cleanCode}
-              highlightedLines={taskData.cleanCodeHighlightedLines}
-              highlightColor={HighlightColor.Green}
+              code={taskData.dirtyCode}
+              highlightedLines={dirtyCodeHighlightedLines}
+              highlightColor={HighlightColor.Red}
               isLineHintActive={isLineHintActive}
               className="text-sm"
             />
           </div>
-        )}
-      </div>
-      <div className="flex flex-wrap gap-3 mb-3">
-        {taskInputs.map((inputData, index) => (
-          <Input
-            key={`input-${index}`}
-            index={index}
-            inputData={inputData}
-            handleChangedInput={handleChangedInput}
-            isLineHintActive={isLineHintActive}
-            isValid={inputEvaluation[index]}
-            showAllOptions={taskData.showAllOptions}
-          />
-        ))}
-      </div>
-      {isSolved && <Comment comment={taskData.comment} />}
-      <div className="mt-12 mb-3 flex justify-center">
-        <label
-          htmlFor="lineHighlighter"
-          className="label justify-center gap-1.5 cursor-pointer p-0"
-        >
-          <input
-            className="toggle"
-            type="checkbox"
-            id="lineHighlighter"
-            onClick={toggleIsLineHintActive}
-            onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
-            checked={isLineHintActive}
-          />
-          <span className="label-text">Codestellen hervorheben</span>
-        </label>
-      </div>
-      <div className="flex gap-3 justify-center">
-        <button
-          className={classNames(`btn`, {
-            [`btn-primary`]: !isSolved,
-            [`btn-disabled`]: isSolved,
-          })}
-          onClick={onClickEvaluate}
-        >
-          <BeakerIcon className="h-5 w-5 mr-1" />
-          Evaluieren
-        </button>
-        <Link href={`/`}>
-          <a
+          {isSolved && (
+            <div className="flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
+              <CodeBlock
+                code={taskData.cleanCode}
+                highlightedLines={taskData.cleanCodeHighlightedLines}
+                highlightColor={HighlightColor.Green}
+                isLineHintActive={isLineHintActive}
+                className="text-sm"
+              />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-3 mb-3">
+          {taskInputs.map((inputData, index) => (
+            <Input
+              key={`input-${index}`}
+              index={index}
+              inputData={inputData}
+              handleChangedInput={handleChangedInput}
+              isLineHintActive={isLineHintActive}
+              isValid={inputEvaluation[index]}
+              showAllOptions={taskData.showAllOptions}
+            />
+          ))}
+        </div>
+        {isSolved && <Comment comment={taskData.comment} />}
+        <div className="mt-12 mb-3 flex justify-center">
+          <label
+            htmlFor="lineHighlighter"
+            className="label justify-center gap-1.5 cursor-pointer p-0"
+          >
+            <input
+              className="toggle"
+              type="checkbox"
+              id="lineHighlighter"
+              onClick={toggleIsLineHintActive}
+              onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
+              checked={isLineHintActive}
+            />
+            <span className="label-text">Codestellen hervorheben</span>
+          </label>
+        </div>
+        <div className="flex gap-3 justify-center">
+          <button
+            className={classNames(`btn`, {
+              [`btn-primary`]: !isSolved,
+              [`btn-disabled`]: isSolved,
+            })}
+            onClick={onClickEvaluate}
+          >
+            <BeakerIcon className="h-5 w-5 mr-1" />
+            Evaluieren
+          </button>
+          <button
             className={classNames(`btn`, {
               [`btn-primary`]: isSolved,
             })}
+            onClick={() => router.back()}
           >
             <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
             Zurück
-          </a>
-        </Link>
+          </button>
+        </div>
       </div>
+
+      <Footer />
     </>
   );
 }

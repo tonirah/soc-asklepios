@@ -69,7 +69,7 @@ module.exports = {
           info: '#3abff8',
           success: '#11b82c',
           error: '#f7164b',
-          // warning: '#fcee23',
+          warning: '#ffba00',
 
           'neutral-focus': '#f5f5f5',
 

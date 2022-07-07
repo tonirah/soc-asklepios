@@ -7,3 +7,5 @@ export * from './Layout';
 export * from './Spaceship';
 export * from './ClickableSpaceshipPart';
 export * from './ThemeChanger';
+export * from './Navbar';
+export * from './Footer';
