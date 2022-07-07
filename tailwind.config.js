@@ -76,7 +76,7 @@ module.exports = {
           //rgb(255, 219, 243)
           'primary-content': '#ffffff',
           'neutral-content': '#181a2a',
-          // 'base-content': '#181a2a',
+          'base-content': '#39393d',
           'error-content': '#fcdee6',
 
           '--rounded-box': roundedBox,

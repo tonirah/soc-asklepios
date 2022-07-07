@@ -19,15 +19,15 @@ export function Navbar() {
         <div className="hidden md:block flex-none flex items-center self-stretch">
           <ThemeChanger />
           <Link href={`/info`}>
-            <a className="btn btn-sm btn-link px-1.5 h-full text-left normal-case">
+            <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
               <InformationCircleIcon className="w-8 mr-1 text-info" />
               Story, Mission,
               <br />
               Refactorings
             </a>
           </Link>
-          <button className="btn btn-sm btn-link px-1.5 h-full text-left normal-case">
-            <ViewListIcon className="w-8 mr-1 text-accent" />
+          <button className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
+            <ViewListIcon className="w-8 mr-1 text-primary" />
             Liste kritischer
             <br />
             Codestellen

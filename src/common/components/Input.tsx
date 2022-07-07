@@ -106,7 +106,7 @@ export function Input({
           <div {...getInputWrapperProps()}>
             <input
               {...getInputProps()}
-              className="input input-bordered w-full shadow-md"
+              className="input input-bordered w-full"
               disabled={isValid}
               placeholder={inputPlaceholder}
             />

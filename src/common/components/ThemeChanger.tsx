@@ -8,7 +8,7 @@ export const ThemeChanger = () => {
     <>
       {theme === `dark` ? (
         <button
-          className="btn btn-sm btn-link px-1.5 text-left h-full normal-case"
+          className="btn btn-sm btn-link text-base-content px-1.5 text-left h-full normal-case"
           onClick={() => setTheme(`light`)}
         >
           <SunIcon className="w-8 text-base-content mr-1" />
@@ -18,10 +18,10 @@ export const ThemeChanger = () => {
         </button>
       ) : (
         <button
-          className="btn btn-sm btn-link px-1.5 text-left h-full normal-case"
+          className="btn btn-sm btn-link text-base-content px-1.5 text-left h-full normal-case"
           onClick={() => setTheme(`dark`)}
         >
-          <MoonIcon className="w-8 text-base-content/90" />
+          <MoonIcon className="w-8 text-base-content" />
           Dunkles
           <br />
           Design

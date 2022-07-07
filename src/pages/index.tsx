@@ -24,26 +24,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
 
       <Navbar />
 
-      <div className="bg-neutral/70 rounded-box shadow-xl mb-16 text-neutral-content pt-20 text-center">
-        <div className="container mx-auto pt-0.5">
-          <p className="font-mono">
-            <span className="font-bold">„Im Jahr 2094.</span> Du befindest dich
-            auf einer interplanetaren Reise, und warst bis gerade eben im
-            Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
-            geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
-            refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu können.
-            <span className="font-bold">“</span>
-            <Link href={`/info`}>
-              <a className="btn btn-link">
-                <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
-                Story, Mission, Refactorings
-              </a>
-            </Link>
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto text-center pb-32 px-2">
+      <div className="container mx-auto text-center pb-32 pt-32 px-2">
         <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed mb-4">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
           {title}
@@ -51,6 +32,26 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
 
         <div className="mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12">
           <Spaceship />
+        </div>
+
+        <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-3 px-8">
+          <div className="container mx-auto pt-0.5">
+            <p className="font-mono">
+              <span className="font-bold">„Im Jahr 2094.</span> Du befindest
+              dich auf einer interplanetaren Reise, und warst bis gerade eben im
+              Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
+              geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
+              refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu
+              können.
+              <span className="font-bold">“</span>
+            </p>
+            <Link href={`/info`}>
+              <a className="btn btn-link">
+                <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
+                Story, Mission, Refactorings
+              </a>
+            </Link>
+          </div>
         </div>
 
         <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mb-4">
