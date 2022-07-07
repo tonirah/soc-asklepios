@@ -80,17 +80,21 @@ export function Navbar() {
         >
           {/*<div className="relative w-screen max-w-lg pb-10 pt-16 px-4 flex flex-col space-y-6 overflow-y-scroll h-full">*/}
           <div className="relative w-screen max-w-lg pb-10 pt-20 px-4 overflow-y-scroll h-full">
-            <div className="sm:hidden">
+            <div className="sm:hidden mt-2">
               <div className="flex justify-around">
-                <ThemeChanger />
-                <Link href={`/info`}>
-                  <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
-                    <InformationCircleIcon className="w-8 mr-1 text-info" />
-                    Story, Mission,
-                    <br />
-                    Refactorings
-                  </a>
-                </Link>
+                <div className="w-32">
+                  <ThemeChanger />
+                </div>
+                <div onClick={toggleIsListVisible}>
+                  <Link href={`/info`}>
+                    <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
+                      <InformationCircleIcon className="w-8 mr-1 text-info" />
+                      Story, Mission,
+                      <br />
+                      Refactorings
+                    </a>
+                  </Link>
+                </div>
               </div>
               <div className="divider mb-0"></div>
             </div>

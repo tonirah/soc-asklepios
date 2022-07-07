@@ -22,8 +22,8 @@ export default function Info() {
 
       <Navbar />
 
-      <div className="container mx-auto text-center pt-32 pb-32 px-2">
-        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-6">
+      <div className="container mx-auto text-center pt-28 pb-32 px-2">
+        <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-4">
           {title}
         </h1>
         <div className="bg-neutral border border-neutral mx-auto py-12 max-w-3xl rounded-box">
