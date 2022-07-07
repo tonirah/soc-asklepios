@@ -18,7 +18,7 @@ export function Spaceship() {
             href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
           >
             <a className="btn btn-block btn-link justify-start h-fit text-left">
-              <div className="rounded-box p-2 bg-neutral/70 w-full">
+              <div className="rounded-box p-2 w-full">
                 {Category.CentralFlightSystem}
               </div>
               <progress
@@ -38,7 +38,7 @@ export function Spaceship() {
             )}`}
           >
             <a className="btn btn-block btn-link justify-end h-fit text-right">
-              <div className="rounded-box p-2 bg-neutral/70 w-full">
+              <div className="rounded-box p-2 w-full">
                 {Category.VentilationThermalControl}
               </div>
               <progress
@@ -101,7 +101,7 @@ export function Spaceship() {
                 )}
                 max="100"
               ></progress>
-              <div className="rounded-box p-2 bg-neutral/70 w-full">
+              <div className="rounded-box p-2 w-full">
                 {Category.CrewHealthHypersleep}
               </div>
             </a>
@@ -121,7 +121,7 @@ export function Spaceship() {
                 )}
                 max="100"
               ></progress>
-              <div className="rounded-box p-2 bg-neutral/70 w-full">
+              <div className="rounded-box p-2 w-full">
                 {Category.SpaceRadiationProtection}
               </div>
             </a>
