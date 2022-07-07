@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <div className="w-full text-center bg-base-300 border-t border-neutral-content/20 h-32">
-      <div className="container mx-auto text-center pt-10 px-2 flex justify-center">
+      <div className="container mx-auto text-center pt-8 px-2 flex justify-center">
         <a
           className="btn btn-link text-base-content normal-case h-fit text-left leading-tight mx-2"
           href="https://github.com/tonirah/soc-asklepios"

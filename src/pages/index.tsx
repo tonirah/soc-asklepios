@@ -1,20 +1,9 @@
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
-import { allTasks, ITask } from '@/modules/tasks';
 import Link from 'next/link';
-import { useContext } from 'react';
-import { ProgressContext } from '@/common/hooks/';
-import {
-  Footer,
-  Navbar,
-  Spaceship,
-  TaskProgressIcon,
-} from '@/common/components';
+import { Footer, Navbar, Spaceship } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 
-export default function Home({ allTasks }: { allTasks: ITask[] }) {
-  const { getTaskProgress } = useContext(ProgressContext);
-
+export default function Home() {
   const title = `SOC Asklepios`;
   return (
     <>
@@ -24,7 +13,7 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
 
       <Navbar />
 
-      <div className="container mx-auto text-center pb-32 pt-32 px-2">
+      <div className="container mx-auto text-center pt-32 px-2">
         <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed mb-4">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
           {title}
@@ -53,38 +42,9 @@ export default function Home({ allTasks }: { allTasks: ITask[] }) {
             </Link>
           </div>
         </div>
-
-        <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mb-4">
-          Kritische Codestellen
-        </h2>
-        <div className="w-max mx-auto">
-          {allTasks.map((task) => {
-            return (
-              <Link key={task.uuid} href={`/tasks/${task.uuid}`}>
-                <a className="btn btn-link block w-fit">
-                  <div key={task.uuid} className="flex flex-row items-center">
-                    <TaskProgressIcon
-                      taskProgress={getTaskProgress(task.uuid)}
-                      className="h-8 w-8 mr-1"
-                    />
-                    {task.name}
-                  </div>
-                </a>
-              </Link>
-            );
-          })}
-        </div>
       </div>
 
       <Footer />
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      allTasks,
-    },
-  };
-};
