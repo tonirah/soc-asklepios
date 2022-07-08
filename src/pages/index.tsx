@@ -20,9 +20,9 @@ export default function Home() {
           <Spaceship />
         </div>
 
-        <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-3 px-8">
+        <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-5 px-8">
           <div className="container mx-auto pt-0.5">
-            <p className="font-mono">
+            <p className="font-mono mb-3">
               <span className="font-bold">„Im Jahr 2094.</span> Du befindest
               dich auf einer interplanetaren Reise, und warst bis gerade eben im
               Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
@@ -32,7 +32,7 @@ export default function Home() {
               <span className="font-bold">“</span>
             </p>
             <Link href={`/info`}>
-              <a className="btn btn-link">
+              <a className="btn btn-link bg-base-100/60 hover:bg-base-100/80">
                 <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
                 Story, Mission, Refactorings
               </a>
