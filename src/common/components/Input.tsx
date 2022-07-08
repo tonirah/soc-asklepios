@@ -121,7 +121,9 @@ export function Input({
                   {...getItemProps({ item, index })}
                   className="odd:bg-neutral even:bg-neutral-focus"
                 >
-                  <a className="py-3 px-4">{item.value}</a>
+                  <a className="flex items-center py-0 px-4 min-h-12">
+                    {item.value}
+                  </a>
                 </li>
               ))}
           </ul>
