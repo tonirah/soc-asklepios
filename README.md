@@ -33,4 +33,3 @@ Open `http://localhost:3000` with your browser to see the result.
 - `npm run type-check` — Validate code using TypeScript compiler.
 - `npm run lint` — Runs ESLint for all files in the `src` directory.
 - `npm run format` — Runs Prettier for all files in the `src` directory.
-- `npm run commit` — Run commitizen. Alternative to `git commit`.
