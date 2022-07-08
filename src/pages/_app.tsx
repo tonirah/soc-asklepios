@@ -5,6 +5,7 @@ import '@/common/utils/whyDidYouRender';
 import { parseRequiredBoolean } from '@/common/utils/parseRequired';
 import { Layout } from '@/common/components';
 import { ThemeProvider } from 'next-themes';
+import { useRouter } from 'next/router';
 
 const SSR_ENABLED = parseRequiredBoolean(process.env.SSR_ENABLED);
 
@@ -14,11 +15,15 @@ const ProgressContextProvider = dynamic(
 );
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  // Reset state after navigation
+  // https://nextjs.org/docs/api-reference/next/router#resetting-state-after-navigation
+  const router = useRouter();
+
   return (
     <ProgressContextProvider>
       <ThemeProvider defaultTheme="dark" enableSystem={false}>
         <Layout>
-          <Component {...pageProps} />
+          <Component key={router.asPath} {...pageProps} />
         </Layout>
       </ThemeProvider>
     </ProgressContextProvider>
