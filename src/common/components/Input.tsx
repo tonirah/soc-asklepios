@@ -73,7 +73,7 @@ export function Input({
   });
 
   const getFormControlClasses = classNames(
-    `form-control rounded-box p-0.5 w-full transition-all`,
+    `form-control rounded-box p-0.5 w-full transition-all mb-2`,
     {
       [`bg-error`]: isValid === false,
       [`bg-success`]: isValid,
@@ -121,7 +121,7 @@ export function Input({
                   {...getItemProps({ item, index })}
                   className="odd:bg-neutral even:bg-neutral-focus"
                 >
-                  <a>{item.value}</a>
+                  <a className="min-h-12">{item.value}</a>
                 </li>
               ))}
           </ul>

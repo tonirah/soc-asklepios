@@ -91,8 +91,8 @@ export default function Task({ taskData }: { taskData: ITask }) {
           </span>
         </div>
 
-        <div className="flex flex-col xl:flex-row gap-3 mb-8 w-full items-stretch">
-          <div className="flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
+        <div className="flex flex-col xl:flex-row mb-8 w-full items-stretch">
+          <div className="flex flex-col justify-end m-0.5 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
             <CodeBlock
               code={taskData.dirtyCode}
               highlightedLines={dirtyCodeHighlightedLines}
@@ -102,7 +102,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             />
           </div>
           {isSolved && (
-            <div className="flex flex-col justify-end 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
+            <div className="flex flex-col justify-end m-0.5 2xl:justify-start xl:w-0 flex-auto bg-base-300 border border-neutral rounded-box">
               <CodeBlock
                 code={taskData.cleanCode}
                 highlightedLines={taskData.cleanCodeHighlightedLines}
@@ -113,7 +113,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             </div>
           )}
         </div>
-        <div className="flex flex-wrap gap-3 mb-3">
+        <div className="mb-3">
           {taskInputs.map((inputData, index) => (
             <Input
               key={`input-${index}`}
@@ -130,10 +130,10 @@ export default function Task({ taskData }: { taskData: ITask }) {
         <div className="mt-12 mb-3 flex justify-center">
           <label
             htmlFor="lineHighlighter"
-            className="label justify-center gap-1.5 cursor-pointer p-0"
+            className="label justify-center cursor-pointer p-0"
           >
             <input
-              className="toggle"
+              className="toggle mr-1.5"
               type="checkbox"
               id="lineHighlighter"
               onClick={toggleIsLineHintActive}
@@ -143,9 +143,9 @@ export default function Task({ taskData }: { taskData: ITask }) {
             <span className="label-text">Codestellen hervorheben</span>
           </label>
         </div>
-        <div className="flex gap-3 justify-center">
+        <div className="flex justify-center">
           <button
-            className={classNames(`btn`, {
+            className={classNames(`btn mx-1`, {
               [`btn-primary`]: !isSolved,
               [`btn-disabled`]: isSolved,
             })}
@@ -155,7 +155,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             Evaluieren
           </button>
           <button
-            className={classNames(`btn`, {
+            className={classNames(`btn mx-1`, {
               [`btn-primary`]: isSolved,
             })}
             onClick={() => router.back()}

@@ -12,7 +12,7 @@ export function Spaceship() {
 
   return (
     <>
-      <div className="flex w-full gap-2 justify-center items-end">
+      <div className="flex w-full justify-center items-end">
         <div className="w-1/2">
           <Link
             href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
@@ -88,7 +88,7 @@ export function Spaceship() {
         </div>
       </div>
 
-      <div className="flex w-full gap-2 justify-center items-start">
+      <div className="flex w-full justify-center items-start">
         <div className="w-1/2">
           <Link
             href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
