@@ -4,5 +4,18 @@ import { task1 } from '@/modules/tasks/task1';
 import { task2 } from '@/modules/tasks/task2';
 import { task3 } from '@/modules/tasks/task3';
 
+const compareDifficultyAndName = (a: ITask, b: ITask) => {
+  if (a.difficulty < b.difficulty) {
+    return -1;
+  }
+  if (a.difficulty > b.difficulty) {
+    return 1;
+  }
+  return a.name.localeCompare(b.name);
+};
+
+export const allTasks: ITask[] = [task0, task1, task2, task3].sort(
+  compareDifficultyAndName,
+);
+
 export * from './definitions';
-export const allTasks: ITask[] = [task0, task1, task2, task3];
