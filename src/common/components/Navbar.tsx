@@ -52,7 +52,11 @@ export function Navbar() {
           </div>
 
           <div className="sm:hidden flex-none mx-1">
-            <button onClick={toggleIsListVisible} className="btn btn-square">
+            <button
+              aria-label="Menü öffnen und schließen"
+              onClick={toggleIsListVisible}
+              className="btn btn-square"
+            >
               {isListOpen ? (
                 <XIcon className="w-8" />
               ) : (

@@ -1,8 +1,7 @@
-import Head from 'next/head';
 import { Refactoring } from '@/modules/tasks';
 import { parseRequiredInt } from '@/common/utils/parseRequired';
 import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
-import { Footer, Navbar } from '@/common/components';
+import { Footer, Head, Navbar } from '@/common/components';
 import { useRouter } from 'next/router';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
@@ -16,9 +15,7 @@ export default function Info() {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <Head title={title} />
 
       <Navbar />
 

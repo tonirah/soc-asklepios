@@ -22,4 +22,8 @@ module.exports = {
     loader: 'custom',
     unoptimized: true,
   },
+  i18n: {
+    locales: ['de'],
+    defaultLocale: 'de',
+  },
 };

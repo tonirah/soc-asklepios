@@ -18,16 +18,18 @@ export function Spaceship() {
             href={`/tasks/${getRandomTaskId(Category.CentralFlightSystem)}`}
           >
             <a className="btn btn-block btn-link justify-start h-fit text-left">
-              <div className="rounded-box p-2 w-full">
-                {Category.CentralFlightSystem}
-              </div>
-              <progress
-                className="block progress progress-accent h-4 mb-4"
-                value={getCategoryProgressPercentage(
-                  Category.CentralFlightSystem,
-                )}
-                max="100"
-              ></progress>
+              <label className="hover:cursor-pointer">
+                <div className="rounded-box p-2 w-full">
+                  {Category.CentralFlightSystem}
+                </div>
+                <progress
+                  className="block progress progress-accent h-4 mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.CentralFlightSystem,
+                  )}
+                  max="100"
+                ></progress>
+              </label>
             </a>
           </Link>
         </div>
@@ -38,16 +40,18 @@ export function Spaceship() {
             )}`}
           >
             <a className="btn btn-block btn-link justify-end h-fit text-right">
-              <div className="rounded-box p-2 w-full">
-                {Category.VentilationThermalControl}
-              </div>
-              <progress
-                className="block progress progress-secondary h-4 mb-4"
-                value={getCategoryProgressPercentage(
-                  Category.VentilationThermalControl,
-                )}
-                max="100"
-              ></progress>
+              <label className="hover:cursor-pointer">
+                <div className="rounded-box p-2 w-full">
+                  {Category.VentilationThermalControl}
+                </div>
+                <progress
+                  className="block progress progress-secondary h-4 mb-4"
+                  value={getCategoryProgressPercentage(
+                    Category.VentilationThermalControl,
+                  )}
+                  max="100"
+                ></progress>
+              </label>
             </a>
           </Link>
         </div>
@@ -94,16 +98,18 @@ export function Spaceship() {
             href={`/tasks/${getRandomTaskId(Category.CrewHealthHypersleep)}`}
           >
             <a className="btn btn-block btn-link justify-start h-fit text-left">
-              <progress
-                className="block progress progress-success h-4 mt-4"
-                value={getCategoryProgressPercentage(
-                  Category.CrewHealthHypersleep,
-                )}
-                max="100"
-              ></progress>
-              <div className="rounded-box p-2 w-full">
-                {Category.CrewHealthHypersleep}
-              </div>
+              <label className="hover:cursor-pointer">
+                <progress
+                  className="block progress progress-success h-4 mt-4"
+                  value={getCategoryProgressPercentage(
+                    Category.CrewHealthHypersleep,
+                  )}
+                  max="100"
+                ></progress>
+                <div className="rounded-box p-2 w-full">
+                  {Category.CrewHealthHypersleep}
+                </div>
+              </label>
             </a>
           </Link>
         </div>
@@ -114,16 +120,18 @@ export function Spaceship() {
             )}`}
           >
             <a className="btn btn-block btn-link justify-end h-fit text-right">
-              <progress
-                className="block progress progress-primary h-4 mt-4"
-                value={getCategoryProgressPercentage(
-                  Category.SpaceRadiationProtection,
-                )}
-                max="100"
-              ></progress>
-              <div className="rounded-box p-2 w-full">
-                {Category.SpaceRadiationProtection}
-              </div>
+              <label className="hover:cursor-pointer">
+                <progress
+                  className="block progress progress-primary h-4 mt-4"
+                  value={getCategoryProgressPercentage(
+                    Category.SpaceRadiationProtection,
+                  )}
+                  max="100"
+                ></progress>
+                <div className="rounded-box p-2 w-full">
+                  {Category.SpaceRadiationProtection}
+                </div>
+              </label>
             </a>
           </Link>
         </div>

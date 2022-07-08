@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { allTasks, IInputData, InputType, ITask } from '@/modules/tasks';
-import Head from 'next/head';
 import {
   CodeBlock,
   Comment,
   Footer,
+  Head,
   HighlightColor,
   Input,
   Navbar,
@@ -67,9 +67,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   return (
     <>
-      <Head>
-        <title>{taskData.name}</title>
-      </Head>
+      <Head title={taskData.name} />
 
       <Navbar />
 

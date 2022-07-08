@@ -1,15 +1,12 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import { Footer, Navbar, Spaceship } from '@/common/components';
+import { Footer, Head, Navbar, Spaceship } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 
 export default function Home() {
   const title = `SOC Asklepios`;
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <Head title={title} />
 
       <Navbar />
 

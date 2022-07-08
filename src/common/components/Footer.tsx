@@ -15,6 +15,7 @@ export function Footer() {
           rel="noreferrer"
         >
           <svg
+            aria-label="GitHub Logo"
             width="20"
             height="20"
             xmlns="http://www.w3.org/2000/svg"
