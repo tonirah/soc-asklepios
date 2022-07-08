@@ -1,17 +1,12 @@
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
-import { ThemeChanger } from '@/common/components/ThemeChanger';
 import Link from 'next/link';
 import { ViewListIcon, XIcon } from '@heroicons/react/solid';
-import { useContext, useState } from 'react';
-import { TaskProgressIcon } from '@/common/components/TaskProgressIcon';
-import { allTasks } from '@/modules/tasks';
-import { ProgressContext } from '@/common/hooks';
+import { useState } from 'react';
+import { Drawer, ThemeChanger } from '@/common/components/';
 
 export function Navbar() {
-  const [isListOpen, setIsListOpen] = useState(false);
-  const toggleIsListVisible = () => setIsListOpen((isListOpen) => !isListOpen);
-
-  const { getTaskProgress } = useContext(ProgressContext);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = () => setIsDrawerOpen((isListOpen) => !isListOpen);
 
   return (
     <>
@@ -37,10 +32,10 @@ export function Navbar() {
               </a>
             </Link>
             <button
-              onClick={toggleIsListVisible}
+              onClick={toggleDrawer}
               className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case"
             >
-              {isListOpen ? (
+              {isDrawerOpen ? (
                 <XIcon className="w-8 mr-1 text-primary" />
               ) : (
                 <ViewListIcon className="w-8 mr-1 text-primary" />
@@ -54,10 +49,10 @@ export function Navbar() {
           <div className="sm:hidden flex-none mx-1">
             <button
               aria-label="Menü öffnen und schließen"
-              onClick={toggleIsListVisible}
+              onClick={toggleDrawer}
               className="btn btn-square"
             >
-              {isListOpen ? (
+              {isDrawerOpen ? (
                 <XIcon className="w-8" />
               ) : (
                 <ViewListIcon className="w-8" />
@@ -67,85 +62,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* drawer: https://codesandbox.io/s/bjbfr */}
-      <div
-        className={
-          `fixed overflow-hidden z-10 bg-base-300/40 inset-0 transform ease-in-out ` +
-          (isListOpen
-            ? `transition-opacity opacity-100 duration-200 translate-x-0`
-            : `transition-all delay-200 opacity-0 translate-x-full`)
-        }
-      >
-        <div
-          className={
-            ` w-screen max-w-lg right-0 absolute bg-base-100 border-l border-neutral-content/20 h-full duration-200 ease-in-out transition-all transform  ` +
-            (isListOpen ? ` translate-x-0 ` : ` translate-x-full delay-100`)
-          }
-        >
-          {/*<div className="relative w-screen max-w-lg pb-10 pt-16 px-4 flex flex-col space-y-6 overflow-y-scroll h-full">*/}
-          <div className="relative w-screen max-w-lg pb-10 pt-20 px-4 overflow-y-scroll h-full">
-            <div className="sm:hidden mt-2">
-              <div className="flex justify-around">
-                <div className="w-32">
-                  <ThemeChanger />
-                </div>
-                <div onClick={toggleIsListVisible}>
-                  <Link href={`/info`}>
-                    <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
-                      <InformationCircleIcon className="w-8 mr-1 text-info" />
-                      Story, Mission,
-                      <br />
-                      Refactorings
-                    </a>
-                  </Link>
-                </div>
-              </div>
-              <div className="divider mb-0"></div>
-            </div>
-
-            <h2 className="font-mono text-2xl font-bold tracking-wider underline text-secondary decoration-accent mx-5 mb-5 mt-6">
-              Kritische Codestellen
-            </h2>
-            <div className="mx-5 mb-10">
-              {allTasks.map((task) => {
-                return (
-                  <div key={task.uuid} onClick={toggleIsListVisible}>
-                    <Link href={`/tasks/${task.uuid}`}>
-                      <a className="btn btn-link block w-fit">
-                        <div
-                          key={task.uuid}
-                          className="flex flex-row items-center text-left"
-                        >
-                          <TaskProgressIcon
-                            taskProgress={getTaskProgress(task.uuid)}
-                            className="h-8 w-8 mr-1 shrink-0"
-                          />
-                          {task.name}
-                        </div>
-                      </a>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="text-center">
-              <div className="divider"></div>
-              <button
-                className="btn btn-sm btn-outline"
-                onClick={toggleIsListVisible}
-              >
-                Liste schließen
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="w-screen h-full cursor-pointer"
-          onClick={toggleIsListVisible}
-        ></div>
-      </div>
+      <Drawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
     </>
   );
 }
