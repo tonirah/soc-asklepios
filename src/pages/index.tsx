@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import { Footer, Head, Navbar, Spaceship } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
+import { useContext } from 'react';
+import { ProgressContext } from '@/common/hooks';
 
 export default function Home() {
   const title = `SOC Asklepios`;
+
+  const { isWin } = useContext(ProgressContext);
   return (
     <>
       <Head title={title} />
@@ -16,29 +20,55 @@ export default function Home() {
           {title}
         </h1>
 
-        <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-5 px-8">
-          <div className="container mx-auto pt-0.5">
-            <p className="font-mono mb-3">
-              <span className="font-bold">„Im Jahr 2094.</span> Du befindest
-              dich auf einer interplanetaren Reise, und warst bis gerade eben im
-              Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
-              geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
-              refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu
-              können.
-              <span className="font-bold">“</span>
+        {isWin ? (
+          <div className="mb-8 px-8 motion-safe:animate-bounce">
+            <p className="font-mono font-bold mb-3 leading-10 text-xl">
+              <span className="before:block before:absolute before:-inset-1.5 before:-skew-y-2 before:-skew-x-3 before:bg-primary relative inline-block px-1">
+                <span className="relative text-success-content">
+                  Geschafft!
+                </span>
+              </span>
+              {` `}
+              Dank deiner Hilfe konnte{` `}
+              <span className="before:block before:absolute before:-inset-2 before:bg-accent relative inline-block px-1 mx-1">
+                <span className="relative text-accent-content">
+                  SOC Asklepios
+                </span>
+              </span>
+              {` `}
+              sicher auf dem Planet{` `}
+              <span className="before:block before:absolute before:-inset-1.5 before:skew-y-2 before:skew-x-3 before:bg-success relative inline-block px-1">
+                <span className="relative text-success-content">Yagni</span>
+              </span>
+              {` `}
+              landen!
             </p>
-            <Link href="/info">
-              <a className="btn btn-link bg-base-100/60 hover:bg-base-100/80">
-                <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
-                Story, Mission, Refactorings
-              </a>
-            </Link>
           </div>
-        </div>
+        ) : (
+          <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-5 px-8">
+            <div className="container mx-auto pt-0.5">
+              <p className="font-mono mb-3">
+                <span className="font-bold">„Im Jahr 2094.</span> Du befindest
+                dich auf einer interplanetaren Reise, und warst bis gerade eben
+                im Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat
+                dich geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen
+                und zu refaktorisieren, um sicher auf dem Planet 'Yagni' landen
+                zu können.
+                <span className="font-bold">“</span>
+              </p>
+              <Link href="/info">
+                <a className="btn btn-link bg-base-100/60 hover:bg-base-100/80">
+                  <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
+                  Story, Mission, Refactorings
+                </a>
+              </Link>
+            </div>
+          </div>
+        )}
 
         <div
           id="soc-asklepios"
-          className="mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12"
+          className="scroll-mt-40 mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 mb-12"
         >
           <Spaceship />
         </div>
