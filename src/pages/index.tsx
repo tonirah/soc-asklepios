@@ -16,10 +16,6 @@ export default function Home() {
           {title}
         </h1>
 
-        <div className="mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12">
-          <Spaceship />
-        </div>
-
         <div className="bg-neutral rounded-box mb-12 text-neutral-content pt-8 pb-5 px-8">
           <div className="container mx-auto pt-0.5">
             <p className="font-mono mb-3">
@@ -38,6 +34,13 @@ export default function Home() {
               </a>
             </Link>
           </div>
+        </div>
+
+        <div
+          id="soc-asklepios"
+          className="mx-auto w-full rounded-box xl:w-4/5 2xl:w-2/3 py-2 mb-12"
+        >
+          <Spaceship />
         </div>
       </div>
 

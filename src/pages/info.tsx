@@ -102,7 +102,7 @@ export default function Info() {
           </div>
         </div>
         <div className="mt-4 text-center">
-          <Link href="/">
+          <Link href="/#soc-asklepios" scroll={false}>
             <a className="btn">
               <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
               SOC Asklepios

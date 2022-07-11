@@ -150,7 +150,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
             <BeakerIcon className="h-5 w-5 mr-1" />
             Evaluieren
           </button>
-          <Link href="/">
+          <Link href="/#soc-asklepios" scroll={false}>
             <a
               className={classNames(`btn mx-1`, {
                 [`btn-primary`]: isSolved,
