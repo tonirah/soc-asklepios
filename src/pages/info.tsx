@@ -91,11 +91,16 @@ export default function Info() {
             >
               Liste von Refactorings
             </h2>
-            <ul>
-              {Object.values(Refactoring).map((refactoring) => (
-                <li key={refactoring}>{refactoring}</li>
-              ))}
-            </ul>
+            <div className="text-left">
+              <p>Die folgenden Refacotrings kommen in „SOC Asklepios“ vor:</p>
+              <ol>
+                {Object.values(Refactoring).map((refactoring) => (
+                  <li className="leading-relaxed" key={refactoring}>
+                    {refactoring}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
         <div className="mt-4 text-center">
