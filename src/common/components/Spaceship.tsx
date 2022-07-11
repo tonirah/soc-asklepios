@@ -7,7 +7,7 @@ import { ClickableSpaceshipPart } from '@/common/components/ClickableSpaceshipPa
 import socCenterBase from '@/public/images/ship/soc-center-base.png';
 
 export function Spaceship() {
-  const { getCategoryProgressPercentage, getTotalScore, getRandomTaskId } =
+  const { getCategoryProgressPercentage, totalScore, getRandomTaskId } =
     useContext(ProgressContext);
 
   return (
@@ -76,9 +76,7 @@ export function Spaceship() {
             />
             <div className="absolute top-0 w-full drop-shadow text-white">
               <div className="text-xs sm:text-base mt-3">Gesamtpunkte</div>
-              <div className="font-bold text-4xl sm:text-6xl">
-                {getTotalScore()}
-              </div>
+              <div className="font-bold text-4xl sm:text-6xl">{totalScore}</div>
             </div>
           </div>
           <div className="h-full">

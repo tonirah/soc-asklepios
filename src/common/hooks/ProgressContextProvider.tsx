@@ -3,6 +3,7 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
 } from 'react';
 import { useDidMount, useLocalstorageState, useWillUnmount } from 'rooks';
@@ -29,10 +30,11 @@ interface ITaskProgressStorage {
 
 interface IProgressContext {
   resetProgress: () => void;
-  getTotalScore: () => number;
+  totalScore: number;
+  isWin: boolean;
   getTaskProgress: (uuid: UuidV4) => TaskProgress | undefined;
   getTaskPoints: (uuid: UuidV4) => number;
-  getProgressPercentage: () => number;
+  progressPercentage: number;
   getCategoryProgressPercentage: (category: Category) => number;
   getRandomTaskId: (category: Category) => UuidV4;
   setTaskProgress: (uuid: UuidV4, taskProgress: TaskProgress) => void;
@@ -112,7 +114,7 @@ export default function ProgressContextProvider({
     clearLocalStorage();
   }, [setProgress, clearLocalStorage]);
 
-  const getTotalScore = useCallback(() => {
+  const totalScore = useMemo(() => {
     return calculateScore(progress);
   }, [progress]);
 
@@ -134,7 +136,7 @@ export default function ProgressContextProvider({
     [getTaskProgress],
   );
 
-  const getProgressPercentage = useCallback(() => {
+  const progressPercentage = useMemo(() => {
     return calculateProgressPercentage(allTasks, progress);
   }, [progress]);
 
@@ -144,6 +146,8 @@ export default function ProgressContextProvider({
     },
     [progress],
   );
+
+  const isWin = useMemo(() => progressPercentage === 100, [progressPercentage]);
 
   const getRandomTaskId = useCallback(
     (category: Category) => {
@@ -208,10 +212,11 @@ export default function ProgressContextProvider({
     <ProgressContext.Provider
       value={{
         resetProgress,
-        getTotalScore,
+        totalScore,
+        isWin,
         getTaskProgress,
         getTaskPoints,
-        getProgressPercentage,
+        progressPercentage,
         getCategoryProgressPercentage,
         getRandomTaskId,
         setTaskProgress,

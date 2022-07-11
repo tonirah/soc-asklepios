@@ -5,8 +5,7 @@ import classNames from 'classnames';
 
 export function Layout({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
-  const { getProgressPercentage } = useContext(ProgressContext);
-  const isWin = getProgressPercentage() === 100;
+  const { isWin } = useContext(ProgressContext);
 
   return (
     <>
