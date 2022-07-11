@@ -23,7 +23,7 @@ export function Navbar() {
 
           <div className="hidden sm:block flex-none flex items-center self-stretch">
             <ThemeChanger />
-            <Link href={`/info`}>
+            <Link href="/info">
               <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
                 <InformationCircleIcon className="w-8 mr-1 text-info" />
                 Story, Mission,

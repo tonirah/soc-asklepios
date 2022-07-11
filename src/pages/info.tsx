@@ -2,7 +2,7 @@ import { Refactoring } from '@/modules/tasks';
 import { parseRequiredInt } from '@/common/utils/parseRequired';
 import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
 import { Footer, Head, Navbar } from '@/common/components';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
   process.env.MIN_CHARACTERS_FOR_COMBOBOX,
@@ -10,8 +10,6 @@ const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
 
 export default function Info() {
   const title = `Story, Mission, Refactorings`;
-
-  const router = useRouter();
 
   return (
     <>
@@ -104,10 +102,12 @@ export default function Info() {
           </div>
         </div>
         <div className="mt-4 text-center">
-          <button className="btn" onClick={() => router.back()}>
-            <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
-            Zurück
-          </button>
+          <Link href="/">
+            <a className="btn">
+              <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
+              SOC Asklepios
+            </a>
+          </Link>
         </div>
       </div>
 

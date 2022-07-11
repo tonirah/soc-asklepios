@@ -31,7 +31,7 @@ export default function Home() {
               können.
               <span className="font-bold">“</span>
             </p>
-            <Link href={`/info`}>
+            <Link href="/info">
               <a className="btn btn-link bg-base-100/60 hover:bg-base-100/80">
                 <InformationCircleIcon className="h-6 w-6 mr-1 text-info" />
                 Story, Mission, Refactorings

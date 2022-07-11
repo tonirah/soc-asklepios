@@ -20,7 +20,7 @@ import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { parseRequiredBoolean } from '@/common/utils/parseRequired';
 import { ArrowCircleLeftIcon, BeakerIcon } from '@heroicons/react/outline';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const CODE_SMELLS_ENABLED = parseRequiredBoolean(
   process.env.CODE_SMELLS_ENABLED,
@@ -62,8 +62,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
   const dirtyCodeHighlightedLines = taskInputs
     .map((input) => input.lines)
     .join();
-
-  const router = useRouter();
 
   return (
     <>
@@ -152,15 +150,16 @@ export default function Task({ taskData }: { taskData: ITask }) {
             <BeakerIcon className="h-5 w-5 mr-1" />
             Evaluieren
           </button>
-          <button
-            className={classNames(`btn mx-1`, {
-              [`btn-primary`]: isSolved,
-            })}
-            onClick={() => router.back()}
-          >
-            <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
-            Zurück
-          </button>
+          <Link href="/">
+            <a
+              className={classNames(`btn mx-1`, {
+                [`btn-primary`]: isSolved,
+              })}
+            >
+              <ArrowCircleLeftIcon className="h-5 w-5 mr-1" />
+              SOC Asklepios
+            </a>
+          </Link>
         </div>
       </div>
 

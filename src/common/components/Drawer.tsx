@@ -76,7 +76,7 @@ export function Drawer({
                 <ThemeChanger />
               </div>
               <div onClick={toggleDrawer}>
-                <Link href={`/info`}>
+                <Link href="/info">
                   <a className="btn btn-sm btn-link text-base-content px-1.5 h-full text-left normal-case">
                     <InformationCircleIcon className="w-8 mr-1 text-info" />
                     Story, Mission,
