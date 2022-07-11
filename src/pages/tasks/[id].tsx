@@ -69,7 +69,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
       <Navbar />
 
-      <div className="container mx-auto text-center pt-24 pb-32 px-2">
+      <div className="container mx-auto text-center pt-8 pb-32 px-2">
         <div className="mb-4">
           <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent sm:-mb-3">
             <TaskProgressIcon

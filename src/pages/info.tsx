@@ -17,7 +17,7 @@ export default function Info() {
 
       <Navbar />
 
-      <div className="container mx-auto text-center pt-28 pb-32 px-2">
+      <div className="container mx-auto text-center pt-12 pb-32 px-2">
         <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-4">
           {title}
         </h1>

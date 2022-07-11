@@ -10,7 +10,7 @@ export function Navbar() {
 
   return (
     <>
-      <div className="fixed w-full bg-base-300 border-b border-neutral-content/20 z-50">
+      <div className="fixed h-16 w-full bg-base-300 border-b border-neutral-content/20 z-50">
         <div className="flex container mx-auto items-stretch p-2">
           <div className="flex-grow flex-shrink-0">
             <Link href="/">
@@ -61,6 +61,7 @@ export function Navbar() {
           </div>
         </div>
       </div>
+      <div className="w-full h-16"></div>
 
       <Drawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
     </>

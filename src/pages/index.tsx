@@ -10,7 +10,7 @@ export default function Home() {
 
       <Navbar />
 
-      <div className="container mx-auto text-center pt-32 px-2">
+      <div className="container mx-auto text-center pt-16 px-2">
         <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed mb-4">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
           {title}
