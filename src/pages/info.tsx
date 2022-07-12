@@ -92,11 +92,13 @@ export default function Info() {
             <div className="text-left">
               <p>Die folgenden Refacotrings kommen in „SOC Asklepios“ vor:</p>
               <ol>
-                {Object.values(Refactoring).map((refactoring) => (
-                  <li className="leading-relaxed" key={refactoring}>
-                    {refactoring}
-                  </li>
-                ))}
+                {Object.values(Refactoring)
+                  .sort()
+                  .map((refactoring) => (
+                    <li className="leading-relaxed" key={refactoring}>
+                      {refactoring}
+                    </li>
+                  ))}
               </ol>
             </div>
           </div>
