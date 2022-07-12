@@ -57,7 +57,7 @@ export function Spaceship() {
         </div>
       </div>
 
-      <div className="mx-auto w-full aspect-video flex mb-2">
+      <div className="motion-safe:animate-fly mx-auto w-full aspect-video flex mb-2">
         <div className="w-full">
           <ClickableSpaceshipPart category={Category.CentralFlightSystem} />
         </div>
