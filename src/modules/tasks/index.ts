@@ -4,6 +4,7 @@ import { task1 } from '@/modules/tasks/task1';
 import { task2 } from '@/modules/tasks/task2';
 import { task3 } from '@/modules/tasks/task3';
 import { task4 } from '@/modules/tasks/task4';
+import { task5 } from '@/modules/tasks/task5';
 
 const compareDifficultyAndName = (a: ITask, b: ITask) => {
   if (a.difficulty < b.difficulty) {
@@ -15,8 +16,13 @@ const compareDifficultyAndName = (a: ITask, b: ITask) => {
   return a.name.localeCompare(b.name);
 };
 
-export const allTasks: ITask[] = [task0, task1, task2, task3, task4].sort(
-  compareDifficultyAndName,
-);
+export const allTasks: ITask[] = [
+  task0,
+  task1,
+  task2,
+  task3,
+  task4,
+  task5,
+].sort(compareDifficultyAndName);
 
 export * from './definitions';
