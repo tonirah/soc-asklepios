@@ -15,6 +15,7 @@ export enum Refactoring {
   ExtractClass = `Klasse extrahieren (Extract Class)`,
   MoveMethod = `Methode verlagern (Move Method)`,
   ExtractMethod = `Methode extrahieren (Extract Method)`,
+  InlineMethod = `Methode inlinen (Inline Method)`,
   GuardClauses = `Verschachtelte Bedingungen durch Wächter ersetzen (Replace Nested Conditional with Guard Clauses)`,
   DecomposeConditional = `Bedingung zerlegen (Decompose Conditional)`,
   ConditionalPolymorphism = `Bedingung durch Polymorphismus ersetzen (Replace Conditional with Polymorphism)`,
