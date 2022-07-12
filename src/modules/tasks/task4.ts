@@ -38,7 +38,7 @@ const comment = `Die Methode hadMoreThenTwoMyocardialInfarctions() ist nicht bes
 
 export const task4: ITask = {
   uuid: `4a41a759-9e4a-411d-8ada-04fed7181aae`,
-  name: `Get Astronaut Health Condition`,
+  name: `Astronaut Health Condition`,
   difficulty: Difficulty.Medium,
   showAllOptions: false,
   category: Category.CrewHealthHypersleep,
