@@ -13,7 +13,7 @@ const dirtyCode = `class AirQualitySensor {
   // ...
 }
 
-// only usage
+// usage
 void logAirQuality() {
   System.out.println("--- AIR QUALITY: ---");
   System.out.println("nitrogen: " + sensor.nitrogen);
@@ -41,7 +41,7 @@ const cleanCode = `class AirQualitySensor {
   // ...
 }
 
-// only usage
+// usage
 void logAirQuality() {
   System.out.println("--- AIR QUALITY: ---");
   System.out.println("nitrogen: " + sensor.getNitrogen());
