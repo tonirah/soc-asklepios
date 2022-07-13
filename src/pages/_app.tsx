@@ -1,8 +1,7 @@
 import { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import '@/styles/global.css';
-import '@/common/utils/whyDidYouRender';
-import { parseRequiredBoolean } from '@/common/utils/parseRequired';
+import { parseRequiredBoolean } from '@/common/utils/';
 import { Layout } from '@/common/components';
 import { ThemeProvider } from 'next-themes';
 import { useRouter } from 'next/router';

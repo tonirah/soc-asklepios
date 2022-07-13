@@ -1,8 +1,9 @@
 import { Refactoring } from '@/modules/tasks';
-import { parseRequiredInt } from '@/common/utils/parseRequired';
+import { parseRequiredInt } from '@/common/utils/';
 import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
-import { Footer, Head, Navbar } from '@/common/components';
+import { Footer, Navbar } from '@/common/components';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
   process.env.MIN_CHARACTERS_FOR_COMBOBOX,
@@ -13,7 +14,9 @@ export default function Info() {
 
   return (
     <>
-      <Head title={title} />
+      <Head>
+        <title>{title}</title>
+      </Head>
 
       <Navbar />
 

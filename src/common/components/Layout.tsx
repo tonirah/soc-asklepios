@@ -11,9 +11,9 @@ export function Layout({ children }: { children: ReactNode }) {
     <>
       <div
         className={classNames(`min-h-screen bg-fixed`, {
+          [`bg-space bg-repeat`]: isWin === false,
           [`bg-yagni-dark bg-cover`]: isWin === true && theme === `dark`,
           [`bg-yagni-light bg-cover`]: isWin === true && theme === `light`,
-          [`bg-space bg-repeat`]: isWin === false,
         })}
       >
         {children}

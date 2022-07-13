@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { Footer, Head, Navbar, Spaceship } from '@/common/components';
+import { Footer, Navbar, Spaceship } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks';
+import Head from 'next/head';
 
 function WinMessage() {
   return (
@@ -55,7 +56,9 @@ export default function Home() {
   const { isWin } = useContext(ProgressContext);
   return (
     <>
-      <Head title={title} />
+      <Head>
+        <title>{title}</title>
+      </Head>
 
       <Navbar />
 

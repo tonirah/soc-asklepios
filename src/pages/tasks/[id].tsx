@@ -4,7 +4,6 @@ import {
   CodeBlock,
   Comment,
   Footer,
-  Head,
   HighlightColor,
   Input,
   Navbar,
@@ -18,9 +17,10 @@ import {
 } from '@/common/hooks/';
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { parseRequiredBoolean } from '@/common/utils/parseRequired';
+import { parseRequiredBoolean } from '@/common/utils/';
 import { ArrowCircleLeftIcon, BeakerIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const CODE_SMELLS_ENABLED = parseRequiredBoolean(
   process.env.CODE_SMELLS_ENABLED,
@@ -65,7 +65,9 @@ export default function Task({ taskData }: { taskData: ITask }) {
 
   return (
     <>
-      <Head title={taskData.name} />
+      <Head>
+        <title>{taskData.name}</title>
+      </Head>
 
       <Navbar />
 

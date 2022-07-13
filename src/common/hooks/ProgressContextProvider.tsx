@@ -7,10 +7,7 @@ import {
   useRef,
 } from 'react';
 import { useDidMount, useLocalstorageState, useWillUnmount } from 'rooks';
-import {
-  parseRequiredInt,
-  parseRequiredString,
-} from '@/common/utils/parseRequired';
+import { parseRequiredInt, parseRequiredString } from '@/common/utils/';
 import { allTasks, Category, ITask, UuidV4 } from '@/modules/tasks';
 
 const LOCAL_STORAGE_KEY = parseRequiredString(process.env.LOCAL_STORAGE_KEY);
@@ -185,6 +182,7 @@ export default function ProgressContextProvider({
     uuid: UuidV4,
     getTaskProgress: IProgressContext['getTaskProgress'],
   ) => {
+    // https://reactjs.org/docs/hooks-reference.html#useref
     const getTaskProgressRef = useRef(getTaskProgress);
     useEffect(() => {
       getTaskProgressRef.current = getTaskProgress;

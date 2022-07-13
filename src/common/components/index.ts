@@ -9,5 +9,4 @@ export * from './ClickableSpaceshipPart';
 export * from './ThemeChanger';
 export * from './Navbar';
 export * from './Footer';
-export * from './Head';
 export * from './Drawer';

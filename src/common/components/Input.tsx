@@ -2,7 +2,7 @@ import { CodeSmell, IInputData, IOption, Refactoring } from '@/modules/tasks/';
 import { useCombobox } from 'downshift';
 import { useState } from 'react';
 import { HandleChangedInput } from '@/common/hooks';
-import { parseRequiredInt } from '@/common/utils/parseRequired';
+import { parseRequiredInt } from '@/common/utils';
 import classNames from 'classnames';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(

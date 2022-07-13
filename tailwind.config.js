@@ -97,7 +97,6 @@ module.exports = {
 
           'neutral-focus': '#f5f5f5',
 
-          //rgb(255, 219, 243)
           'primary-content': '#ffffff',
           'neutral-content': '#181a2a',
           'base-content': '#39393d',
