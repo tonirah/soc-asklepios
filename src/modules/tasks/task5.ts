@@ -36,7 +36,7 @@ const comment = `Abkürzungen sind selbst für die Autorin von Code nach kurzer 
 
 export const task5: ITask = {
   uuid: `00e95a5d-1b15-4ccd-b5c2-94e78b90f4b0`,
-  name: `Nearest large Object`,
+  name: `Nearest Large Object`,
   difficulty: Difficulty.Simple,
   showAllOptions: true,
   category: Category.CentralFlightSystem,

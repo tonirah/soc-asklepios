@@ -70,7 +70,7 @@ Details: [Refactorings](${basePath}/info/#refactorings).`;
 
 export const task0: ITask = {
   uuid: `031b215a-dc73-41e1-bcfb-d796a173f75e`,
-  name: `Velocity increase control`,
+  name: `Velocity Increase Control`,
   difficulty: Difficulty.Simple,
   showAllOptions: true,
   category: Category.CentralFlightSystem,

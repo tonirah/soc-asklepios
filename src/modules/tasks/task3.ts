@@ -54,7 +54,7 @@ const comment = `Diese Typunterscheidung lässt sich gut durch Polymorphismus um
 
 export const task3: ITask = {
   uuid: `7dfdbbbe-4b04-46e5-9ea0-804e74e1b5df`,
-  name: `Monitor space radiation`,
+  name: `Monitor Space Radiation`,
   difficulty: Difficulty.Medium,
   showAllOptions: false,
   category: Category.SpaceRadiationProtection,
