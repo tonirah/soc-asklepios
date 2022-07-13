@@ -63,7 +63,7 @@ export const task7: ITask = {
     {
       type: InputType.Refactoring,
       options: [
-        { value: Refactoring.MoveMethod },
+        { value: Refactoring.MoveFieldMethod },
         { value: Refactoring.IntroduceParameterObject, isValid: true },
         { value: Refactoring.ExtractMethod },
         { value: Refactoring.ExtractInterface },

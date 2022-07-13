@@ -76,7 +76,7 @@ export const task2: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.ExtractClass },
-        { value: Refactoring.MoveMethod },
+        { value: Refactoring.MoveFieldMethod },
         { value: Refactoring.GuardClauses },
         { value: Refactoring.DecomposeConditional, isValid: true },
       ],

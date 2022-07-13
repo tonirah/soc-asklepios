@@ -51,7 +51,7 @@ export const task5: ITask = {
     {
       type: InputType.Refactoring,
       options: [
-        { value: Refactoring.MoveMethod },
+        { value: Refactoring.MoveFieldMethod },
         { value: Refactoring.Rename, isValid: true },
         { value: Refactoring.ChangeValueToReference },
         { value: Refactoring.RemoveMiddleMan },

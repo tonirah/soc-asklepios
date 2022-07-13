@@ -70,7 +70,7 @@ export const task3: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.DecomposeConditional },
-        { value: Refactoring.MoveMethod },
+        { value: Refactoring.MoveFieldMethod },
         { value: Refactoring.GuardClauses },
         { value: Refactoring.ConditionalPolymorphism, isValid: true },
       ],

@@ -54,7 +54,7 @@ export const task4: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.DecomposeConditional },
-        { value: Refactoring.MoveMethod },
+        { value: Refactoring.MoveFieldMethod },
         { value: Refactoring.ConditionalPolymorphism },
         { value: Refactoring.InlineMethod, isValid: true },
       ],
