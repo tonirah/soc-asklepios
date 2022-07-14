@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks';
-import { ExclamationIcon } from '@heroicons/react/solid';
+import { ExclamationIcon, InformationCircleIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 export function Footer() {
   const { resetProgress } = useContext(ProgressContext);
@@ -8,8 +9,14 @@ export function Footer() {
   return (
     <div className="w-full text-center bg-base-300 border-t border-neutral-content/20 h-32">
       <div className="container mx-auto text-center pt-8 px-2 flex justify-center">
+        <Link href="/about">
+          <a className="btn btn-link text-base-content normal-case h-fit text-left leading-tight px-0 mx-2">
+            <InformationCircleIcon className="fill-current h-7 w-7 mr-1" />
+            Über „SOC Asklepios“
+          </a>
+        </Link>
         <a
-          className="btn btn-link text-base-content normal-case h-fit text-left leading-tight mx-2"
+          className="btn btn-link text-base-content normal-case h-fit text-left leading-tight px-0 mx-2"
           href="https://github.com/tonirah/soc-asklepios"
           target="_blank"
           rel="noreferrer"
@@ -28,7 +35,7 @@ export function Footer() {
           GitHub ansehen
         </a>
         <button
-          className="btn btn-xs btn-outline bg-base-100 btn-warning py-1.5 px-3 w-fit h-fit text-left leading-tight mx-2"
+          className="btn btn-xs btn-outline bg-base-100 btn-warning py-1.5 px-3 w-fit h-fit text-left leading-tight mx-4"
           onClick={() => resetProgress()}
         >
           <ExclamationIcon className="h-5 w-5 mr-2" />
