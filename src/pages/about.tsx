@@ -60,7 +60,10 @@ export default function About() {
               </a>
               {` `}
               von Martin Fowler, wobei die Bezeichnungen auf der ersten Ausgabe
-              (1999) des Buches basieren.
+              (1999) des Buches basieren. Die Aufgaben passen thematisch zum
+              Narrativ „Raumschiff“ und wurden selbstständig entworfen. Die
+              Mechanik der Aufgaben ist oftmals vom Kurstext und somit von
+              Fowlers Beispielen inspiriert.
             </p>
             <h2>Haftung / Datenschutz / Kontakt</h2>
             <p>
