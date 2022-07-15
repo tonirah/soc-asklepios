@@ -7,7 +7,7 @@ export function Footer() {
   const { resetProgress } = useContext(ProgressContext);
 
   return (
-    <div className="w-full text-center bg-base-300 border-t border-neutral-content/20 h-32">
+    <div className="sticky top-[100vh] w-full text-center bg-base-300 border-t border-neutral-content/20 h-56">
       <div className="container mx-auto text-center pt-8 px-2 flex justify-center">
         <Link href="/about">
           <a className="btn btn-link text-base-content normal-case h-fit text-left leading-tight px-0 mx-2">
