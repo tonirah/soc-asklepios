@@ -8,7 +8,7 @@ export function Footer() {
 
   return (
     <div className="sticky top-[100vh] w-full text-center bg-base-300 border-t border-neutral-content/20 h-56">
-      <div className="container mx-auto text-center pt-8 px-2 flex justify-center">
+      <div className="container mx-auto text-center pt-5 px-2 flex flex-wrap-reverse flex-col sm:flex-row justify-center items-center">
         <Link href="/about">
           <a className="btn btn-link text-base-content normal-case h-fit text-left leading-tight px-0 mx-2">
             <InformationCircleIcon className="fill-current h-7 w-7 mr-1" />
@@ -35,7 +35,7 @@ export function Footer() {
           GitHub ansehen
         </a>
         <button
-          className="btn btn-xs btn-outline bg-base-100 btn-warning py-1.5 px-3 w-fit h-fit text-left leading-tight mx-4"
+          className="btn btn-xs btn-outline bg-base-100 btn-warning py-1.5 px-3 w-fit h-fit text-left leading-tight mx-4 my-3"
           onClick={() => resetProgress()}
         >
           <ExclamationIcon className="h-5 w-5 mr-2" />
