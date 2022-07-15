@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { Footer, Navbar } from '@/common/components';
 import Link from 'next/link';
 import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
 
@@ -12,9 +11,7 @@ export default function About() {
         <title>{title}</title>
       </Head>
 
-      <Navbar />
-
-      <div className="container mx-auto text-center pt-12 pb-32 px-2 min-h-screen">
+      <div className="container mx-auto text-center pt-12 pb-32 px-2">
         <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-4">
           {title}
         </h1>
@@ -32,8 +29,6 @@ export default function About() {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

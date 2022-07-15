@@ -1,12 +1,7 @@
 import { Refactoring } from '@/modules/tasks';
 import { parseRequiredInt } from '@/common/utils/';
 import { ArrowCircleLeftIcon } from '@heroicons/react/outline';
-import {
-  CodeBlock,
-  Footer,
-  Navbar,
-  TaskProgressIcon,
-} from '@/common/components';
+import { CodeBlock, TaskProgressIcon } from '@/common/components';
 import Link from 'next/link';
 import Head from 'next/head';
 import { TaskProgress } from '@/common/hooks';
@@ -29,8 +24,6 @@ export default function Info() {
       <Head>
         <title>{title}</title>
       </Head>
-
-      <Navbar />
 
       <div className="container mx-auto text-left pt-12 pb-32 px-2">
         <h1 className="font-mono text-3xl font-bold tracking-wider underline text-primary-focus decoration-accent text-center mb-4">
@@ -208,8 +201,6 @@ export default function Info() {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

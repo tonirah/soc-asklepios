@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Footer, Navbar, Spaceship } from '@/common/components';
+import { Spaceship } from '@/common/components';
 import { InformationCircleIcon, SparklesIcon } from '@heroicons/react/outline';
 import { useContext } from 'react';
 import { ProgressContext } from '@/common/hooks';
@@ -60,8 +60,6 @@ export default function Home() {
         <title>{title}</title>
       </Head>
 
-      <Navbar />
-
       <div className="container mx-auto text-center pt-16 px-2">
         <h1 className="font-mono text-6xl font-bold tracking-wider underline text-primary-focus decoration-accent leading-relaxed mb-4">
           <SparklesIcon className="h-16 w-16 inline-block mr-2 text-secondary" />
@@ -77,8 +75,6 @@ export default function Home() {
           <Spaceship />
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

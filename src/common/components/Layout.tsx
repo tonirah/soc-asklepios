@@ -2,6 +2,7 @@ import { ReactNode, useContext } from 'react';
 import { ProgressContext } from '@/common/hooks';
 import { useTheme } from 'next-themes';
 import classNames from 'classnames';
+import { Navbar, Footer } from '@/common/components';
 
 export function Layout({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
@@ -16,7 +17,9 @@ export function Layout({ children }: { children: ReactNode }) {
           [`bg-yagni-light bg-cover`]: isWin === true && theme === `light`,
         })}
       >
+        <Navbar />
         {children}
+        <Footer />
       </div>
     </>
   );

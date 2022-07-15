@@ -3,10 +3,8 @@ import { allTasks, IInputData, InputType, ITask } from '@/modules/tasks';
 import {
   CodeBlock,
   Comment,
-  Footer,
   HighlightColor,
   Input,
-  Navbar,
   TaskProgressIcon,
 } from '@/common/components/';
 import {
@@ -68,8 +66,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
       <Head>
         <title>{taskData.name}</title>
       </Head>
-
-      <Navbar />
 
       <div className="container mx-auto text-center pt-8 pb-32 px-2">
         <div className="mb-4">
@@ -164,8 +160,6 @@ export default function Task({ taskData }: { taskData: ITask }) {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }
