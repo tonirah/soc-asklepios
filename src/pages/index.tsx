@@ -19,7 +19,7 @@ function WinMessage() {
       {` `}
       sicher auf dem Planet{` `}
       <span className="before:block before:absolute before:-inset-1.5 before:skew-y-2 before:skew-x-3 before:bg-success relative inline-block px-1">
-        <span className="relative text-success-content">Yagni</span>
+        <span className="relative text-success-content">YAGNI</span>
       </span>
       {` `}
       landen!
@@ -36,7 +36,7 @@ function InfoAlert() {
           auf einer interplanetaren Reise, und warst bis gerade eben im
           Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
           geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
-          refaktorisieren, um sicher auf dem Planet 'Yagni' landen zu können.
+          refaktorisieren, um sicher auf dem Planet 'YAGNI' landen zu können.
           <span className="font-bold">“</span>
         </p>
         <Link href="/info">

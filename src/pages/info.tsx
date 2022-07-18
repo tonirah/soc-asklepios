@@ -39,7 +39,7 @@ export default function Info() {
               und warst bis gerade eben im Hyperschlaf. Die AI (SOLID) des
               Schiffes 'SOC Asklepios' hat dich geweckt. Du musst ihr helfen,
               die Boardsoftware zu prüfen und zu refaktorisieren, um sicher auf
-              dem Planet 'Yagni' landen zu können.“
+              dem Planet 'YAGNI' landen zu können.“
             </p>
             <h3 className="text-secondary underline decoration-accent">
               Mission
@@ -71,7 +71,8 @@ export default function Info() {
               <li>
                 Es müssen mindestens {MIN_CHARACTERS_FOR_COMBOBOX} Buchstaben
                 eingegeben werden, damit mögliche Auswahl-Optionen angezeigt
-                werden.
+                werden. Es kann die deutsche oder englische Bezeichnung
+                verwendet werden.
               </li>
             </ol>
             <p>
@@ -143,6 +144,14 @@ export default function Info() {
               {` `}
               kann das Erscheinungsbild entsprechend eingestellt werden.
             </p>
+            <p>
+              Weitere Informationen über „SOC Asklepios“ sind{` `}
+              <Link href="/about">
+                <a>hier</a>
+              </Link>
+              {` `}
+              zu finden.
+            </p>
             <h3 className="text-secondary underline decoration-accent">
               Details
             </h3>
@@ -181,13 +190,11 @@ export default function Info() {
               Liste von Refactorings
             </h2>
             <p>Die folgenden Refacotrings kommen in „SOC Asklepios“ vor:</p>
-            <ol>
+            <ol className="leading-relaxed">
               {Object.values(Refactoring)
                 .sort()
                 .map((refactoring) => (
-                  <li className="leading-relaxed" key={refactoring}>
-                    {refactoring}
-                  </li>
+                  <li key={refactoring}>{refactoring}</li>
                 ))}
             </ol>
           </div>

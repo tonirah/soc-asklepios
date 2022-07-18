@@ -62,9 +62,57 @@ export default function About() {
               von Martin Fowler, wobei die Bezeichnungen auf der ersten Ausgabe
               (1999) des Buches basieren. Die Aufgaben passen thematisch zum
               Narrativ „Raumschiff“ und wurden selbstständig entworfen. Die
-              Mechanik der Aufgaben ist oftmals vom Kurstext und somit von
-              Fowlers Beispielen inspiriert.
+              Mechanik der Aufgaben orientiert sich oftmals am Kurstext und
+              somit an Fowlers Beispielen.
             </p>
+            <h2>Links zu Wikipedia für verwendete Namen und Abkürzungen</h2>
+            <ul className="leading-normal">
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Separation_of_concerns"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  SOC
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://de.wikipedia.org/wiki/Asklepios"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Asklepios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://de.wikipedia.org/wiki/K%C3%BCnstliche_Intelligenz"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  AI
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs#SOLID-Prinzipien"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  SOLID
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://de.wikipedia.org/wiki/YAGNI"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  YAGNI
+                </a>
+              </li>
+            </ul>
             <h2>Haftung / Datenschutz / Kontakt</h2>
             <p>
               Trotz großer Sorgfalt beim Erstellen von Spiel und Aufgaben wird
@@ -79,6 +127,7 @@ export default function About() {
             </p>
             <p>
               Der Quelltext des Spiels ist öffentlich verfügbar:
+              <br />
               <a
                 href="https://github.com/tonirah/soc-asklepios"
                 target="_blank"
