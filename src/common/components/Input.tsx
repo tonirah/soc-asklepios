@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { HandleChangedInput } from '@/common/hooks';
 import { parseRequiredInt } from '@/common/utils';
 import classNames from 'classnames';
+import { XIcon } from '@heroicons/react/solid';
 
 const MIN_CHARACTERS_FOR_COMBOBOX = parseRequiredInt(
   process.env.MIN_CHARACTERS_FOR_COMBOBOX,
@@ -66,6 +67,7 @@ export function Input({
     getComboboxProps,
     getItemProps,
     getToggleButtonProps,
+    setInputValue,
   } = useCombobox({
     items: availableOptions,
     itemToString: (option) => (option ? option.value : ``),
@@ -103,13 +105,23 @@ export function Input({
       </label>
       <div>
         <div {...getComboboxProps()}>
-          <div {...getInputWrapperProps()}>
-            <input
-              {...getInputProps()}
-              className="input input-bordered w-full"
+          <div className="relative">
+            <div {...getInputWrapperProps()}>
+              <input
+                {...getInputProps()}
+                className="input input-bordered w-full pr-10"
+                disabled={isValid}
+                placeholder={inputPlaceholder}
+              ></input>
+            </div>
+            <button
+              className="absolute inset-y-0 right-0 w-6 mr-3 text-neutral-content/40"
+              onClick={() => setInputValue(``)}
               disabled={isValid}
-              placeholder={inputPlaceholder}
-            />
+              aria-label="clear text input"
+            >
+              <XIcon />
+            </button>
           </div>
         </div>
         <div className="absolute container text-left pr-5">
