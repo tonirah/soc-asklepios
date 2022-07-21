@@ -56,7 +56,7 @@ const cleanCode = `class AstronautHealth {
   }
 }`;
 
-const comment = `Da die komplexen Codestellen in Methoden ausgelagert wurden, ist die bedingte Verzweigung in \`updateSleepDuration()\` leichter zu verstehen.`;
+const comment = `Da die komplexen Zeilen in Methoden ausgelagert wurden, ist die bedingte Verzweigung in \`updateSleepDuration()\` leichter zu verstehen.`;
 
 export const task2: ITask = {
   uuid: `f71993ba-c4da-4490-8286-0bedd08a6871`,

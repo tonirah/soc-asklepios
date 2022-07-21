@@ -76,7 +76,7 @@ export default function Info() {
               </li>
             </ol>
             <p>
-              Über den Schalter <strong>„Codestellen hervorheben“</strong>
+              Über den Schalter <strong>„Zeilen hervorheben“</strong>
               {` `}
               können optional verdächtige Zeilen hervorgehoben werden:
             </p>

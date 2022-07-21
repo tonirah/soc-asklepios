@@ -134,7 +134,7 @@ export default function Task({ taskData }: { taskData: ITask }) {
               onChange={() => ({})} // controlled by 'isLineHintActive', changed via click or elsewhere
               checked={isLineHintActive}
             />
-            <span className="label-text">Codestellen hervorheben</span>
+            <span className="label-text">Zeilen hervorheben</span>
           </label>
         </div>
         <div className="flex justify-center">
