@@ -197,6 +197,57 @@ export default function Info() {
                   <li key={refactoring}>{refactoring}</li>
                 ))}
             </ol>
+
+            <h2
+              id="refactorings"
+              className="text-secondary underline decoration-accent"
+            >
+              Für Fortgeschrittene: Links zu (Refactoring) Katas
+            </h2>
+            <ul>
+              <li>
+                <a
+                  href="https://understandlegacycode.com/blog/5-coding-exercises-to-practice-refactoring-legacy-code/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Understand Legacy Code: 5 coding exercises to practice
+                  refactoring Legacy Code
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://kata-log.rocks/refactoring"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Kata-Log: Katas to practice Refactoring
+                </a>
+              </li>
+              <li>
+                <a href="http://codekata.com/" target="_blank" rel="noreferrer">
+                  CodeKata
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://ccd-school.de/coding-dojo/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Clean Code Developer School: Coding Dojo
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://codingdojo.org/kata/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Coding Dojo: Katas
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="mt-4 text-center">
