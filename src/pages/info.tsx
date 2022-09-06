@@ -60,13 +60,14 @@ export default function Info() {
             </p>
             <p>
               Als Input-Elemente werden <strong>Comboboxen</strong> verwendet,
-              diese sind eine Kombination Textfeld und Auswahlliste.{` `}
+              also eine Kombination von Textfeld und Auswahlliste. Es existiert
+              immer nur eine korrekte Lösung.{` `}
               <strong>Es gibt 2 Aufgabenarten:</strong>
             </p>
             <ol>
               <li>
                 Alle Auswahl-Optionen werden beim Klick in das Textfeld
-                angezeigt (Multiple-Choice).
+                angezeigt (Einfachauswahl).
               </li>
               <li>
                 Es müssen mindestens {MIN_CHARACTERS_FOR_COMBOBOX} Buchstaben
