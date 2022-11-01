@@ -33,10 +33,10 @@ function InfoAlert() {
       <div className="container mx-auto pt-0.5">
         <p className="font-mono mb-3">
           <span className="font-bold">„Im Jahr 2094.</span> Du befindest dich
-          auf einer interplanetaren Reise, und warst bis gerade eben im
+          auf einer interplanetaren Reise und warst bis gerade eben im
           Hyperschlaf. Die AI (SOLID) des Schiffes 'SOC Asklepios' hat dich
           geweckt. Du musst ihr helfen, die Boardsoftware zu prüfen und zu
-          refaktorisieren, um sicher auf dem Planet 'YAGNI' landen zu können.
+          refaktorisieren, um sicher auf dem Planeten 'YAGNI' landen zu können.
           <span className="font-bold">“</span>
         </p>
         <Link href="/info">

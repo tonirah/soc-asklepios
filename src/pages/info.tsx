@@ -35,11 +35,11 @@ export default function Info() {
               Story
             </h2>
             <p className="lead">
-              „Im Jahr 2094. Du befindest dich auf einer interplanetaren Reise,
+              „Im Jahr 2094. Du befindest dich auf einer interplanetaren Reise
               und warst bis gerade eben im Hyperschlaf. Die AI (SOLID) des
               Schiffes 'SOC Asklepios' hat dich geweckt. Du musst ihr helfen,
               die Boardsoftware zu prüfen und zu refaktorisieren, um sicher auf
-              dem Planet 'YAGNI' landen zu können.“
+              dem Planeten 'YAGNI' landen zu können.“
             </p>
             <h3 className="text-secondary underline decoration-accent">
               Mission
@@ -157,25 +157,25 @@ export default function Info() {
               Details
             </h3>
             <p>
-              Du bist Astronautin und Softwareentwicklerin, und der einzige
-              wache Mensch auf dem Schiff. Andere können nicht geweckt werden,
-              da die SOLID entschieden hat, dass immer nur 1 Mensch zur gleichen
-              Zeit wach ist, um Konflikten vorzubeugen. Die Erde ist zu weit weg
-              um kurzfristig Kontakt aufzunehmen.
+              Du bist Astronautin und Softwareentwicklerin und der einzige wache
+              Mensch auf dem Schiff. Andere können nicht geweckt werden, da die
+              SOLID entschieden hat, dass immer nur 1 Mensch zur gleichen Zeit
+              wach ist, um Konflikten vorzubeugen. Die Erde ist zu weit weg um
+              kurzfristig Kontakt aufzunehmen.
             </p>
             <p>
-              Bevor du wach wurdest waren andere Softwareentwicklerinnen und
-              Softwareentwickler wach, und haben die Systeme weiterentwickelt.
+              Bevor du wach wurdest, waren andere Softwareentwicklerinnen und
+              Softwareentwickler wach und haben die Systeme weiterentwickelt.
               Dadurch ist die Codebase dynamisch gewachsen und die
               Softwarequalität lässt zu wünschen übrig. Es gibt Unit-Tests, aber
               die Testabdeckung ist nicht ideal.
             </p>
             <p>
-              SOLID kann den Code nur grob analysieren, und daher die
+              SOLID kann den Code nur grob analysieren und daher die
               Zuverlässigkeit der Systeme und die Softwarequalität nicht adäquat
-              einschätzen. Sie kann nicht sicher feststellen ob Refactorings
-              nötig sind, und sie kann diese auch nicht durchführen. Daher hat
-              sie die einzelnen Systeme auf ein Minimum heruntergefahren.
+              einschätzen. Sie kann nicht sicher feststellen, ob Refactorings
+              nötig sind und kann diese auch nicht durchführen. Daher hat sie
+              die einzelnen Systeme auf ein Minimum heruntergefahren.
             </p>
 
             {/*<h2 id="code-smells">Liste von Code Smells</h2>*/}
