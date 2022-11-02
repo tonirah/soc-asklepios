@@ -16,6 +16,7 @@ import { task13 } from '@/modules/tasks/task13';
 import { task14 } from '@/modules/tasks/task14';
 import { task15 } from '@/modules/tasks/task15';
 import { task16 } from '@/modules/tasks/task16';
+import { task17 } from '@/modules/tasks/task17';
 
 const compareDifficultyAndName = (a: ITask, b: ITask) => {
   if (a.difficulty < b.difficulty) {
@@ -45,6 +46,7 @@ export const allTasks: ITask[] = [
   task14,
   task15,
   task16,
+  task17,
 ].sort(compareDifficultyAndName);
 
 export * from './definitions';
