@@ -5,8 +5,81 @@
 ## [🚀 --> SPIEL STARTEN // LAUNCH THE GAME <-- 🚀](https://tonirah.github.io/soc-asklepios/)
 
 ---
+(English below)
+## Lokale Einrichtung und Entwicklung
 
-## Development
+Für die Ausführung wird Node.js mit einer Version >= 12.22.0 benötigt, Version 16.x oder höher wird empfohlen.
+
+Dependencies müssen mit dem Konsolenbefehl `npm install` installiert werden.
+
+`npm run dev` startet das Projekt im Entwicklungsmodus.
+
+Die Applikation kann nun unter `http://localhost:3000` im Browser aufgerufen werden.
+
+### Statische Anwendung lokal im Produktionsmodus bereitstellen
+```bash
+npm run export
+cd ./out
+# Verzeichnis mit einem Server lokal bereitstellen
+# z.B. via php server
+php -S localhost:3000
+# ODER via python3 server
+python3 -m http.server 3000
+# ODER via python 2 server
+python -m SimpleHTTPServer 3000
+```
+
+Die Applikation kann nun unter `http://localhost:3000` im Browser aufgerufen werden.
+
+### Anwendungskonfiguration
+```javascript
+// Datei next.config.js
+// Grundkonfiguration des Anwendungsverhaltens
+
+const env = {
+  LOCAL_STORAGE_KEY: 'soc-progress', // Schlüssel zum Speichern des Fortschritts im localStorage des Browsers
+  MIN_CHARACTERS_FOR_COMBOBOX: '2', // Minimale Anzahl von Zeichen für die Anzeige von Eingabeoptionen
+  DELAY_FOR_VISITED: '10', // Dauer der Betrachtung einer Aufgabe in Sekunden, bevor diese als “besucht” markiert wird
+  POINTS_FOR_VISITED: '1', // Punkte für den Besuch einer Aufgabe
+  POINTS_FOR_SOLVED: '4', // Punkte für das Lösen einer Aufgabe
+  CODE_SMELLS_ENABLED: 'false', // Aktivierung der Abfrage von Code-Smells in einigen Aufgaben
+  SSR_ENABLED: 'false', // Server-Side Rendering ist deaktiviert (Frontend-Anwendung)
+};
+```
+
+### Build and deployment (Bau und Bereitstellung der Applikation)
+#### GitHub
+Der GitHub Deployment-Workflow [deploy.js.yml](.github/workflows/deploy.js.yml) erstellt und verteilt die Anwendung automatisch, sobald ein neuer Commit im Main-Branch erfolgt.
+
+`NEXT_PUBLIC_BASE_PATH`, festgelegt in `deploy.js.yml`: Umgebungsparameter für die Bereitstellung der Anwendung unter einem Unterpfad einer Domain. Für GitHub Pages muss dies der Name des Repositories sein, in diesem Fall `/soc-asklepios`.
+
+Die Veröffentlichung des Repositorys über GitHub Pages muss in den Repository-Einstellungen aktiviert werden (`<repository url>/settings/pages`):
+- Source: `Deployment from a branch`.
+- Branch: `gh-pages`, `/ (root)` (wie in `deploy.js.yml` konfiguriert)
+
+Nach dieser Einrichtung wird die Anwendung über `https://<Benutzername>.github.io/<Repository-Name>/` veröffentlicht, in diesem Fall `https://tonirah.github.io/soc-asklepios/`.
+
+Vollständige Dokumentation: [GitHub Pages Dokumentation](https://docs.github.com/en/pages).
+
+#### Andere Server / Bereitstellungsumgebungen
+Der Bereitstellungsprozess von GitHub Pages kann auf andere Umgebungen portiert werden:
+- `NEXT_PUBLIC_BASE_PATH` wird genutzt, um die Anwendung in einem Unterpfad einer Domäne einzusetzen. Er kann undefiniert gelassen werden, wenn die Anwendung in Root (`/`) bereitgestellt wird.
+- `npm run export` wird genutzt, um ein statisches `out/` Verzeichnis zu erstellen.
+- Der Inhalt des statischen `out/`-Verzeichnisses kann von jedem Webserver bereitgestellt werden (php, python, Apache, nginx...)
+
+### Skripte der Datei [package.json](package.json)
+
+- `npm run dev` - Startet die Anwendung im Entwicklungsmodus unter `http://localhost:3000`.
+- `npm run build` - Erzeugt einen optimierten Produktions-Build der Anwendung.
+- `npm run start` - Startet die Anwendung im Produktionsmodus.
+- `npm run export` - Erstellt die Anwendung und exportiert die erzeugten Dateien in den Ordner `out/`.
+- `npm run type-check` - Überprüft den Code mit dem TypeScript-Compiler.
+- `npm run lint` - Führt ESLint für alle Dateien im `src` Verzeichnis aus.
+- `npm run format` - Führt Prettier für alle Dateien im `src`-Verzeichnis aus.
+
+---
+
+## Local setup and development (english version)
 
 Node.js >= 12.22.0 required, 16.x recommended.
 
