@@ -38,7 +38,7 @@ const comment = `Bei einer 1:n-Beziehung sollte konzeptuell nicht die vollständ
 
 export const task17: ITask = {
   uuid: `68457470-e64b-4d0a-809b-e0ef8b955846`,
-  name: `Connection collection`,
+  name: `Connection Collection`,
   difficulty: Difficulty.Simple,
   showAllOptions: false,
   category: Category.CentralFlightSystem,
