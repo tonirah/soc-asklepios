@@ -7,8 +7,6 @@ import {
   Refactoring,
 } from './definitions';
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ``;
-
 const dirtyCode = `class PropulsionController {
   private Velocity currentSpeed;
   // ...
@@ -64,9 +62,7 @@ const cleanCode = `class PropulsionController {
 
 const comment = `Der durch den Kommentar beschriebene Code kann in eine Methode mit ähnlichem Namen ausgelagert werden.
 
-Dann ist auch das Abstraktionsniveau innerhalb von \`increaseVelocity()\` konsistent.
-
-Details: [Refactorings](${basePath}/info/#refactorings).`;
+Dann ist auch das Abstraktionsniveau innerhalb von \`increaseVelocity()\` konsistent.`;
 
 export const task0: ITask = {
   uuid: `031b215a-dc73-41e1-bcfb-d796a173f75e`,
