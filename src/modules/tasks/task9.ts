@@ -51,10 +51,10 @@ export const task9: ITask = {
     {
       type: InputType.Refactoring,
       options: [
-        { value: Refactoring.ReplaceExceptionWithTest },
+        { value: Refactoring.ExtractInterface },
         { value: Refactoring.ReplaceErrorCodeWithException, isValid: true },
         { value: Refactoring.GuardClauses },
-        { value: Refactoring.ReplaceExceptionWithPrecondition },
+        { value: Refactoring.DecomposeConditional },
       ],
       lines: `6`,
     },
