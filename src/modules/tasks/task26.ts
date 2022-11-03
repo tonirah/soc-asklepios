@@ -44,7 +44,7 @@ const comment = `Die komplexe Berechnung der Methode calculateDistance() kann in
 
 export const task26: ITask = {
   uuid: `1466ef69-4bce-4518-9d81-df0274d7e38f`,
-  name: `Distance Calculation is Hard`,
+  name: `Distance Calculation is hard`,
   difficulty: Difficulty.Medium,
   showAllOptions: true,
   category: Category.CentralFlightSystem,

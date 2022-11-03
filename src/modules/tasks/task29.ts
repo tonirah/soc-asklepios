@@ -9,19 +9,6 @@ import {
 const dirtyCode = `class Engine {
   private FuelTank fuelTank;
 
-  FuelTank getFuelTank() {
-    return fuelTank;
-  };
-
-  // ...
-}
-
-// usage
-Liter fuelLevel = engine.getFuelTank().getLevel();`;
-
-const cleanCode = `class Engine {
-  private FuelTank fuelTank;
-
   Liter getFuelLevel() {
     return fuelTank.getLevel();
   };
@@ -32,11 +19,24 @@ const cleanCode = `class Engine {
 // usage
 Liter fillLevel = engine.getFuelLevel();`;
 
-const comment = `Mit dem Hide Delegate Refactoring kann ein verketteter Methodenaufruf vermieden werden.`;
+const cleanCode = `class Engine {
+  private FuelTank fuelTank;
 
-export const task28: ITask = {
-  uuid: `9b147192-363c-4dd9-8dcc-4dc90552da73`,
-  name: `Do we have enough Fuel?`,
+  FuelTank getFuelTank() {
+    return fuelTank;
+  };
+
+  // ...
+}
+
+// usage
+Liter fuelLevel = engine.getFuelTank().getLevel();`;
+
+const comment = `Mit dem Remove Middleman Refactoring können verkettete Aufrufe explizit gemacht werden.`;
+
+export const task29: ITask = {
+  uuid: `d034d999-b5c4-4aff-ad20-ec69dfad6dcc`,
+  name: `I thought the Tank is full...`,
   difficulty: Difficulty.Medium,
   showAllOptions: true,
   category: Category.CentralFlightSystem,
@@ -52,9 +52,9 @@ export const task28: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.MoveFieldMethod },
-        { value: Refactoring.BidirectionalAssociation },
-        { value: Refactoring.DecomposeConditional },
-        { value: Refactoring.HideDelegate, isValid: true },
+        { value: Refactoring.ExtractInterface },
+        { value: Refactoring.RemoveMiddleMan, isValid: true },
+        { value: Refactoring.IntroduceAssertion },
       ],
       lines: `4-6, 12`,
     },
