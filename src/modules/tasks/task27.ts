@@ -10,7 +10,7 @@ const dirtyCode = `class Astronaut {
   private Location location;
 
   String printFullLocation() {
-    System.out.printLn("Room: " + location.room + ", bed: " + location.bed);
+    System.out.println("Room: " + location.room + ", bed: " + location.bed);
   }
 
   // ...
@@ -34,7 +34,7 @@ class Location {
   private Bed bed;
 
   String printFullLocation() {
-    System.out.printLn("Room: " + location.room + ", bed: " + location.bed);
+    System.out.println("Room: " + location.room + ", bed: " + location.bed);
   }
 
   // ...
