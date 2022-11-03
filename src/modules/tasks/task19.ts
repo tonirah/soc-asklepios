@@ -47,7 +47,7 @@ export const task19: ITask = {
   name: `Where is my Astronaut?`,
   difficulty: Difficulty.Medium,
   showAllOptions: false,
-  category: Category.CrewHealthHypersleep,
+  category: Category.VentilationThermalControl,
 
   dirtyCode,
   cleanCode,
@@ -60,9 +60,9 @@ export const task19: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.ChangeValueToReference },
-        { value: Refactoring.IntroduceParameterObject },
-        { value: Refactoring.ExtractClass, isValid: true },
+        { value: Refactoring.MoveFieldMethod, isValid: true },
         { value: Refactoring.RemoveMiddleMan },
+        { value: Refactoring.ExtractClass },
       ],
       lines: `4, 5, 8`,
     },
