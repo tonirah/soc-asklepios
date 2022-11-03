@@ -60,9 +60,9 @@ export const task19: ITask = {
       type: InputType.Refactoring,
       options: [
         { value: Refactoring.ChangeValueToReference },
-        { value: Refactoring.MoveFieldMethod, isValid: true },
+        { value: Refactoring.ExtractClass, isValid: true },
         { value: Refactoring.RemoveMiddleMan },
-        { value: Refactoring.ExtractClass },
+        { value: Refactoring.IntroduceAssertion },
       ],
       lines: `4, 5, 8`,
     },

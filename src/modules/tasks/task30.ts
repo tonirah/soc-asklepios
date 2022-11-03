@@ -11,9 +11,11 @@ const dirtyCode = `class RadiationWarning {
   Hours duration;
 
   void logWarning() {
+    // date method
     long HOUR_IN_MS = 3600 * 1000;
     Date end = new Date(start.getTime() + duration * HOUR_IN_MS);
 
+    // warning
     System.out.println("RadiationWarning issued at " + start + ", valid until "
                        + end + " (" + duration + " hours).");
   }
@@ -63,7 +65,7 @@ export const task30: ITask = {
         },
         { value: Refactoring.MoveFieldMethod },
       ],
-      lines: `6, 7`,
+      lines: `6-10`,
     },
   ],
 };

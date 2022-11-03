@@ -21,7 +21,7 @@ class TemperatureSensor extends Sensor {
   TemperatureReading getTemperatureReading() { /* ... */ }
 }`;
 
-const comment = `Nicht alle Sensoren können die Temperatur messen. Daher sollte für einen Temperatur-Sensor eine eigene Unterklasse erstellt werden.`;
+const comment = `Nicht alle Sensoren können die Temperatur messen. Daher sollte für einen Temperatur-Sensor eine eigene Subklasse erstellt werden.`;
 
 export const task24: ITask = {
   uuid: `434b968d-99c2-44c5-8e11-213693b96c3a`,
